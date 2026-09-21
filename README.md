@@ -32,7 +32,7 @@ and gives no new constraint on n₃.
 
 ## 4. Layout
 - `report/` — LaTeX report (+ PDF when compiled).
-- `notes/` — `NOTE_involution_case.md`, `AUDIT_reimbayev_order7.md`, `RESEARCH_MEMORY.md`, `SOURCES.md`.
+- `notes/` — `NOTE_involution_case.md`, `AUDIT_reimbayev_order7.md`, `RESEARCH_MEMORY.md`, `SOURCES.md`, **`WHAT_WOULD_HELP.md`** (what is missing / what a researcher could provide).
 - `code/z2/` — `orbit_sat.py` (CNF model + lift/verify), `cpsat_orbit.py`, `run_orbit.py`, `row_fix.py`, `joint_dfs.py`, `sout_dfs.py`, `rows.py`, `Dockerfile`, `run_batch.sh`.
 - `code/r7_check/` — `parse_r7.py`, `match705.py`, `corrected.py`, `family_n3.py` (order-7 audit; needs the arXiv TeX source and the public repo).
 - `results/` — JSON results and solver logs.

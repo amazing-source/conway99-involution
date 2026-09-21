@@ -2,3 +2,6 @@ code/z2/*.cnf
 *.cnf
 *.pdf.bak
 __pycache__/
+report/*.aux
+report/*.log
+report/*.out
