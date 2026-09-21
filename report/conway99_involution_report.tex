@@ -1,0 +1,154 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[margin=2.4cm]{geometry}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{booktabs}
+\usepackage{hyperref}
+\usepackage{enumitem}
+\newtheorem{theorem}{Theorem}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+\newcommand{\F}{\mathbb{F}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Fix}{\operatorname{Fix}}
+\newcommand{\rk}{\operatorname{rank}}
+\newcommand{\srg}{\operatorname{srg}}
+\title{Conway's 99-graph: the involution case\\
+\large Exact reduction, a new necessary condition, an audit of the order-seven census, and first computations}
+\author{Research log of an AI-assisted session (Claude, 21 September 2026)\\ \small operated by D. Djematene; every claim is either cited to a primary source or proved below}
+\date{21 September 2026 --- working version}
+\begin{document}
+\maketitle
+
+\begin{abstract}
+Let $\Gamma$ be a putative strongly regular graph $\srg(99,14,1,2)$ (Conway's 99-graph). We (i) record the exact state of the automorphism
+programme from primary sources, which leaves $|\!\operatorname{Aut}(\Gamma)|\in\{1,2,3\}$ and shows that the one-fixed-point $\Z_7$ case, described
+as open in recent work, was in fact closed at the orbit-matrix level in 2009/2011; (ii) show that the involution case is completely rigid and reduce it
+to an exact finite problem on $42$ orbits, with a perfect matching structure; (iii) derive a new necessary condition from the $2$-adic structure of the
+eigenlattices under the involution (they are \emph{free} $\Z_2[C_2]$-lattices), giving an exact $\F_2$-rank equation; (iv) audit the order-seven
+induced-subgraph census of Reimbayev (arXiv:2608.19410) and locate four typographical errors, after which the census is exactly equivalent to a
+system already verified in the public repository \texttt{conway-99-research} and yields no new constraint; (v) report the first exact computations on
+the involution case (validated SAT/CP-SAT models; all runs so far inconclusive). Nothing here resolves the existence problem.
+\end{abstract}
+
+\section{Status of the symmetry programme (primary sources)}
+\begin{itemize}[nosep]
+\item Makhnev--Minakova \cite{MM04} (Diskr.\ Mat.\ 16:1, 2004; Theorem~1 verbatim): if $g\in\operatorname{Aut}(\Gamma)$ has prime order, then
+$\Fix(g)$ is a single vertex and $|g|\in\{2,7\}$, or empty and $|g|\in\{3,11\}$, or a triangle and $|g|=3$; moreover $|\!\operatorname{Aut}(\Gamma)|$ divides $2\cdot3^3\cdot7\cdot11$.
+\item Behbahani \cite{Beh09} (Thm.\ 4.14, Table 21) $=$ Behbahani--Lam \cite{BL11}: by exhaustive orbit-matrix enumeration, no orbit matrix exists for
+$p\in\{5,7,11\}$ (all admissible fixed-point counts: $p=7$ with $1,8,15,22$ fixed points; $p=11$ with $0,11,22$), nor for $p=3$ with fixed points.
+Hence the prime divisors of $|\!\operatorname{Aut}(\Gamma)|$ are $2$ and $3$, and an element of order $3$ is fixed-point-free. \textbf{The case $p=2$ was not computed} (the table starts at $p=3$).
+\item Crnković--Maksimović \cite{CM20}: no automorphism group of order $6$ or $9$. Cesarz--Woldar \cite{CW25} (computer-free): $2\mid|G|\Rightarrow |G|\mid 6$; $7\mid|G|\Rightarrow G\cong\Z_7$.
+\item Consequently $|\!\operatorname{Aut}(\Gamma)|\in\{1,2,3\}$. Thakkar--Severini \cite{TS26} write that the single-fixed-point $\Z_7$ case ``remains open'';
+by \cite{Beh09,BL11} it is closed. The fixed-point-free order-$3$ branch is currently pursued by several public projects; the involution branch has,
+to our knowledge, never been the object of an exact computation.
+\item Ishida \cite{Ish26} recovers $a_1(t)=14$ for an involution $t$ from a trace--rank identity; no exclusion.
+\end{itemize}
+
+\section{Rigidity of the involution}
+Let $t\in\operatorname{Aut}(\Gamma)$ be an involution; by \cite{MM04}, $\Fix(t)=\{x\}$. Root $\Gamma$ at $x$: $N(x)$ induces a perfect matching $7K_2$ with
+blocks $B_i=\{(i,0),(i,1)\}$, $i=1,\dots,7$. Every vertex at distance $2$ has exactly two neighbours in $N(x)$ (as $\mu=2$), which lie in different blocks
+(as $\lambda=1$), and the $84$ outer vertices are in bijection with the $84$ unordered pairs $\{(i,s),(j,e)\}$, $i<j$ (the forced-structure reduction of
+\cite{TS26}, also implicit in Keramatipour and Lou--Murin). The only unknown is the $12$-regular outer graph $H$.
+
+\begin{lemma}\label{lem:flip}
+$t$ acts on the inner vertices as the flip $\sigma:(i,s)\mapsto(i,1-s)$ in every block, and on labels by $\sigma\{a,b\}=\{a',b'\}$.
+\end{lemma}
+\begin{proof}
+$t$ fixes $x$, hence preserves $N(x)$ and its matching, and fixes no inner vertex. If $t$ swapped two inner vertices $a,b$ from different blocks,
+it would fix the label $\{a,b\}$, an outer vertex, contradicting $\Fix(t)=\{x\}$. So every block is flipped.
+\end{proof}
+
+\begin{lemma}\label{lem:noself}
+No vertex other than the $14$ inner ones is adjacent to its image. In particular $a_1(t)=14$ and $\chi_3(t)=\chi_{-4}(t)=0$.
+\end{lemma}
+\begin{proof}
+If $u\sim tu$, the edge $\{u,tu\}$ is $t$-invariant, so its unique common neighbour ($\lambda=1$) is $t$-fixed, hence equals $x$, hence $u\in N(x)$.
+With $a_0=1$, $a_1=14$, $a_2=84$ and $E_3=\tfrac47I+\tfrac17A-\tfrac2{77}J$: $\chi_3(t)=\tfrac{6}{11}+14\cdot\tfrac{9}{77}-84\cdot\tfrac{2}{77}=0$, and $\chi_{-4}(t)=1-1-\chi_3(t)=0$.
+\end{proof}
+
+\begin{proposition}\label{prop:matching}
+For every outer $u$, $N(u)\cap N(\sigma u)$ is a $\sigma$-orbit $\{v,\sigma v\}=:D(u)$, and $D$ induces a perfect matching on the $42$ $\sigma$-orbits of outer vertices.
+Each outer vertex is adjacent to both members of exactly one orbit.
+\end{proposition}
+\begin{proof}
+$u\not\sim\sigma u$ by Lemma~\ref{lem:noself}, so $|N(u)\cap N(\sigma u)|=\mu=2$; the set is $\sigma$-invariant and contains no fixed point, hence is an orbit.
+If $D(u)=\{v,\sigma v\}$ then $u,\sigma u\in N(v)\cap N(\sigma v)$, so $D(v)=\{u,\sigma u\}$.
+\end{proof}
+
+\paragraph{Orbit-level exact model.} For orbits $U\neq V$ with representatives $u,v$ put $(a_{UV},b_{UV})=(A[u,v],A[u,\sigma v])\in\{0,1\}^2$;
+the pair is symmetric in $U,V$. Given the forced part, $A^2+A-12I=2J$ is equivalent to:
+(R) $\sum_{V}(a_{UV}+b_{UV})=12$; (D) exactly one $V$ with $a_{UV}=b_{UV}=1$; (I) for every inner vertex $c$, the number of $H$-neighbours of $u$ whose label contains $c$ is $1$ if $c\in u$ or $c'\in u$ and $2$ otherwise;
+(P) for $U\neq V$: $\sum_W(a_{UW}a_{VW}+b_{UW}b_{VW})+a_{UV}=2-|u\cap v|$ and $\sum_W(a_{UW}b_{VW}+b_{UW}a_{VW})+b_{UV}=2-|u\cap\sigma v|$.
+
+\paragraph{Quotients.} Let $Q$ ($50\times50$) be the ordinary orbit matrix and $S$ ($49\times49$) the matrix of $A$ on the $(-1)$-eigenspace of $t$ in the basis $e_u-e_{\sigma u}$.
+Then $Q^2+Q-12I=2N$ ($N_{UV}=|V|$), $Q_{\mathrm{out}}=\Gamma_1+2D$ with $\Gamma_1$ $10$-regular, and $S^2+S=12I$ exactly, $\operatorname{Spec}(S)=\{3^{27},(-4)^{22}\}$.
+Writing $S=\begin{pmatrix}-I_7&C^{\mathsf T}\\ C&S_{\mathrm{out}}\end{pmatrix}$ with $C^{\mathsf T}C=12I_7$: $C^{\mathsf T}S_{\mathrm{out}}=0$, $S_{\mathrm{out}}^2+S_{\mathrm{out}}=12I-CC^{\mathsf T}$,
+$S_{\mathrm{out}}\in\{0,\pm1\}^{42\times42}$ with ten nonzeros per row, $\operatorname{Spec}(S_{\mathrm{out}})=\{0^7,3^{20},(-4)^{15}\}$, and $(S_{\mathrm{out}}+4I-\tfrac13CC^{\mathsf T})/7$ is a projector of rank $20$.
+
+\section{A new necessary condition from the $2$-adic structure}
+\begin{theorem}\label{thm:rank}
+Let $\Gamma$ admit an involution, and let $\bar\Gamma\in\F_2^{42\times42}$ be the adjacency matrix of $\Gamma_1$ (the graph of single adjacencies on the $42$ outer orbits) and
+$N_b\in\F_2^{42\times7}$ the orbit/block incidence. Then
+\[
+\bar\Gamma^2+\bar\Gamma=N_bN_b^{\mathsf T}\quad\text{and}\quad \rk_{\F_2}\bigl(\bar\Gamma+N_bN_b^{\mathsf T}\bigr)=\rk_{\F_2}(\bar\Gamma^2)=20 .
+\]
+Equivalently $K:=\bar\Gamma^2$ is a symmetric idempotent of rank exactly $20$ with $KN_b=0$, and $\bar\Gamma=K+N_bN_b^{\mathsf T}$.
+\end{theorem}
+\begin{proof}[Proof sketch]
+The idempotents $E_3=\tfrac47I+\tfrac17A-\tfrac2{77}J$ and $E_{-4}=\tfrac37I-\tfrac17A+\tfrac1{63}J$ are $2$-integral and commute with $t$, so
+$\Z_2^{99}=L_{14}\oplus L_3\oplus L_{-4}$ as $\Z_2[\langle t\rangle]$-lattices, each $L_\theta$ a direct summand of a permutation lattice. For a $p$-group, a
+$p$-permutation lattice over $\Z_p$ is a permutation lattice (Brou\'e), so $L_\theta\cong\Z_2^{a_\theta}\oplus\Z_2[C_2]^{c_\theta}$ with $a_\theta=\chi_\theta(t)$.
+By Lemma~\ref{lem:noself}, $a_3=a_{-4}=0$: $L_3\cong\Z_2[C_2]^{27}$ and $L_{-4}\cong\Z_2[C_2]^{22}$ are free. Let $M=(1-t)\Z_2^{99}$ (rank $49$), on which $A$ acts as $S$;
+$E_3M=(1-t)L_3$ has rank $27$ and $E_3\equiv A\pmod 2$, so $\rk_{\F_2}(S\bmod2)=27$. Since $S\bmod 2=\begin{pmatrix}I&N_b^{\mathsf T}\\N_b&\bar\Gamma\end{pmatrix}$,
+a Schur complement gives $\rk(\bar\Gamma+N_bN_b^{\mathsf T})=20$. The identity $\bar\Gamma^2+\bar\Gamma=N_bN_b^{\mathsf T}$ is the reduction mod $2$ of
+$Q_{\mathrm{out}}^2+Q_{\mathrm{out}}=12I+4J-\mathrm{Sh}$ (where $\mathrm{Sh}_{UV}$ is the number of shared blocks). Finally $N_b^{\mathsf T}N_b\equiv0$, so $(N_bN_b^{\mathsf T})^2=0$ and
+$\bar\Gamma N_b=0$ (every vertex has an even number of single neighbours on each block), whence $K^2=K$ and $KN_b=0$.
+\end{proof}
+\begin{remark}
+The pairwise counting identities only yield $K^2=K$ and $\rk K$ even; the exact value $20$ is genuinely additional information.
+Mod $7$ one finds that $S_{\mathrm{out}}-3I$ is nilpotent of index $2$ on a $35$-dimensional complement of $\operatorname{span}(C)$ and
+$\rk_{\F_7}(S-3I)\le22$; this is consistent with the universal bound $\rk_{\F_7}(M)\ge27$ established in \cite{repo} for
+$M=B^{\mathsf T}(3I-A)B+J\equiv-B^{\mathsf T}(A-3I-4J)B\pmod 7$ ($B$ the vertex--triangle incidence). We found no contradiction.
+\end{remark}
+
+\section{Audit of the order-seven census (arXiv:2608.19410v1)}
+The $208$ frequency formulas were transcribed from the \TeX{} source. As printed, $\sum_i z_i-\binom{n}{7}=-\tfrac{1}{168}nk(k-2)(k-4)(19k^4-456k^3+4484k^2-21752k+42008)$
+on the locus $n=k(k-2)/2+k+1$ ($-94\,034\,160$ at $(99,14)$). Matching the values at $n_3=705$ against the rank-$207$ affine family of \cite{repo} (wave 23) identifies exactly four
+defective formulas and their corrections: $z_{21}$: drop the factor $(k-3)$; $z_{80},z_{84}$: $(2k-7)\to(2k-17)$; $z_{176}$: $\tfrac1{84}\to\tfrac18$.
+With these corrections $\sum_i z_i=\binom n7$ identically in $k$ and all $208$ formulas agree with the $208$ classes of \cite{repo} in all three coefficients.
+The corrected census imposes only $0\le n_3\le4158$, $2n_3\le z_{11}\le4n_3$, $4\mid z_{11}$: no new information on $n_3$.
+
+\section{Computations}
+\begin{itemize}[nosep]
+\item Scripts: \texttt{orbit\_sat.py} (CNF), \texttt{cpsat\_orbit.py} (CP-SAT), both implementing (R),(D),(I),(P) for general $k=2m$, with a lift to the $99\times99$
+matrix and an integer verification of $A^2+A-(k-2)I=2J$. Controls: $k=4$ gives SAT and the lifted matrix is $\srg(9,4,1,2)$ (Paley(9) has such an involution);
+$k=6$ gives UNSAT at once ($\srg(19,6,1,2)$ does not exist). For $k=14$: $1722$ primary variables, $666\,183$ CNF variables, $1.51$M clauses.
+\item Sound case split on $D(U_0)$ for $U_0=(1,2,0)$: sibling $(1,2,1)$, one shared block $(1,3,0)$, disjoint $(3,4,0)$; for the disjoint case a further
+split on $u_0\sim\{a,b'\}$ (the block swap $1\leftrightarrow2$ makes the two single-adjacency subcases equivalent).
+\item Results so far: signed-quotient relaxation (CP-SAT, 25 min): UNKNOWN. Joint model with the whole row of $U_0$ fixed: CaDiCaL undecided after $\ge30$ min CPU
+on four instances; CP-SAT 15 min: UNKNOWN (2\,477 conflicts). Native CaDiCaL/Kissat batch (7 instances, 8 h): running at the time of writing.
+A timeout is not evidence.
+\end{itemize}
+
+\section{What would settle the involution branch}
+An orderly generator on the $42$ orbits using (i) interlacing of the partial symmetrized quotient against $\{14,3^{27},(-4)^{22}\}$, (ii) the matching $D$ and the block
+constraints, (iii) Theorem~\ref{thm:rank} as a late filter, and (iv) the label group $2^7\rtimes S_7$ (order $645\,120$) for isomorph rejection.
+Either outcome is certifiable: ``no involution, hence $|\!\operatorname{Aut}(\Gamma)|\in\{1,3\}$'', or a Conway 99-graph.
+
+\begin{thebibliography}{9}
+\bibitem{MM04} A.\,A.~Makhnev, I.\,M.~Minakova, On automorphisms of strongly regular graphs with parameters $\lambda=1$, $\mu=2$, Diskretn.\ Mat.\ 16:1 (2004) 95--104, DOI 10.4213/dm144 (Engl.: Discrete Math.\ Appl.\ 14:2 (2004) 201--210).
+\bibitem{Beh09} M.~Behbahani, On strongly regular graphs, PhD thesis, Concordia University, 2009 (Library and Archives Canada NR63369).
+\bibitem{BL11} M.~Behbahani, C.~Lam, Strongly regular graphs with non-trivial automorphisms, Discrete Math.\ 311 (2011) 132--144.
+\bibitem{CM20} D.~Crnković, M.~Maksimović, Construction of strongly regular graphs having an automorphism group of composite order, Contrib.\ Discrete Math.\ 15 (2020) 22--41.
+\bibitem{CW25} P.\,G.~Cesarz, A.\,J.~Woldar, On the automorphism group of a putative Conway 99-graph, Algebraic Combinatorics 8 (2025) 379--398.
+\bibitem{TS26} D.~Thakkar, S.~Severini, A forced-structure reduction and verifiable bounds for Conway's 99-graph, arXiv:2608.11211v2 (18 Sep 2026).
+\bibitem{Ish26} Y.~Ishida, No involutions in the missing Moore graph, arXiv:2606.29183v2 (2026).
+\bibitem{Rei26} R.~Reimbayev, Induced subgraphs of order seven and their frequencies in $\srg(n,k,1,2)$, arXiv:2608.19410v1 (19 Aug 2026).
+\bibitem{repo} YesterdaysLemon, conway-99-research (GitHub), waves 1--212 (2026-07-22 to 2026-08-01), in particular waves 23, 43, 44, 206.
+\end{thebibliography}
+\end{document}

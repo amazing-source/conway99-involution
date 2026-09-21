@@ -1,0 +1,4 @@
+code/z2/*.cnf
+*.cnf
+*.pdf.bak
+__pycache__/

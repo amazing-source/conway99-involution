@@ -1,0 +1,12 @@
+# Primary sources used (links only; no copyrighted PDFs are redistributed here)
+- Makhnev, Minakova (2004), Diskr. Mat. 16:1, 95–104 — https://www.mathnet.ru/php/getFT.phtml?jrnid=dm&paperid=144&what=fullt&option_lang=eng (free)
+- Makhnev, "Graphs and automorphisms" (Bielefeld summer school slides) — https://www.math.uni-bielefeld.de/~baumeist/sommerschule/makhnev.pdf
+- Behbahani (2009), PhD thesis, Concordia — https://www.collectionscanada.gc.ca/obj/thesescanada/vol2/002/NR63369.PDF
+- Behbahani, Lam (2011), Discrete Math. 311, 132–144 — DOI 10.1016/j.disc.2010.10.005 (not obtained; thesis covers it)
+- Crnković, Maksimović (2020), Contrib. Discrete Math. 15(1), 22–41 — https://cdm.ucalgary.ca/article/view/62323 (not obtained)
+- Cesarz, Woldar (2025), Algebraic Combinatorics 8(2), 379–398 — https://alco.centre-mersenne.org/item/10.5802/alco.418.pdf
+- Ishida (2026), No involutions in the missing Moore graph — arXiv:2606.29183
+- Reimbayev (2026), Induced subgraphs of order seven … — arXiv:2608.19410 (TeX source audited)
+- Thakkar, Severini (2026) v2 — arXiv:2608.11211
+- YesterdaysLemon/conway-99-research (GitHub), incl. branches codex/wave206-global-extension, codex/wave212-global-coupling
+- Brouwer's SRG table entry (99,14,1,2): https://aeb.win.tue.nl/graphs/srg/srgtab51-100.html
