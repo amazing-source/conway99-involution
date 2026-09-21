@@ -31,9 +31,9 @@ and gives no new constraint on n₃.
 - Open: the involution branch itself (a decision either way is certifiable); the order-3 fixed-point-free branch (crowded); the asymmetric case (no known method).
 
 ## 4. Layout
-- `report/` — LaTeX report (+ PDF when compiled).
+- `report/` — `conway99_involution_report.pdf` (English, technical) and **`involution_notes_fr.pdf` (notes en français : ce que j'explore, ce que j'ai trouvé, ce qui tourne)**, with sources.
 - `notes/` — `NOTE_involution_case.md`, `AUDIT_reimbayev_order7.md`, `RESEARCH_MEMORY.md`, `SOURCES.md`, **`WHAT_WOULD_HELP.md`** (what is missing / what a researcher could provide).
-- `code/z2/` — `orbit_sat.py` (CNF model + lift/verify), `cpsat_orbit.py`, `run_orbit.py`, `row_fix.py`, `joint_dfs.py`, `sout_dfs.py`, `rows.py`, `Dockerfile`, `run_batch.sh`.
+- `code/z2/` — `orbit_sat.py` (CNF model + lift/verify), `cpsat_orbit.py`, `run_orbit.py`, `row_fix.py`, `anneal_orbit.py` (recuit simulé), `joint_dfs.py`, `sout_dfs.py`, `rows.py`, `Dockerfile`, `run_batch.sh`.
 - `code/r7_check/` — `parse_r7.py`, `match705.py`, `corrected.py`, `family_n3.py` (order-7 audit; needs the arXiv TeX source and the public repo).
 - `results/` — JSON results and solver logs.
 

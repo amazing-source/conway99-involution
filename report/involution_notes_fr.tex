@@ -1,0 +1,157 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[margin=2.3cm]{geometry}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{booktabs}
+\usepackage{hyperref}
+\usepackage{enumitem}
+\newtheorem{theorem}{Théorème}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemme}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Définition}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remarque}
+\newcommand{\F}{\mathbb{F}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Fix}{\operatorname{Fix}}
+\newcommand{\rg}{\operatorname{rang}}
+\newcommand{\srg}{\operatorname{srg}}
+\newcommand{\Aut}{\operatorname{Aut}}
+\title{Le graphe de Conway et la branche « involution »\\ \large Notes de recherche : ce que j'explore, ce que j'ai trouvé, ce qui tourne}
+\author{Journal de la session du 21 septembre 2026 (Claude, sous la direction de D.~Djematene)}
+\date{Version de travail --- tout énoncé est soit cité à une source primaire, soit démontré ici}
+\begin{document}
+\maketitle
+
+\section{Le problème, en partant de zéro}
+Un \emph{graphe} est un ensemble de sommets reliés par des arêtes. Il est \emph{fortement régulier} de paramètres $(v,k,\lambda,\mu)$ s'il a $v$ sommets,
+si chaque sommet a exactement $k$ voisins, si deux sommets voisins ont exactement $\lambda$ voisins communs et deux sommets non voisins exactement $\mu$.
+Exemples : le pentagone est un $\srg(5,2,0,1)$ ; le graphe de la tour $3\times3$ (cases d'un échiquier $3\times 3$, reliées si même ligne ou même colonne)
+est un $\srg(9,4,1,2)$ --- c'est notre \emph{graphe de contrôle} tout au long de ce travail.
+
+Le \emph{graphe de Conway} serait un $\srg(99,14,1,2)$ : 99 sommets, 14 voisins chacun, un unique voisin commun pour deux voisins (chaque arête est dans
+un seul triangle), deux voisins communs pour deux non-voisins (chaque non-arête est la diagonale d'un seul carré). Si $A$ est la matrice d'adjacence
+($A_{uv}=1$ si $u\sim v$), tout cela s'écrit en une ligne :
+\[
+A^2+A-12I=2J\qquad(J=\text{matrice de uns}).
+\]
+Cette identité est \emph{le} certificat : trouver $A$ prouve l'existence ; montrer qu'aucune $A$ ne peut la satisfaire prouve la non-existence.
+On sait que les valeurs propres de $A$ seraient $14,3,-4$ avec multiplicités $1,54,44$, que le groupe d'automorphismes (les symétries du graphe) est
+minuscule --- $|\Aut|\in\{1,2,3\}$ (voir §2) --- et que la question est ouverte depuis 1969.
+
+\section{Où en est la question des symétries (sources primaires)}
+Une \emph{symétrie} (automorphisme) est une permutation des sommets qui envoie arêtes sur arêtes. Les résultats connus, tous vérifiés sur les textes originaux :
+\begin{itemize}[nosep]
+\item \textbf{Makhnev--Minakova 2004} (Diskr. Mat. 16:1, th.~1) : si $g$ est une symétrie d'ordre premier, l'ensemble $\Fix(g)$ de ses points fixes est
+  un seul sommet ($|g|\in\{2,7\}$), vide ($|g|\in\{3,11\}$) ou un triangle ($|g|=3$) ; et $|\Aut|$ divise $2\cdot3^3\cdot7\cdot11$.
+\item \textbf{Behbahani 2009 / Behbahani--Lam 2011} (thèse, table 21) : par énumération exhaustive de « matrices d'orbites », aucune symétrie
+  d'ordre $5$, $7$ ou $11$ n'est possible, ni d'ordre $3$ avec points fixes. Il ne reste que les ordres $2$ et $3$. \textbf{L'ordre 2 n'a jamais été calculé} :
+  leur table commence à $p=3$.
+\item \textbf{Crnković--Maksimović 2020} : pas de groupe d'ordre $6$ ni $9$. \textbf{Cesarz--Woldar 2025} : preuves sans ordinateur de résultats plus faibles.
+\end{itemize}
+Bilan : $|\Aut|\in\{1,2,3\}$. Un article récent (Thakkar--Severini, ar\-Xiv:2608.11211) et le dossier de départ présentaient le cas $\Z_7$ comme ouvert :
+c'est une erreur de lecture, il est clos depuis 2009. Le cas d'ordre 3 est attaqué en ce moment par plusieurs projets publics.
+\textbf{Le cas d'ordre 2 --- une involution --- n'a été calculé par personne.} C'est la branche que j'ai choisie : elle est vierge, et elle est rigide.
+
+\section{Pourquoi la branche involution est rigide}
+Soit $t$ une involution ($t^2=\mathrm{id}$) du graphe. Par Makhnev--Minakova, $t$ fixe exactement un sommet $x$.
+\emph{Enracinons} le graphe en $x$ : ses 14 voisins forment 7 paires appariées (blocs) $B_i=\{(i,0),(i,1)\}$, car $\lambda=1$ ; chacun des 84 sommets
+restants a exactement deux voisins parmi ces 14 ($\mu=2$), dans deux blocs différents ($\lambda=1$), et ces deux voisins l'identifient : les 84 sommets extérieurs
+sont en bijection avec les 84 \emph{étiquettes} $\{(i,s),(j,e)\}$, $i<j$ (réduction de Thakkar--Severini). Toutes les arêtes entre les 15 sommets intérieurs
+et les 84 extérieurs sont donc forcées ; l'inconnue est le graphe $H$ des arêtes entre sommets extérieurs (chaque extérieur y a $12$ voisins).
+
+\begin{lemma}[l'involution est forcée]
+$t$ agit sur les sommets intérieurs comme le « retournement » $\sigma:(i,s)\mapsto(i,1-s)$ de chaque bloc, et sur les étiquettes par $\sigma\{a,b\}=\{a',b'\}$
+(où $a'$ est le partenaire de $a$).
+\end{lemma}
+\begin{proof}
+$t$ fixe $x$, donc préserve les 14 voisins de $x$ et leur appariement, et ne fixe aucun d'eux. Si $t$ échangeait deux sommets intérieurs $a,b$ de blocs différents,
+il fixerait l'étiquette $\{a,b\}$, c'est-à-dire un sommet extérieur : contradiction. Donc chaque bloc est retourné sur lui-même.
+\end{proof}
+
+\begin{lemma}[aucun extérieur n'est voisin de son image]\label{lem:noself}
+Si $u\sim tu$ alors $u$ est intérieur. En particulier $a_1(t)=14$ et les traces de $t$ sur les espaces propres $3$ et $-4$ sont nulles.
+\end{lemma}
+\begin{proof}
+L'arête $\{u,tu\}$ est envoyée sur elle-même par $t$ ; son unique voisin commun ($\lambda=1$) est donc fixé par $t$ : c'est $x$. Donc $u\sim x$.
+Avec $a_0=1$ point fixe, $a_1=14$ sommets envoyés sur un voisin, $a_2=84$ sur un non-voisin, et l'idempotent $E_3=\tfrac47I+\tfrac17A-\tfrac2{77}J$ :
+$\chi_3(t)=\tfrac6{11}+14\cdot\tfrac9{77}-84\cdot\tfrac2{77}=0$, puis $\chi_{-4}(t)=a_0-1-\chi_3(t)=0$.
+\end{proof}
+
+\begin{proposition}[le couplage $D$]
+Pour tout extérieur $u$, les deux voisins communs de $u$ et $\sigma u$ forment une orbite $\{v,\sigma v\}=:D(u)$, et $D$ est un \emph{couplage parfait}
+sur les 42 orbites d'extérieurs. Autrement dit chaque extérieur est voisin des deux membres d'exactement une orbite.
+\end{proposition}
+\begin{proof}
+$u\not\sim\sigma u$ (lemme~\ref{lem:noself}) donc $|N(u)\cap N(\sigma u)|=\mu=2$ ; cet ensemble est stable par $\sigma$ et sans point fixe, c'est une orbite.
+Si $D(u)=\{v,\sigma v\}$ alors $u,\sigma u\in N(v)\cap N(\sigma v)$, donc $D(v)=\{u,\sigma u\}$.
+\end{proof}
+
+\paragraph{Le modèle exact.} On regroupe les 84 extérieurs en 42 orbites $U=\{u,\sigma u\}$. Pour deux orbites $U\neq V$ on note
+$(a_{UV},b_{UV})=(A[u,v],A[u,\sigma v])$ : deux bits, symétriques en $U,V$. L'identité $A^2+A-12I=2J$ équivaut alors exactement à :
+(R) $\sum_V(a_{UV}+b_{UV})=12$ ; (D) une seule orbite $V$ avec $a_{UV}=b_{UV}=1$ ; (I) pour chaque intérieur $c$, le nombre de voisins de $u$ dont
+l'étiquette contient $c$ vaut $1$ si $c\in u$ ou $c'\in u$, et $2$ sinon ; (P) pour $U\neq V$ :
+$\sum_W(a_{UW}a_{VW}+b_{UW}b_{VW})+a_{UV}=2-|u\cap v|$ et $\sum_W(a_{UW}b_{VW}+b_{UW}a_{VW})+b_{UV}=2-|u\cap\sigma v|$.
+Ce sont 1722 bits et quelques milliers d'équations. C'est \emph{ce que je fais calculer} : chaque solution est un graphe de Conway (on le reconstruit et on
+vérifie $A^2+A-12I=2J$ en entiers) ; l'absence de solution prouve qu'aucun graphe de Conway n'a d'involution.
+
+\paragraph{Deux quotients.} L'involution coupe l'espace $\mathbb{R}^{99}$ en deux : les vecteurs \emph{pairs} ($f(tv)=f(v)$, dimension 50) et \emph{impairs}
+($f(tv)=-f(v)$, dimension 49). Sur les pairs, $A$ agit par la \emph{matrice d'orbites} $Q$ (entrées $0,1,2$), avec $Q^2+Q-12I=2N$ ; sur les impairs par la
+\emph{matrice signée} $S$ (entrées $0,\pm1$), avec $S^2+S=12I$ exactement, spectre $3^{27},(-4)^{22}$. Le bloc extérieur $S_{\mathrm{out}}$ ($42\times42$, dix
+$\pm1$ par ligne) satisfait $C^{\mathsf T}S_{\mathrm{out}}=0$ et $S_{\mathrm{out}}^2+S_{\mathrm{out}}=12I-CC^{\mathsf T}$, d'où le spectre $0^7,3^{20},(-4)^{15}$
+et le fait que $(S_{\mathrm{out}}+4I-\tfrac13CC^{\mathsf T})/7$ est un projecteur de rang 20. Ces structures sont ce que j'ai utilisé pour chercher des obstructions.
+
+\section{Ce que j'ai découvert : une condition nécessaire nouvelle}
+L'idée vient d'un article de juin 2026 (Ishida, « No involutions in the missing Moore graph ») : regarder non pas les valeurs propres, mais les
+\emph{réseaux} entiers $2$-adiques que les projecteurs découpent, et leur structure comme modules sur le groupe engendré par $t$.
+
+\begin{theorem}
+Soit $\bar\Gamma\in\F_2^{42\times42}$ la matrice d'adjacence (mod 2) du graphe des « adjacences simples » entre orbites ($a_{UV}+b_{UV}=1$) et
+$N_b\in\F_2^{42\times7}$ l'incidence orbites/blocs. Alors
+\[
+\bar\Gamma^2+\bar\Gamma=N_bN_b^{\mathsf T}\qquad\text{et}\qquad \rg_{\F_2}\bigl(\bar\Gamma+N_bN_b^{\mathsf T}\bigr)=\rg_{\F_2}(\bar\Gamma^2)=20 .
+\]
+\end{theorem}
+\begin{proof}[Idée de la preuve]
+Les projecteurs $E_3$ et $E_{-4}$ ont des coefficients $2$-entiers et commutent avec $t$ : $\Z_2^{99}=L_{14}\oplus L_3\oplus L_{-4}$ comme réseaux munis de
+l'action de $t$, chacun facteur direct d'un réseau de permutation. Pour un $2$-groupe, un tel facteur est lui-même un réseau de permutation (Broué 1985), donc
+$L_\theta\cong\Z_2^{a_\theta}\oplus\Z_2[C_2]^{c_\theta}$ avec $a_\theta=$ trace de $t$ sur $L_\theta$. Par le lemme~\ref{lem:noself} ces traces sont nulles :
+$L_3\cong\Z_2[C_2]^{27}$ et $L_{-4}\cong\Z_2[C_2]^{22}$ sont \emph{libres}. Sur le réseau impair $M=(1-t)\Z_2^{99}$, $A$ agit par $S$ et $E_3M$ a rang 27 ;
+comme $E_3\equiv A\pmod 2$, on obtient $\rg_{\F_2}(S\bmod2)=27$, et un complément de Schur donne $\rg(\bar\Gamma+N_bN_b^{\mathsf T})=20$.
+L'identité $\bar\Gamma^2+\bar\Gamma=N_bN_b^{\mathsf T}$ est la réduction mod 2 de $Q_{\mathrm{out}}^2+Q_{\mathrm{out}}=12I+4J-\mathrm{Sh}$.
+\end{proof}
+Pourquoi c'est nouveau : les identités de comptage (deux voisins communs, etc.) ne donnent que « $K=\bar\Gamma^2$ est idempotente de rang pair » ;
+la valeur exacte $20$ vient de la structure des réseaux, pas du comptage. Ce n'est \emph{pas} une contradiction --- j'ai vérifié qu'elle est compatible avec
+tout ce que l'on sait, y compris le plancher $\rg_{\F_7}(M)\ge27$ établi par le dépôt public --- mais c'est un filtre exact utilisable dans une recherche.
+
+\section{Ce que j'ai vérifié en chemin : l'audit du recensement d'ordre sept}
+Le dossier recommandait d'exploiter le recensement des 208 sous-graphes induits à 7 sommets (Reimbayev, arXiv:2608.19410). J'ai transcrit les 208 formules
+depuis le source \TeX{} et testé l'identité $\sum_i z_i=\binom{n}{7}$ : \textbf{elle échoue} (déficit $94\,034\,160$ à $(99,14)$). En comparant, sans les figures,
+aux 208 classes déjà calculées indépendamment par le dépôt public (vague 23), exactement quatre formules sont fautives, et les corrections sont des coquilles :
+$z_{21}$ (facteur $(k-3)$ en trop), $z_{80},z_{84}$ ($(2k-7)\to(2k-17)$), $z_{176}$ ($\tfrac1{84}\to\tfrac18$). Après correction, l'identité devient une identité
+polynomiale en $k$ et les 208 formules coïncident avec le dépôt sur tous les coefficients. Conclusion : ce recensement n'apporte \emph{aucune} contrainte nouvelle
+(seulement $2n_3\le z_{11}\le4n_3$), et la recommandation était déjà consommée par le dépôt. Détails : \texttt{notes/AUDIT\_reimbayev\_order7.md}.
+
+\section{Ce que je fais calculer, et ce que ça a donné}
+\begin{itemize}[nosep]
+\item Modèles exacts (\texttt{orbit\_sat.py}, \texttt{cpsat\_orbit.py}) validés sur les contrôles : $k=4$ donne une solution qui, relevée en $9\times9$, est bien
+la tour $3\times3$ ; $k=6$ est immédiatement impossible (aucun $\srg(19,6,1,2)$). Pour $k=14$ : 666\,183 variables, 1,51~M de clauses.
+\item Découpage en trois cas selon l'orbite double $D(U_0)$ de l'orbite de référence (sœur, un bloc commun, disjointe) ; les autres choix s'y ramènent par symétrie.
+\item Résultats : relaxation signée (CP-SAT, 25 min) : indécis. Modèle complet avec la ligne de $U_0$ entièrement fixée : indécis après $\ge30$ min de CPU
+(CaDiCaL, 4 instances) et 15 min (CP-SAT). Une batterie CaDiCaL/Kissat natifs (7 instances, 8~h) et un recuit simulé tournent cette nuit.
+Un dépassement de temps n'est \emph{pas} une preuve.
+\end{itemize}
+
+\section{Ce que j'en pense, et la suite}
+La branche involution est entièrement formalisée, rigide, et dotée d'une structure algébrique forte (deux quotients à spectres prescrits, un couplage parfait,
+un invariant de rang). Les solveurs génériques ne la décident pas en quelques heures. La méthode qui la déciderait vraiment est un \emph{générateur ordonné}
+sur les 42 orbites : entrelacement spectral des sous-matrices partielles avec $\{14,3^{27},(-4)^{22}\}$, couplage $D$ et contraintes de blocs, invariant $\F_2$ en filtre,
+et le groupe $2^7\rtimes S_7$ (ordre 645\,120) pour éliminer les isomorphes. C'est plusieurs jours de travail, mais l'issue serait certifiable dans les deux sens :
+« aucune involution, donc $|\Aut|\in\{1,3\}$ », ou bien un graphe de Conway.
+
+Sur la question de fond, mon intuition penche vers la non-existence (rigidité extrême de $\lambda=1,\mu=2$, absence de symétrie, plateaux des heuristiques),
+mais ce n'est qu'une intuition : toutes les conditions nécessaires connues sont satisfaites, et rien dans ce travail ne tranche. Les calculs sont codés
+symétriquement et rendront ce qu'ils rendront.
+\end{document}
