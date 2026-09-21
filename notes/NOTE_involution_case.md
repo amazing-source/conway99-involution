@@ -33,7 +33,7 @@ are the labels {(i,s),(j,e)}, i<j (Thakkar–Severini reduction; every inner–o
     S² + S = 12I exactly, spectrum 3²⁷,(−4)²²; inner block −I₇, inner–outer block C (C^T C = 12I₇), S_out ∈ {0,±1}, ten nonzeros per row,
     C^T S_out = 0, S_out² + S_out = 12I − CC^T; hence Spec(S_out) = 0⁷ ∪ 3²⁰ ∪ (−4)¹⁵ and (S_out + 4I − CC^T/3)/7 is a rank-20 projector.
 
-## 3. A new exact necessary condition from the 2-adic module structure (proof sketch)
+## 3. A new exact necessary condition (elementary proof: since χ₃(t)=0, S has char. poly (x−3)²⁷(x+4)²²; mod 2 it is (x+1)²⁷x²² and S̄²=S̄, so rank_F2(S mod 2)=27; Schur complement ⇒ rank(Γ̄+NbNbᵀ)=20. The 2-adic argument below is the original, longer route.)
 E₃ = (4I + A)/7 − 2J/77 and E₋₄ = (3I − A)/7 + J/63 are 2-integral, so Z₂⁹⁹ = L₁₄ ⊕ L₃ ⊕ L₋₄ as Z₂[⟨t⟩]-lattices (ranks 1, 54, 44).
 Each L_θ is a direct summand of the permutation lattice Z₂⁹⁹ (E_θ commutes with t), hence a p-permutation lattice for the 2-group
 ⟨t⟩, hence a permutation lattice (Broué 1985: for a p-group every p-permutation lattice over Z_p is a permutation lattice),

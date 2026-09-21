@@ -99,17 +99,18 @@ $N_b\in\F_2^{42\times7}$ the orbit/block incidence. Then
 \]
 Equivalently $K:=\bar\Gamma^2$ is a symmetric idempotent of rank exactly $20$ with $KN_b=0$, and $\bar\Gamma=K+N_bN_b^{\mathsf T}$.
 \end{theorem}
-\begin{proof}[Proof sketch]
-The idempotents $E_3=\tfrac47I+\tfrac17A-\tfrac2{77}J$ and $E_{-4}=\tfrac37I-\tfrac17A+\tfrac1{63}J$ are $2$-integral and commute with $t$, so
-$\Z_2^{99}=L_{14}\oplus L_3\oplus L_{-4}$ as $\Z_2[\langle t\rangle]$-lattices, each $L_\theta$ a direct summand of a permutation lattice. For a $p$-group, a
-$p$-permutation lattice over $\Z_p$ is a permutation lattice (Brou\'e), so $L_\theta\cong\Z_2^{a_\theta}\oplus\Z_2[C_2]^{c_\theta}$ with $a_\theta=\chi_\theta(t)$.
-By Lemma~\ref{lem:noself}, $a_3=a_{-4}=0$: $L_3\cong\Z_2[C_2]^{27}$ and $L_{-4}\cong\Z_2[C_2]^{22}$ are free. Let $M=(1-t)\Z_2^{99}$ (rank $49$), on which $A$ acts as $S$;
-$E_3M=(1-t)L_3$ has rank $27$ and $E_3\equiv A\pmod 2$, so $\rk_{\F_2}(S\bmod2)=27$. Since $S\bmod 2=\begin{pmatrix}I&N_b^{\mathsf T}\\N_b&\bar\Gamma\end{pmatrix}$,
-a Schur complement gives $\rk(\bar\Gamma+N_bN_b^{\mathsf T})=20$. The identity $\bar\Gamma^2+\bar\Gamma=N_bN_b^{\mathsf T}$ is the reduction mod $2$ of
+\begin{proof}
+By Lemma~\ref{lem:noself}, $\chi_3(t)=0$, so $t$ has eigenvalue $-1$ with multiplicity $27$ on the $3$-eigenspace of $A$ and $22$ on the $(-4)$-eigenspace;
+hence the signed quotient $S$ (the matrix of $A$ on the $(-1)$-eigenspace of $t$) has characteristic polynomial $(x-3)^{27}(x+4)^{22}$. Reducing the integer
+matrix $S$ modulo $2$ gives characteristic polynomial $(x+1)^{27}x^{22}$, and $S^2+S=12I\equiv0$ shows that $\bar S:=S\bmod 2$ is diagonalizable over $\F_2$;
+therefore $\rk_{\F_2}(\bar S)=27$. Since $\bar S=\begin{pmatrix}I_7&N_b^{\mathsf T}\\N_b&\bar\Gamma\end{pmatrix}$, a Schur complement gives
+$\rk_{\F_2}(\bar\Gamma+N_bN_b^{\mathsf T})=20$. The identity $\bar\Gamma^2+\bar\Gamma=N_bN_b^{\mathsf T}$ is the reduction mod $2$ of
 $Q_{\mathrm{out}}^2+Q_{\mathrm{out}}=12I+4J-\mathrm{Sh}$ (where $\mathrm{Sh}_{UV}$ is the number of shared blocks). Finally $N_b^{\mathsf T}N_b\equiv0$, so $(N_bN_b^{\mathsf T})^2=0$ and
 $\bar\Gamma N_b=0$ (every vertex has an even number of single neighbours on each block), whence $K^2=K$ and $KN_b=0$.
 \end{proof}
 \begin{remark}
+A first version of this proof went through the $2$-adic eigenlattices ($L_3\cong\Z_2[C_2]^{27}$, $L_{-4}\cong\Z_2[C_2]^{22}$ free, via Brou\'e's theorem on
+$p$-permutation lattices); the elementary derivation above, pointed out by an independent check, needs only the spectrum of $S$ and a Schur complement.
 The pairwise counting identities only yield $K^2=K$ and $\rk K$ even; the exact value $20$ is genuinely additional information.
 Mod $7$ one finds that $S_{\mathrm{out}}-3I$ is nilpotent of index $2$ on a $35$-dimensional complement of $\operatorname{span}(C)$ and
 $\rk_{\F_7}(S-3I)\le22$; this is consistent with the universal bound $\rk_{\F_7}(M)\ge27$ established in \cite{repo} for

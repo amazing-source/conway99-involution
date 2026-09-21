@@ -114,14 +114,16 @@ $N_b\in\F_2^{42\times7}$ l'incidence orbites/blocs. Alors
 \bar\Gamma^2+\bar\Gamma=N_bN_b^{\mathsf T}\qquad\text{et}\qquad \rg_{\F_2}\bigl(\bar\Gamma+N_bN_b^{\mathsf T}\bigr)=\rg_{\F_2}(\bar\Gamma^2)=20 .
 \]
 \end{theorem}
-\begin{proof}[Idée de la preuve]
-Les projecteurs $E_3$ et $E_{-4}$ ont des coefficients $2$-entiers et commutent avec $t$ : $\Z_2^{99}=L_{14}\oplus L_3\oplus L_{-4}$ comme réseaux munis de
-l'action de $t$, chacun facteur direct d'un réseau de permutation. Pour un $2$-groupe, un tel facteur est lui-même un réseau de permutation (Broué 1985), donc
-$L_\theta\cong\Z_2^{a_\theta}\oplus\Z_2[C_2]^{c_\theta}$ avec $a_\theta=$ trace de $t$ sur $L_\theta$. Par le lemme~\ref{lem:noself} ces traces sont nulles :
-$L_3\cong\Z_2[C_2]^{27}$ et $L_{-4}\cong\Z_2[C_2]^{22}$ sont \emph{libres}. Sur le réseau impair $M=(1-t)\Z_2^{99}$, $A$ agit par $S$ et $E_3M$ a rang 27 ;
-comme $E_3\equiv A\pmod 2$, on obtient $\rg_{\F_2}(S\bmod2)=27$, et un complément de Schur donne $\rg(\bar\Gamma+N_bN_b^{\mathsf T})=20$.
-L'identité $\bar\Gamma^2+\bar\Gamma=N_bN_b^{\mathsf T}$ est la réduction mod 2 de $Q_{\mathrm{out}}^2+Q_{\mathrm{out}}=12I+4J-\mathrm{Sh}$.
+\begin{proof}
+Par le lemme~\ref{lem:noself}, $\chi_3(t)=0$ : sur l'espace propre $3$ de $A$ (dimension 54), $t$ a la valeur propre $-1$ avec multiplicité 27, et 22 sur
+l'espace propre $-4$. La matrice signée $S$ (celle de $A$ sur les vecteurs impairs) a donc pour polynôme caractéristique $(x-3)^{27}(x+4)^{22}$.
+Réduit modulo 2, il devient $(x+1)^{27}x^{22}$ ; et comme $S^2+S=12I\equiv0$, la matrice $\bar S=S\bmod2$ vérifie $\bar S^2=\bar S$, donc est diagonalisable
+sur $\F_2$ : son rang est le nombre de valeurs propres égales à $1$, soit $27$. Comme $\bar S=\begin{pmatrix}I_7&N_b^{\mathsf T}\\N_b&\bar\Gamma\end{pmatrix}$,
+un complément de Schur donne $\rg(\bar\Gamma+N_bN_b^{\mathsf T})=20$. L'identité $\bar\Gamma^2+\bar\Gamma=N_bN_b^{\mathsf T}$ est la réduction mod 2 de
+$Q_{\mathrm{out}}^2+Q_{\mathrm{out}}=12I+4J-\mathrm{Sh}$.
 \end{proof}
+Ma première preuve passait par les réseaux $2$-adiques et un théorème de Broué (réseaux de $p$-permutation) ; une vérification indépendante a fait remarquer
+que le spectre de $S$ et un complément de Schur suffisent. L'énoncé ne change pas, la preuve est plus courte et n'utilise que le lemme~\ref{lem:noself}.
 Pourquoi c'est nouveau : les identités de comptage (deux voisins communs, etc.) ne donnent que « $K=\bar\Gamma^2$ est idempotente de rang pair » ;
 la valeur exacte $20$ vient de la structure des réseaux, pas du comptage. Ce n'est \emph{pas} une contradiction --- j'ai vérifié qu'elle est compatible avec
 tout ce que l'on sait, y compris le plancher $\rg_{\F_7}(M)\ge27$ établi par le dépôt public --- mais c'est un filtre exact utilisable dans une recherche.
