@@ -44,3 +44,6 @@ python code/z2/orbit_sat.py --m 3 --solve      # control k=6: UNSAT (srg(19,6,1,
 python code/z2/orbit_sat.py --m 7 --case one --out k14_one.cnf
 docker build -t satbox code/z2 && sh code/z2/run_batch.sh 28800
 ```
+
+## 6. Third-party notes (verified here)
+- `notes/third_party/C3_hexagon_holonomy.md` (ChatGPT, 2026-09-21): in the order-3 fixed-point-free branch, if the six triangular orbits form a chordless C6, the matching holonomy around the hexagon is 0 in F3. Checked line by line and recomputed independently (`notes/third_party/check_c3_hexagon.py`). Scope: one sub-case of C3; novelty not established.
