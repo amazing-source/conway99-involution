@@ -115,8 +115,9 @@ $N_b\in\F_2^{42\times7}$ l'incidence orbites/blocs. Alors
 \]
 \end{theorem}
 \begin{proof}
-Par le lemme~\ref{lem:noself}, $\chi_3(t)=0$ : sur l'espace propre $3$ de $A$ (dimension 54), $t$ a la valeur propre $-1$ avec multiplicité 27, et 22 sur
-l'espace propre $-4$. La matrice signée $S$ (celle de $A$ sur les vecteurs impairs) a donc pour polynôme caractéristique $(x-3)^{27}(x+4)^{22}$.
+La matrice signée $S$ vérifie $S^2+S=12I$ : ses valeurs propres sont $3$ et $-4$, de multiplicités $f,g$ avec $f+g=49$ et
+$3f-4g=\operatorname{tr}(S)=-7$ (bloc intérieur $-I_7$, diagonale extérieure nulle par le lemme~\ref{lem:noself}) ; donc $f=27$, $g=22$, et le polynôme
+caractéristique de $S$ est $(x-3)^{27}(x+4)^{22}$.
 Réduit modulo 2, il devient $(x+1)^{27}x^{22}$ ; et comme $S^2+S=12I\equiv0$, la matrice $\bar S=S\bmod2$ vérifie $\bar S^2=\bar S$, donc est diagonalisable
 sur $\F_2$ : son rang est le nombre de valeurs propres égales à $1$, soit $27$. Comme $\bar S=\begin{pmatrix}I_7&N_b^{\mathsf T}\\N_b&\bar\Gamma\end{pmatrix}$,
 un complément de Schur donne $\rg(\bar\Gamma+N_bN_b^{\mathsf T})=20$. L'identité $\bar\Gamma^2+\bar\Gamma=N_bN_b^{\mathsf T}$ est la réduction mod 2 de

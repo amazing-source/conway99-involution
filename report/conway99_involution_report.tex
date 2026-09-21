@@ -100,8 +100,9 @@ $N_b\in\F_2^{42\times7}$ the orbit/block incidence. Then
 Equivalently $K:=\bar\Gamma^2$ is a symmetric idempotent of rank exactly $20$ with $KN_b=0$, and $\bar\Gamma=K+N_bN_b^{\mathsf T}$.
 \end{theorem}
 \begin{proof}
-By Lemma~\ref{lem:noself}, $\chi_3(t)=0$, so $t$ has eigenvalue $-1$ with multiplicity $27$ on the $3$-eigenspace of $A$ and $22$ on the $(-4)$-eigenspace;
-hence the signed quotient $S$ (the matrix of $A$ on the $(-1)$-eigenspace of $t$) has characteristic polynomial $(x-3)^{27}(x+4)^{22}$. Reducing the integer
+The signed quotient $S$ satisfies $S^2+S=12I$, so its eigenvalues are $3$ and $-4$, with multiplicities $f,g$ satisfying $f+g=49$ and
+$3f-4g=\operatorname{tr}(S)=-7$ (inner block $-I_7$, outer diagonal zero by Lemma~\ref{lem:noself}); hence $f=27$, $g=22$, and the characteristic
+polynomial of $S$ is $(x-3)^{27}(x+4)^{22}$. Reducing the integer
 matrix $S$ modulo $2$ gives characteristic polynomial $(x+1)^{27}x^{22}$, and $S^2+S=12I\equiv0$ shows that $\bar S:=S\bmod 2$ is diagonalizable over $\F_2$;
 therefore $\rk_{\F_2}(\bar S)=27$. Since $\bar S=\begin{pmatrix}I_7&N_b^{\mathsf T}\\N_b&\bar\Gamma\end{pmatrix}$, a Schur complement gives
 $\rk_{\F_2}(\bar\Gamma+N_bN_b^{\mathsf T})=20$. The identity $\bar\Gamma^2+\bar\Gamma=N_bN_b^{\mathsf T}$ is the reduction mod $2$ of
