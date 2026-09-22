@@ -45,5 +45,12 @@ python code/z2/orbit_sat.py --m 7 --case one --out k14_one.cnf
 docker build -t satbox code/z2 && sh code/z2/run_batch.sh 28800
 ```
 
+## 5b. External audit (2026-09-22) — READ THE WARNING BEFORE USING IT
+`report/dossier_chercheurs_fr.pdf` (+ `.tex`) and `notes/ONE10_PROVENANCE.md` were written by a **different session on a different machine**,
+without the CNFs or intermediate outputs of the original session. They are an external audit, not part of the original work.
+Statements tagged **[S]/[R]** there are the repository's own, re-read; statements tagged **[N]** are new claims by a single reader and must be
+re-proved independently before being cited or merged into this README. `results/batch_kissat_one10.log` (UNSAT) is undocumented and must not be
+cited as a result until the test in `notes/ONE10_PROVENANCE.md` has been run on the machine that holds the CNFs. Nothing there eliminates any case.
+
 ## 6. Third-party notes (verified here)
 - `notes/third_party/C3_hexagon_holonomy.md` (ChatGPT, 2026-09-21): in the order-3 fixed-point-free branch, if the six triangular orbits form a chordless C6, the matching holonomy around the hexagon is 0 in F3. Checked line by line and recomputed independently (`notes/third_party/check_c3_hexagon.py`). Scope: one sub-case of C3; novelty not established.

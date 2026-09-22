@@ -1,0 +1,457 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[margin=2.2cm]{geometry}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{booktabs,longtable,array}
+\usepackage{enumitem}
+\usepackage{xcolor}
+\usepackage[colorlinks=true,linkcolor=blue!50!black,urlcolor=blue!50!black,citecolor=blue!50!black]{hyperref}
+\setlength{\parskip}{3pt}
+\newtheorem{theorem}{Théorème}[section]
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemme}
+\newtheorem{corollary}[theorem]{Corollaire}
+\theoremstyle{definition}
+\newtheorem{question}[theorem]{Question}
+\newtheorem{verif}[theorem]{À vérifier}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remarque}
+\newcommand{\F}{\mathbb{F}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Fix}{\operatorname{Fix}}
+\newcommand{\rg}{\operatorname{rang}}
+\newcommand{\tr}{\operatorname{tr}}
+\newcommand{\srg}{\operatorname{srg}}
+\newcommand{\Aut}{\operatorname{Aut}}
+\newcommand{\Spec}{\operatorname{Spec}}
+\newcommand{\Sh}{\mathrm{Sh}}
+\newcommand{\Sout}{S_{\mathrm{out}}}
+\newcommand{\Qout}{Q_{\mathrm{out}}}
+\newcommand{\st}[1]{\textbf{[#1]}}
+\newcommand{\code}[1]{\texttt{#1}}
+
+\title{Le graphe de Conway $\srg(99,14,1,2)$, branche « involution »\\
+\large Dossier pour les chercheurs : ce qui est établi, ce qui reste à démontrer, ce qui nous aiderait}
+\author{Rédigé par Claude (Fable 5.1) pour D.~Djematene\\
+\small à partir d'une lecture intégrale du dépôt \code{amazing-source/conway99-involution} (commit \code{338c00e}, 22 septembre 2026)}
+\date{22 septembre 2026}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+Ce document s'adresse à des chercheurs en combinatoire algébrique et en calcul formel. Il fait le point, sans rien omettre, sur le dépôt de recherche
+consacré à la branche « involution » du problème d'existence du graphe de Conway. Il distingue soigneusement (i) ce qui est cité à une source primaire,
+(ii) ce qui est démontré dans le dépôt et relu ici, (iii) ce qui est démontré dans ce document même (et donc à relire), (iv) ce qui a été calculé,
+et (v) ce qui est douteux, non reproductible ou simplement faux dans la rédaction du dépôt. Les deux dernières parties listent, par ordre de priorité,
+ce qu'un chercheur devrait \emph{vérifier} et ce que nous aimerions qu'il \emph{démontre} pour faire avancer la branche.
+\textbf{Rien, ni dans le dépôt ni ici, ne tranche l'existence de $\srg(99,14,1,2)$.}
+\end{abstract}
+
+\begin{center}
+\fbox{\parbox{0.94\textwidth}{\textbf{AVERTISSEMENT --- DOCUMENT EXTERNE AU DÉPÔT.}
+Ce dossier a été rédigé le 22 septembre 2026 par une session \emph{différente} de celle qui a produit le dépôt, sur une autre machine, sans accès aux CNF
+ni aux sorties intermédiaires de la session d'origine. Il est un \emph{audit}, pas une partie du travail original.
+Avant de tenir pour acquis quoi que ce soit d'ici, toute session ou toute personne qui poursuit le travail doit :
+(1) ne considérer comme établis que les énoncés étiquetés \st{S} ou \st{R}, qui sont ceux du dépôt, relus ici ;
+(2) traiter les énoncés étiquetés \st{N} (spectre de $\Qout$, analogues mod 3, parité des $C_4$, code LCD, remarque de statut du théorème $\F_2$)
+comme des \emph{conjectures d'un seul lecteur}, à redémontrer indépendamment avant tout usage, toute citation ou tout ajout au \code{README} ;
+(3) lire la section~\ref{sec:anomalies} et exécuter le test de \code{notes/ONE10\_PROVENANCE.md} avant de citer un quelconque résultat de solveur ;
+(4) signaler dans le dépôt tout désaccord avec ce dossier plutôt que de le corriger silencieusement.
+Rien ici ne tranche l'existence de $\srg(99,14,1,2)$ et aucun cas de la branche involution n'est éliminé.}}
+\end{center}
+
+\tableofcontents
+
+\section*{Conventions de statut}
+Chaque énoncé porte l'une des étiquettes suivantes.
+\begin{description}[nosep]
+\item[\st{S}] cité à une source primaire, obtenue et lue pendant la session à l'origine du dépôt (les références sont dans \code{notes/SOURCES.md}).
+\item[\st{S?}] cité à une source \emph{non obtenue} (résumé de seconde main, ou thèse à la place de l'article).
+\item[\st{R}] démontré dans le dépôt ; j'ai relu et refait la preuve ici, elle tient.
+\item[\st{N}] démontré \emph{dans ce document}, absent du dépôt ; à relire par un humain avant tout usage.
+\item[\st{C}] résultat de calcul du dépôt ; je précise s'il est reproductible avec les fichiers présents.
+\item[\st{T}] note tierce (produite par ChatGPT, transmise par l'opérateur) vérifiée dans le dépôt par un script indépendant.
+\item[\st{?}] point douteux, incohérence ou lacune que j'ai relevée.
+\end{description}
+
+\section{Résumé pour lecteur pressé}
+\begin{enumerate}[nosep]
+\item Soit $\Gamma$ un hypothétique $\srg(99,14,1,2)$. La littérature (§\ref{sec:biblio}) donne $|\Aut(\Gamma)|\in\{1,2,3\}$. Le cas d'ordre 3 (sans point fixe) est
+attaqué par plusieurs projets publics ; \textbf{le cas d'ordre 2 n'a, à notre connaissance, jamais été calculé} (la table de Behbahani commence à $p=3$).
+\item Le dépôt montre \st{R} que ce cas est entièrement rigide : l'involution $t$ fixe un seul sommet $x$, agit sur $N(x)=7K_2$ en retournant chaque paire,
+aucun sommet extérieur n'est adjacent à son image, et les $\mu$-graphes des paires $\{u,tu\}$ forment un couplage parfait $D$ sur les 42 orbites extérieures.
+Il en résulte un modèle exact à $1722$ bits (§\ref{sec:modele}), validé sur $\srg(9,4,1,2)$ (SAT, relevé et vérifié) et $\srg(19,6,1,2)$ (UNSAT immédiat).
+\item Le dépôt démontre \st{R} une condition de rang sur $\F_2$ (Théorème~\ref{thm:F2}). Je montre ici \st{N} qu'elle est une \emph{conséquence} de l'identité de quotient
+(le dépôt la présente comme « information supplémentaire », ce qui est à nuancer), j'en donne l'analogue mod 3 (Proposition~\ref{prop:F3}),
+je détermine exactement le spectre du bloc extérieur de la matrice d'orbites (Proposition~\ref{prop:specQout}), et j'obtiens par comptage d'orbites
+une congruence nouvelle : \emph{dans la branche involution, le nombre de $C_4$ induits est impair} (Proposition~\ref{prop:parite}).
+\item Tous les calculs exacts (CaDiCaL, Kissat, CP-SAT ; jusqu'à $8$~h par instance) sont \textbf{indécis} ; les heuristiques (recuit) plafonnent loin de zéro.
+Un dépassement de temps n'est pas une preuve.
+\item J'ai relevé \st{?} plusieurs points à corriger dans le dépôt, dont un log \code{s UNSATISFIABLE} non documenté et non reproductible (§\ref{sec:anomalies}) :
+il ne doit \emph{pas} être cité comme un résultat.
+\item Ce dont nous avons besoin (§\ref{sec:verif}--\ref{sec:demontrer}) : une relecture humaine des lemmes (une heure), une réponse à la question
+« quelqu'un a-t-il déjà traité $p=2$ ? », et surtout un \emph{générateur ordonné} sur les 42 orbites avec entrelacement spectral, ou toute preuve
+d'exclusion d'un des trois cas du découpage.
+\end{enumerate}
+
+\section{Cadre et notations}\label{sec:notations}
+$\Gamma$ désigne un $\srg(99,14,1,2)$ hypothétique, $A$ sa matrice d'adjacence :
+\[A^2+A-12I=2J,\qquad \Spec(A)=\{14^1,\,3^{54},\,(-4)^{44}\}.\]
+Les projecteurs spectraux sont
+\[E_3=\tfrac{4I+A}{7}-\tfrac{2J}{77},\qquad E_{-4}=\tfrac{3I-A}{7}+\tfrac{J}{63},\qquad E_{14}=\tfrac{J}{99}\]
+(vérifiés : $(A-14I)(A+4I)=-44I-11A+2J$, divisé par $-77$). $E_3$ est $p$-entier pour $p\notin\{7,11\}$ ; $E_{-4}$ pour $p\notin\{3,7\}$.
+
+\paragraph{Réduction enracinée (Thakkar--Severini).} On fixe un sommet $x$. Comme $\lambda=1$, $N(x)$ induit $7K_2$, de blocs $B_i=\{(i,0),(i,1)\}$, $i=1,\dots,7$.
+Chaque sommet à distance 2 a exactement $\mu=2$ voisins dans $N(x)$, dans deux blocs distincts ; deux sommets extérieurs distincts n'ont pas la même paire
+(sinon cette paire non adjacente aurait trois voisins communs). Les 84 sommets extérieurs sont donc en bijection avec les 84 \emph{étiquettes}
+$\{(i,s),(j,e)\}$, $i<j$. Toutes les adjacences x--intérieur, intérieur--intérieur et intérieur--extérieur sont forcées ; l'inconnue est le graphe $H$ des adjacences
+extérieur--extérieur, $12$-régulier.
+
+\paragraph{Involution.} $t\in\Aut(\Gamma)$, $t^2=1$. On note $\sigma$ le retournement $(i,s)\mapsto(i,1-s)$ de tous les blocs, étendu aux étiquettes par
+$\sigma\{a,b\}=\{a',b'\}$ ($a'$ = partenaire de $a$).
+
+\paragraph{Orbites.} Les 42 orbites extérieures sont $U=(i,j,e)$, $i<j$, $e\in\{0,1\}$, de représentant $u=\{(i,0),(j,e)\}$ et $\sigma u=\{(i,1),(j,1-e)\}$.
+Pour $U\neq V$ on pose $(a_{UV},b_{UV})=(A[u,v],A[u,\sigma v])\in\{0,1\}^2$ ; ces deux bits sont symétriques en $(U,V)$.
+$\Qout=(a+b)$ est le bloc extérieur de la \emph{matrice d'orbites} ordinaire $Q$ ($50\times50$), $\Sout=(a-b)$ celui de la \emph{matrice signée} $S$ ($49\times49$).
+$\Gamma_1$ est le graphe des adjacences simples ($a+b=1$), $D$ le couplage des adjacences doubles ($a=b=1$) ; $\Qout=\Gamma_1+2D$.
+$N_b\in\{0,1\}^{42\times7}$ est l'incidence orbite/bloc, $\Sh=N_bN_b^{\mathsf T}$ (nombre de blocs partagés, $\Sh_{UU}=2$),
+$C\in\{0,\pm1\}^{42\times7}$ la version signée ($C_{U,i}=1$, $C_{U,j}=(-1)^e$), $G=CC^{\mathsf T}$.
+On a $C^{\mathsf T}C=12I_7$, $N_b^{\mathsf T}N_b\equiv0\pmod2$, $\rg_{\F_2}N_b=6$ (vérifié numériquement).
+
+\paragraph{Structure de $T(7)$.} Les 42 orbites se projettent 2 pour 1 sur les 21 arêtes de $K_7$ (les paires de blocs) ; deux orbites de même paire sont dites
+\emph{sœurs}. $\Sh=J_2\otimes(2I_{21}+A_{T(7)})$ où $T(7)$ est le graphe triangulaire, de spectre $\{10^1,3^6,(-2)^{14}\}$ ; donc
+$\Spec(\Sh)=\{24^1,10^6,0^{35}\}$ et $\Spec(G)=\{12^7,0^{35}\}$ (vérifiés numériquement).
+
+\section{État bibliographique (tel qu'établi par le dépôt)}\label{sec:biblio}
+\begin{longtable}{p{4.6cm}p{7.6cm}p{2.6cm}}
+\toprule
+Source & Énoncé utilisé & Statut\\
+\midrule
+Makhnev--Minakova 2004, Diskr.\ Mat.\ 16:1, th.~1 & $g$ d'ordre premier $\Rightarrow$ $\Fix(g)$ = un sommet ($|g|\in\{2,7\}$), vide ($|g|\in\{3,11\}$) ou un triangle ($|g|=3$) ; $|\Aut|$ divise $2\cdot3^3\cdot7\cdot11$. & \st{S} (original russe lu)\\
+Makhnev, notes de Bielefeld & Prop.~2 : sept candidats pour $\Fix(t)$ ; seul le cas « un sommet » rend $\chi_2(t)=(4\alpha_0+\alpha_1-18)/7$ entier. & \st{S}\\
+Behbahani 2009 (thèse, th.~4.14, table 21) & Aucune matrice d'orbites pour $p\in\{5,7,11\}$ (tous nombres de points fixes admissibles) ni pour $p=3$ avec points fixes. \textbf{$p=2$ absent de la table.} & \st{S} (thèse) / \st{S?} (article 2011 non obtenu)\\
+Crnković--Maksimović 2020 & Pas de groupe d'ordre 6 ni 9. & \st{S?} (non obtenu)\\
+Cesarz--Woldar 2025 & Sans ordinateur : $2\mid|G|\Rightarrow|G|\mid6$ ; $7\mid|G|\Rightarrow G\cong\Z_7$. & \st{S}\\
+Ishida 2026, arXiv:2606.29183 & Identité trace--rang ; redonne $a_1(t)=14$ pour une involution ; pas d'exclusion. Prop.~8.7 : $a_1(g)=18$ pour $g$ d'ordre 3 sans point fixe. & \st{S}\\
+Thakkar--Severini 2026, arXiv:2608.11211v2 & Réduction enracinée ; écrivent que le cas $\Z_7$ à un point fixe « reste ouvert ». & \st{S}\\
+Reimbayev 2026, arXiv:2608.19410v1 & Recensement des 208 sous-graphes induits d'ordre 7 dans $\srg(n,k,1,2)$. & \st{S} (source \TeX{} auditée)\\
+Dépôt public \code{YesterdaysLemon/conway-99-research} & $708\le n_3\le4158$ (vague 23) ; famille affine d'ordre 7 ; $\rg_{\F_7}(M)\ge27$ pour $M=B^{\mathsf T}(3I-A)B+J$. & \st{S} (dépôt lu)\\
+\bottomrule
+\end{longtable}
+Conséquence : $|\Aut(\Gamma)|\in\{1,2,3\}$, et une involution engendre tout le groupe.
+Deux corrections de lecture faites par le dépôt : le cas $\Z_7$ à un point fixe est clos depuis 2009/2011 (Thakkar--Severini le disent ouvert) ; les vagues 69/72 du dépôt public (ordre 11) sont redondantes avec Behbahani--Lam.
+
+\begin{verif}\label{ver:biblio}
+Les deux affirmations « la table de Behbahani ne traite pas $p=2$ » et « Crnković--Maksimović excluent bien \emph{tous} les groupes d'ordre 6 (cyclique et diédral) »
+reposent sur la thèse et sur un résumé. Un lecteur ayant accès à Behbahani--Lam 2011 et à Contrib.\ Discrete Math.\ 15 (2020) devrait les confirmer en dix minutes.
+Si l'article de 2020 contient une énumération de matrices d'orbites pour l'involution (dans l'analyse de $\Z_6$), la branche est peut-être déjà partiellement traitée.
+\end{verif}
+
+\section{Ce qui est démontré}\label{sec:demontre}
+
+\subsection{Rigidité de l'involution \st{R}}
+\begin{lemma}[l'involution est le retournement]\label{lem:flip}
+$t=\sigma$ sur $N(x)$, et $t$ agit sur les étiquettes par $\sigma$.
+\end{lemma}
+\begin{proof}
+$\Fix(t)=\{x\}$ par Makhnev--Minakova. $t$ préserve $N(x)$ et son couplage, donc permute les blocs ; $t^2=1$, donc chaque bloc est fixé ou échangé avec un autre.
+Un bloc fixé est retourné (aucun sommet intérieur n'est fixe). Si $t$ échangeait $B_i$ et $B_j$, on aurait $t(a)=b$, $t(b)=a$ avec $a\in B_i$, $b\in B_j$, et l'étiquette
+$\{a,b\}$, qui est un sommet extérieur, serait fixe : contradiction.
+\end{proof}
+
+\begin{lemma}[aucun extérieur n'est adjacent à son image]\label{lem:noself}
+Si $u\sim tu$ alors $u\in N(x)$. Donc $a_1(t)=14$, et $\chi_3(t)=\chi_{-4}(t)=0$.
+\end{lemma}
+\begin{proof}
+L'arête $\{u,tu\}$ est $t$-invariante ; son unique voisin commun ($\lambda=1$) est donc $t$-fixe, c'est $x$. Avec $a_0=1$, $a_1=14$, $a_2=84$ :
+$\chi_3(t)=\tr(tE_3)=\tfrac{42}{77}+14\cdot\tfrac{9}{77}-84\cdot\tfrac{2}{77}=0$ et $\chi_{-4}(t)=\tr(t)-\chi_{14}(t)-\chi_3(t)=1-1-0=0$.
+\end{proof}
+
+\begin{proposition}[le couplage $D$]\label{prop:D}
+Pour tout extérieur $u$, $N(u)\cap N(\sigma u)$ est une orbite $\{v,\sigma v\}=:D(u)$ d'extérieurs, et $D$ est un couplage parfait sur les 42 orbites.
+Chaque extérieur est adjacent aux deux membres d'exactement une orbite.
+\end{proposition}
+\begin{proof}
+$u\not\sim\sigma u$, donc $|N(u)\cap N(\sigma u)|=\mu=2$ ; l'ensemble est $\sigma$-stable sans point fixe, c'est une orbite ; elle est extérieure car les voisins
+intérieurs de $u$ et de $\sigma u$ sont disjoints et $x\not\sim u$. Si $D(u)=\{v,\sigma v\}$ alors $u,\sigma u\in N(v)\cap N(\sigma v)$, d'où $D(v)=\{u,\sigma u\}$.
+\end{proof}
+
+\subsection{Le modèle exact à 42 orbites \st{R}}\label{sec:modele}
+\begin{theorem}[équivalence exacte]\label{thm:modele}
+Étant donné la structure forcée, une matrice symétrique $0/1$ à diagonale nulle, $\sigma$-invariante, avec $A[u,\sigma u]=0$ pour $u$ extérieur, vérifie $A^2+A-12I=2J$
+si et seulement si les bits $(a_{UV},b_{UV})$ satisfont :
+\begin{itemize}[nosep]
+\item[(R)] $\sum_{V\ne U}(a_{UV}+b_{UV})=12$ ;
+\item[(D)] il existe exactement un $V$ avec $a_{UV}=b_{UV}=1$ ;
+\item[(I)] pour tout intérieur $c$ : $\#\{\text{voisins } w \text{ de } u \text{ dans } H : c\in w\}=1$ si $c\in u$ ou $c'\in u$, et $2$ sinon ;
+\item[(P)] pour $U\ne V$ : $\sum_W(a_{UW}a_{VW}+b_{UW}b_{VW})+a_{UV}=2-|u\cap v|$ et $\sum_W(a_{UW}b_{VW}+b_{UW}a_{VW})+b_{UV}=2-|u\cap\sigma v|$.
+\end{itemize}
+\end{theorem}
+\begin{proof}[Preuve (détaillée ici, esquissée dans le dépôt)]
+L'identité $A^2+A-12I=2J$ équivaut à : degré 14 partout, $\lambda=1$, $\mu=2$. Les paires de sommets sont de sept types.
+(1) $\{x,c\}$, $c$ intérieur : voisin commun unique $c'$. (2) $\{x,u\}$ : voisins communs = les deux intérieurs de $u$. (3) $\{c,c'\}$ : voisin commun $x$.
+(4) $\{c,d\}$ de blocs différents : voisins communs = les étiquettes $\{c,d\}$... précisément l'unique étiquette $\{c,d\}$ et $x$, soit 2. Ces quatre types sont forcés.
+(5) $\{c,u\}$ intérieur--extérieur : les voisins communs intérieurs sont $c'$ si $c'\in u$ (et jamais $c$ lui-même) ; $x$ n'en est jamais un ; les voisins communs extérieurs
+sont les $w\sim u$ avec $c\in w$. Si $c\in u$ ($c\sim u$) il en faut $1$ au total, et $c'\notin u$, donc exactement $1$ extérieur. Si $c'\in u$ ($c\not\sim u$) il en faut $2$, dont $c'$ : exactement $1$ extérieur.
+Sinon il en faut $2$, tous extérieurs. C'est (I), en comptant $w=v$ via $a_{UV}$ ($c\in v$) et $w=\sigma v$ via $b_{UV}$ ($c\in\sigma v$).
+(6) $\{u,\sigma u\}$ : non adjacents, voisins communs intérieurs : aucun ; extérieurs : pour chaque orbite $W$, $w$ compte si $a_{UW}b_{UW}=1$ et $\sigma w$ aussi ; total $2\sum_W a_{UW}b_{UW}=2$. C'est (D).
+(7) $\{u,v\}$, $V\ne U$ : voisins communs intérieurs $|u\cap v|$ ; extérieurs : $\sum_{W\ne U,V}(a_{UW}a_{VW}+b_{UW}b_{VW})$ (les sommets $\sigma u,\sigma v$ ne contribuent pas car $A[u,\sigma u]=0$ et $A[v,\sigma v]=0$) ; le total doit valoir $2-a_{UV}$. Même calcul pour $\{u,\sigma v\}$ avec les termes croisés. C'est (P).
+Le degré : $2+\sum_V(a+b)=14$, c'est (R). Les paires $\{\sigma u,\sigma v\}$ et $\{\sigma u,v\}$ sont les images des précédentes.
+\end{proof}
+Les hypothèses « $\sigma$-invariante » et « $A[u,\sigma u]=0$ » sont justifiées par les lemmes~\ref{lem:flip} et \ref{lem:noself} ; elles ne sont pas des variables du modèle.
+Le modèle est implémenté dans \code{code/z2/orbit\_sat.py} (CNF, encodage \emph{seqcounter} de PySAT) et \code{cpsat\_orbit.py} (OR-Tools), pour $k=2m$ quelconque, avec relevé en $99\times99$ et vérification entière de l'identité.
+Contrôles \st{C} : $m=2$ ($\srg(9,4,1,2)$, le graphe de la tour $3\times3$, qui possède bien une involution à un point fixe) : SAT, relevé vérifié ; $m=3$ ($\srg(19,6,1,2)$ n'existe pas, valeurs propres irrationnelles) : UNSAT immédiat.
+Pour $m=7$ : 1722 variables primaires, 666\,183 variables CNF, 1,51 M clauses.
+
+\subsection{Les deux quotients \st{R}}
+\begin{proposition}\label{prop:quot}
+(i) $Q^2+Q-12I=2\hat J$ avec $\hat J_{VU}=|U|$ ; en particulier $\Qout^2+\Qout=12I+4J-\Sh$ et $N_b^{\mathsf T}\Qout=4J-2N_b^{\mathsf T}$ (sommes par bloc : 2 sur les blocs de $U$, 4 sur les autres).
+(ii) Dans la base $f_U=e_u-e_{\sigma u}$ de l'espace anti-invariant (dimension 49), $A$ agit par $S=\begin{pmatrix}-I_7&C^{\mathsf T}\\ C&\Sout\end{pmatrix}$,
+avec $S^2+S=12I$ exactement, $\tr S=-7$, donc $\Spec(S)=\{3^{27},(-4)^{22}\}$.
+(iii) $C^{\mathsf T}\Sout=0$, $\Sout^2+\Sout=12I-G$, $\Sout\in\{0,\pm1\}^{42\times42}$ avec dix entrées non nulles par ligne, $\Spec(\Sout)=\{0^7,3^{20},(-4)^{15}\}$,
+et $P_3:=(\Sout+4I-\tfrac13G)/7$ est le projecteur orthogonal de rang 20 sur l'espace propre $3$.
+\end{proposition}
+\begin{proof}
+(i) est la projection standard de l'identité SRG sur les orbites ; les sommes par bloc sont le bloc (intérieur, extérieur) de $Q^2+Q$.
+(ii) $J$ tue les vecteurs anti-invariants (leurs coordonnées se compensent sur chaque orbite), d'où $S^2+S=12I$ ; les entrées diagonales sont $-A[u,\sigma u]$ : $-1$ pour les sept orbites intérieures, $0$ ailleurs (lemme~\ref{lem:noself}) ; $3f-4g=-7$, $f+g=49$ donne $f=27$.
+(iii) blocs de $S^2+S=12I$. $\Sout$ tue les colonnes de $C$ ; sur leur orthogonal (dimension 35) $G=0$, donc $\Sout^2+\Sout=12I$ et la trace nulle force $3f'-4g'=0$, $f'+g'=35$, $f'=20$.
+\end{proof}
+
+\begin{proposition}[spectre exact de $\Qout$] \st{N}\label{prop:specQout}
+$\Qout$, $\Sh$ et $J$ commutent, et $\Spec(\Qout)=\{12^1,(-2)^6,3^{20},(-4)^{15}\}$. Les vecteurs propres pour $-2$ sont les $\mathbf 1_2\otimes v$, $v$ dans l'espace propre $3$ de $T(7)$, c'est-à-dire les fonctions $U=(i,j,e)\mapsto y_i+y_j$ avec $\sum y=0$.
+\end{proposition}
+\begin{proof}
+De $N_b^{\mathsf T}\Qout=4J-2N_b^{\mathsf T}$ on tire $\Qout\Sh=8J-2\Sh=\Sh\Qout$. Sur chaque espace propre commun de $(\Sh,J)$, $q^2+q=12+4j-s$ :
+sur $\mathbf 1$ ($s=24$, $j=42$) : $q=12$ ; sur l'espace $s=10$ (dimension 6, $j=0$) : $q^2+q=2$, $q\in\{1,-2\}$ ; sur $s=0$ (dimension 35) : $q\in\{3,-4\}$.
+Avec $a$ valeurs $1$ et $b$ valeurs $3$, $\tr\Qout=0$ donne $12+a-2(6-a)+3b-4(35-b)=0$, soit $3a+7b=140$ ; les seules solutions avec $0\le a\le6$, $0\le b\le35$ sont $(a,b)=(0,20)$.
+Enfin la condition « $(\Qout+2I)(\mathbf 1_2\otimes v)=0$ » se réduit, pour $v_e=y_i+y_j$, aux sommes par bloc de (i) : elle n'ajoute rien au modèle, mais le spectre entier est utilisable pour l'entrelacement.
+\end{proof}
+
+\subsection{La condition de rang sur $\F_2$ \st{R}, et son statut logique \st{N}}
+\begin{theorem}[dépôt, rapport §3]\label{thm:F2}
+Soit $\bar\Gamma=\Gamma_1\bmod2\in\F_2^{42\times42}$. Alors $\bar\Gamma^2+\bar\Gamma=N_bN_b^{\mathsf T}$, $\bar\Gamma N_b=0$, et
+$K:=\bar\Gamma^2=\bar\Gamma+N_bN_b^{\mathsf T}$ est un idempotent symétrique de rang \emph{exactement} $20$ avec $KN_b=0$.
+\end{theorem}
+\begin{proof}
+$S$ est entière de polynôme caractéristique $(x-3)^{27}(x+4)^{22}$ ; modulo 2 il devient $(x+1)^{27}x^{22}$, et $\bar S^2=\bar S$ ; donc $\bar S$ est diagonalisable de rang 27.
+Comme $\bar S=\begin{pmatrix}I_7&N_b^{\mathsf T}\\ N_b&\bar\Gamma\end{pmatrix}$ ($\Sout\equiv\Qout\equiv\bar\Gamma$ mod 2), un complément de Schur donne $\rg(\bar\Gamma+N_bN_b^{\mathsf T})=20$.
+Les identités polynomiales sont les réductions mod 2 des blocs de $\bar S^2=\bar S$.
+\end{proof}
+\begin{remark}[statut logique]\label{rem:statut}
+Le dépôt écrit que la valeur 20 « n'est pas impliquée par les identités de comptage » et est « une information véritablement supplémentaire ». C'est vrai des seules identités mod 2 ($K^2=K$ ne donne que $\rg K$ pair), mais la preuve ci-dessus montre que le théorème est une \emph{conséquence} de l'identité entière $S^2+S=12I$ et de $\tr S=-7$, elles-mêmes conséquences de (R),(D),(I),(P). Il ne s'agit donc pas d'une obstruction indépendante du modèle, mais d'un \emph{invariant global} : son intérêt est (a) de s'appliquer à toute relaxation qui ne contiendrait que le quotient signé, et surtout (b) de fournir un filtre sur les matrices \emph{partielles} : toute sous-matrice principale de $\bar\Gamma+N_bN_b^{\mathsf T}$ a un $\F_2$-rang $\le20$. La note \code{NOTE\_involution\_case.md} et le \code{README} gardent encore la formulation initiale « structure 2-adique $\Rightarrow$ » ; à harmoniser avec le rapport.
+\end{remark}
+\begin{remark}[reformulation en code] \st{N}
+$K$ étant un idempotent symétrique, $L:=\operatorname{Im}K$ est un sous-espace de dimension 20 de $\F_2^{42}$ tel que $\F_2^{42}=L\oplus L^\perp$ (un code \emph{LCD} $[42,20]$), et $KN_b=0$ signifie $L\subseteq(\operatorname{col}N_b)^\perp$, sous-espace de dimension 36. Réciproquement $\bar\Gamma=K+N_bN_b^{\mathsf T}$ : le graphe des adjacences simples, réduit mod 2, est entièrement déterminé par le code $L$. Question ouverte : les contraintes combinatoires ($\bar\Gamma$ est une matrice $0/1$ 10-régulière à diagonale nulle) se traduisent-elles en contraintes sur l'énumérateur de poids de $L$ (identités de MacWilliams) ?
+\end{remark}
+
+\subsection{Analogues $p$-locaux \st{N}}
+\begin{proposition}\label{prop:F3}
+(i) $\rg_{\F_3}(S\bmod3)=22$, de façon équivalente $\rg_{\F_3}(\Sout+G)=15$.
+(ii) Dans la base $\{e_x,\;e_u+e_{\sigma u}\}$ de l'espace invariant, $M:=I+Q-\hat J$ réduite mod 3 est un idempotent de rang exactement 27 ; explicitement, en blocs $(x,\text{intérieur},\text{extérieur})$,
+\[M\equiv\begin{pmatrix}0&0&\mathbf 1^{\mathsf T}\\ 0&J-I_7&N_b^{\mathsf T}+J\\ -\mathbf 1&N_b+J&I+\Gamma_1-D+J\end{pmatrix}\pmod 3 .\]
+(iii) Sur $\F_2$, la condition analogue sur $Q$ est automatiquement impliquée par le théorème~\ref{thm:F2}.
+(iv) Sur $\Z_2$ et $\Z_3$, les formes normales de Smith de $S-3I$, $S+4I$, $Q-3I$ sont triviales (unités et zéros) ; le contenu $p$-adique de la structure de réseau est donc épuisé par (i), (ii) et le théorème~\ref{thm:F2}. Sur $\Z_7$ le contenu n'est pas trivial (§\ref{sec:demontrer}, Q\ref{q:7}).
+\end{proposition}
+\begin{proof}
+(i) $S^2+S=12I\equiv0$ mod 3 : $S$ est diagonalisable sur $\F_3$ de polynôme caractéristique $x^{27}(x+1)^{22}$, donc de rang 22 ; complément de Schur par le bloc $-I_7$ : $\rg(\Sout-C(-I)^{-1}C^{\mathsf T})=\rg(\Sout+G)=15$.
+(ii) $E_3$ est 3-entier, commute avec $t$, donc préserve le réseau invariant $\Lambda_e=\Z_3^{99}\cap V^{\mathrm{inv}}$, dont $\{e_x,e_u+e_{\sigma u}\}$ est une base ; $E_3|_{\Lambda_e}$ est un idempotent de rang $(54+\chi_3(t))/2=27$, et sa réduction a le même rang. Dans cette base $A$ agit par $Q$ et $J$ par $\hat J$ ; mod 3, $7^{-1}\equiv1$, $4\equiv1$, $2/77\equiv1$, d'où $M$. Les blocs viennent de $Q_{x,A_i}=2$, $Q_{A_i,x}=Q_{A_i,A_i}=1$, $Q_{A_i,U}=Q_{U,A_i}=[i\in U]$, $\hat J$ de colonnes $|U|$.
+(iii) Mod 2, $E_3|_{\Lambda_e}\equiv Q$ dont le rang vaut celui de $[c\,|\,\bar S]$ avec $c=(\mathbf 1_7;0)$ ; or $\bar S c=c$ car chaque orbite rencontre deux blocs, donc le rang est $\rg\bar S=27$.
+(iv) Pour $p\in\{2,3\}$ et $\theta\in\{3,-4\}$, $S-\theta I$ est une unité fois un projecteur $p$-entier de rang connu, dont l'image et le noyau sont des facteurs directs.
+\end{proof}
+\begin{remark}
+Comme au théorème~\ref{thm:F2}, ces énoncés sont des conséquences des identités de quotient (voir remarque~\ref{rem:statut}). Leur valeur : (i) porte sur la matrice \emph{signée}, information perdue mod 2 ; (ii) fait intervenir le couplage $D$. Tous deux donnent des filtres de sous-matrices principales ($\F_3$-rang $\le15$, resp.\ $\le27$) utilisables tôt dans un générateur.
+\end{remark}
+
+\subsection{Congruences par comptage d'orbites \st{N}}
+\begin{proposition}\label{prop:parite}
+Dans la branche involution : (i) le nombre $c_4$ de cycles induits $C_4$ de $\Gamma$ est \emph{impair} ; (ii) le nombre de diamants induits ($K_4$ moins une arête) est $\equiv0\pmod4$ ; (iii) les nombres de non-arêtes dont le $\mu$-graphe est $2K_1$, resp.\ $K_2$, sont $\equiv2$, resp.\ $\equiv0\pmod 4$.
+Dans la branche d'ordre 3 sans point fixe : $c_4\equiv0\pmod3$ et le nombre de diamants est $\equiv0\pmod3$.
+\end{proposition}
+\begin{proof}
+$\sigma$ agit sur l'ensemble des $C_4$ induits ; $c_4\equiv\#\{\text{$C_4$ fixes}\}\pmod2$. Un $C_4$ $\sigma$-invariant n'a pas de sommet fixe (4 est pair et $x$ est le seul point fixe), donc porte sur deux orbites $\{u,\sigma u\},\{v,\sigma v\}$. Si l'une est intérieure, disons $u=(i,0)\sim\sigma u$, l'autre doit vérifier $v\sim\sigma v$ (l'involution renverse le cycle), donc être intérieure, et $(i,1)\sim(j,0)$ avec $j\ne i$ est impossible. Les deux orbites sont extérieures, $u\not\sim\sigma u$, $v\not\sim\sigma v$, et le cycle est $u\,v\,\sigma u\,\sigma v$, ce qui équivaut à $D(u)=\{v,\sigma v\}$. Il y a donc exactement 21 tels cycles (un par arête de $D$), tous induits. D'où $c_4$ impair.
+Chaque non-arête a un $\mu$-graphe $K_2$ (diamant) ou $2K_1$ (elle est alors une diagonale d'un unique $C_4$ induit, et chaque $C_4$ induit a deux diagonales) ; il y a $4158=\binom{99}{2}-693$ non-arêtes, donc $\#\{\text{diamants}\}=4158-2c_4\equiv0\pmod4$.
+Pour l'ordre 3 sans point fixe, aucun ensemble de 4 sommets n'est invariant.
+\end{proof}
+\begin{remark}
+Le paramètre libre $n_3$ des recensements d'ordre 4 à 7 (dépôt public : $708\le n_3\le4158$ ; Reimbayev) est un compte de sous-graphes d'ordre 4 dont la définition exacte n'est pas dans ce dépôt ; s'il s'agit du nombre de diamants ou de non-arêtes à $\mu$-graphe $2K_1$, la proposition donne $n_3\equiv0$ ou $2\pmod4$ selon le cas dans la branche involution, et $n_3\equiv0\pmod3$ dans la branche d'ordre 3. Le même principe (nombre de copies $\equiv$ nombre de copies invariantes) s'applique aux 208 fréquences d'ordre 7, affines en $(n_3,z_{11})$ : c'est la question~\ref{q:parite}.
+\end{remark}
+
+\subsection{Découpage en cas \st{R}, vérifié numériquement \st{N}}
+Le groupe des relabellisations de la structure forcée est $S_2\wr S_7$ (ordre $645\,120$) ; $\sigma$ en est central, il agit donc sur les tables d'orbites.
+Le stabilisateur de l'orbite de référence $U_0=(1,2,0)$ est d'ordre $15\,360$ et a exactement trois orbites sur les 41 autres orbites : $\{(1,2,1)\}$ (sœur, taille 1), celle de $(1,3,0)$ (un bloc commun, taille 20), celle de $(3,4,0)$ (blocs disjoints, taille 20). Le découpage sib/one/dis sur $D(U_0)$ est donc exhaustif et sans redondance (calcul refait ici par énumération des 645\,120 éléments).
+Dans le cas dis, le stabilisateur de $(U_0,D(U_0))$ est d'ordre 768 et contient l'échange des blocs 1 et 2, qui envoie « $u_0\sim\{(1,0),(2,1)\}$ » sur « $u_0\sim\{(1,1),(2,0)\}$ » : le sous-découpage dis00/dis10 (non adjacent / adjacent à la sœur) est sain. Dans le cas one, la contrainte (I) sature les deux places du bloc 1 par $D(U_0)$ : $u_0$ n'est adjacent à \emph{aucun} sommet de l'orbite sœur, et le sous-cas « one10 » est vide par propagation unitaire (voir §\ref{sec:anomalies}).
+
+\section{Inventaire exhaustif du dépôt}\label{sec:inventaire}
+Dix commits, tous du 21--22 septembre 2026 (19:00:45 $\to$ 02:59:22). Les fichiers \code{*.cnf} sont ignorés par git (regénérables en 2 s, 29 Mo chacun).
+
+\begin{longtable}{p{5.2cm}p{9.6cm}}
+\toprule
+Fichier & Rôle / état\\
+\midrule
+\multicolumn{2}{l}{\emph{Racine et notes}}\\
+\code{README.md} & Résumé, disposition, commandes de reproduction. Formulation « 2-adique $\Rightarrow$ » à mettre à jour.\\
+\code{notes/NOTE\_involution\_case.md} & Note de travail : bibliographie, rigidité, modèle, quotients, condition $\F_2$ (avec l'ancienne preuve 2-adique et un préambule donnant la preuve courte), calculs, plan. Cite des chemins \code{scratchpad/z2\_signed/} qui ne sont pas dans le dépôt.\\
+\code{notes/RESEARCH\_MEMORY.md} & Mémoire de session (horodatée) ; cohérente avec le reste ; mentionne des sorties non archivées (\code{result\_cpsat\_none.json}, \code{rowfix\_seed*.json}, \code{rows\_U0.npy}).\\
+\code{notes/WHAT\_WOULD\_HELP.md} & Liste des besoins (documents, outils, calcul, vérification humaine, questions). Reprise et étendue en §\ref{sec:besoins}.\\
+\code{notes/SOURCES.md} & Liens vers les sources primaires ; aucun PDF redistribué.\\
+\code{notes/AUDIT\_reimbayev\_order7.md} & Audit du recensement d'ordre 7 (§\ref{sec:audit}).\\
+\code{notes/third\_party/*} & Notes tierces C3 et leurs vérifications (§\ref{sec:tiers}).\\
+\multicolumn{2}{l}{\emph{Rapports}}\\
+\code{report/conway99\_involution\_report.tex/.pdf} & Rapport technique anglais (5 sections + bibliographie) ; preuve courte du théorème $\F_2$ ; PDF à jour.\\
+\code{report/involution\_notes\_fr.tex/.pdf} & Notes françaises pédagogiques ; même contenu mathématique.\\
+\code{report/Dockerfile.tex} & Image Ubuntu + TeX Live pour compiler (utilisée pour ce document).\\
+\multicolumn{2}{l}{\emph{Code : modèle à orbites (\code{code/z2/})}}\\
+\code{orbit\_sat.py} & Modèle CNF exact (R,D,I,P), cas sib/one/dis/none, relevé et vérification. \textbf{Ne connaît pas} les sous-cas dis00/dis10/one00/one10.\\
+\code{cpsat\_orbit.py} & Même modèle en CP-SAT ; option \code{--rowfix-seed}.\\
+\code{run\_orbit.py} & Lance CaDiCaL (PySAT) avec limite murale, relève tout modèle.\\
+\code{row\_fix.py} & Fixe aléatoirement toute la ligne de $U_0$ (ligne valide construite par DFS) et mesure le temps de décision.\\
+\code{rows.py} & Énumère les lignes candidates de $U_0$ (motifs $Q$ puis signes) ; le nombre obtenu n'est pas archivé.\\
+\code{anneal\_orbit.py} & Recuit simulé « bit-flip » sur les 1722 bits ; énergie = violations de (R),(D),(I),(P).\\
+\code{anneal\_struct.py} & Recuit structuré : état = couplage $D$ + graphe 10-régulier $G$ + signes ; (R),(D) vraies par construction.\\
+\code{joint\_dfs.py} & DFS ligne par ligne sur la table $(Q,S)$ avec contraintes de Gram exactes ; « bloque aux lignes 2--6 » (mémoire), sortie non archivée.\\
+\code{sout\_dfs.py} & DFS sur $\Sout$ seule ((W),(B),(G)) ; sortie non archivée.\\
+\code{dfs\_backup.py}, \code{common.py}, \code{cpsat\_model.py} & Relaxation « matrice signée seule » ($S^2+S=12I$, $\Sout\in\{0,\pm1\}$, diagonale $0$ ou relâchée) ; logs \code{results/k14\_default.log}, \code{k14\_relaxdiag.log}.\\
+\code{probe99/model.py, run\_cadical.py, run\_cpsat.py, validate\_k4.py} & Modèle à 99 sommets construit génériquement (décomposition automatique des voisins communs), identification $\sigma$ optionnelle, validation exhaustive à $k=4$ (3 solutions étiquetées, toutes vérifiées, contrôle négatif). Résultats à $k=14$ non archivés (« UNKNOWN » d'après la mémoire).\\
+\code{Dockerfile}, \code{run\_batch.sh} & Image \code{satbox} (Kissat 4.0.4 + CaDiCaL compilés) ; script de batch \emph{avec un chemin absolu vers un autre répertoire de travail} et ne lançant que 6 des 7 instances résumées.\\
+\code{anneal\_*.out/.err}, \code{struct\_*.out}, \code{bitflip\_5.out}, \code{*.json} & Traces et bilans des recuits (voir tableau §\ref{sec:calculs}).\\
+\multicolumn{2}{l}{\emph{Code : audit d'ordre 7 (\code{code/r7\_check/})}}\\
+\code{parse\_r7.py} & Transcription des 208 formules depuis le source \TeX{} (non inclus), identité $\sum z_i=\binom n7$, spécialisation à $(99,14)$, énumération des $(n_3,z_{11})$ admissibles.\\
+\code{match705.py}, \code{corrected.py}, \code{family\_n3.py} & Appariement aux classes du dépôt public (non inclus), corrections, reconstruction exacte de la famille affine.\\
+\code{spec99.json}, \code{repo\_family\_affine.json}, \code{feasible\_n3\_z11.json} & Données produites (coefficients $(a,b,c)$ des 208 formules ; famille du dépôt ; 4159 valeurs de $n_3$ admissibles).\\
+\multicolumn{2}{l}{\emph{Résultats (\code{results/})}}\\
+\code{BATCH\_2026-09-21\_overnight.md} & Bilan de la nuit : 7 instances, toutes UNKNOWN après 8 h.\\
+\code{batch\_*.log} (10 fichiers) & Sorties brutes (mode \code{-q} : une ligne). Trois d'entre eux ne sont pas dans le bilan (§\ref{sec:anomalies}).\\
+\code{result\_cpsat\_one.json} & CP-SAT, cas one, 907 s, UNKNOWN, 2477 conflits.\\
+\bottomrule
+\end{longtable}
+
+\section{Calculs effectués et résultats}\label{sec:calculs}
+\begin{longtable}{p{3.9cm}p{2.6cm}p{2.2cm}p{5.8cm}}
+\toprule
+Modèle / instance & Solveur & Temps & Résultat \st{C}\\
+\midrule
+Orbites, $m=2$ & CaDiCaL & $<1$ s & SAT ; relevé $9\times9$ = $\srg(9,4,1,2)$ vérifié.\\
+Orbites, $m=3$ & CaDiCaL & $<1$ s & UNSAT (attendu).\\
+99 sommets, $k=4$, avec/sans $\sigma$ & CaDiCaL (énum.) & s & 3 / $\ge1$ / $\ge1$ solutions, toutes vérifiées ; contrôle négatif réussi.\\
+Signée seule, $m=7$, diag $0$ & CP-SAT, 6 fils & 1500 s & UNKNOWN ; 936\,300 conflits, 34,7 M branches.\\
+Signée seule, diag relâchée & CP-SAT, 8 fils & 900 s & UNKNOWN (log tronqué au début de la recherche).\\
+Orbites, ligne de $U_0$ fixée (4 graines) & CaDiCaL & $\ge30$ min CPU & indécis (fichiers \code{rowfix\_seed*.json} non archivés).\\
+Orbites, cas one & CP-SAT, 6 fils & 907 s & UNKNOWN ; 2477 conflits, 400\,327 branches.\\
+Orbites, sib / one / dis & CaDiCaL natif & 8 h & UNKNOWN (alarme, exit 142) $\times3$.\\
+Orbites, sib / one / dis00 / dis10 & Kissat natif & 8 h & UNKNOWN $\times4$.\\
+Recuit bit-flip, graines 1,2,3 & --- & 2643 s / 85 s / 1099 s & meilleures énergies 1550 / 1692 / 1568 (composantes $(R,D,I,P)$ : $(14,16,270,1250)$ pour la graine 1).\\
+Recuit bit-flip, graine 5 / 99 & --- & 600 s / 36 s & 1656 / 1832.\\
+Recuit structuré, graines 1,2,3 / 9 & --- & 600 s / 30 s & 1966 / 2020 / 1890 / 2226 (moins bon que le bit-flip).\\
+DFS \code{joint\_dfs}, \code{sout\_dfs} & --- & --- & bloquent aux lignes 2--6 (mémoire) ; pas de trace archivée.\\
+\bottomrule
+\end{longtable}
+Les violations dominantes dans les recuits sont celles de (P) ($\approx80\,\%$ de l'énergie), puis (I) ; (R) et (D) sont presque satisfaites. Aucun de ces calculs n'apporte d'évidence dans un sens ou dans l'autre.
+
+\section{Audit du recensement d'ordre 7 (arXiv:2608.19410v1) \st{C}}\label{sec:audit}
+Méthode : transcription exacte (sympy) des 208 fréquences $z_i$, toutes affines en $(n_3,z_{11})$ ; test de l'identité $\sum_iz_i=\binom n7$ sur le lieu $n=k(k-2)/2+k+1$ ; appariement des valeurs à $n_3=705$ aux 208 classes de la famille affine du dépôt public (vague 23, système de rang 207) ; reconstruction exacte de cette famille à $n_3$ symbolique.
+Constats : telles qu'imprimées, les formules laissent un déficit constant $\sum z_i-\binom n7=-\tfrac1{168}nk(k-2)(k-4)(19k^4-456k^3+4484k^2-21752k+42008)$, soit $-94\,034\,160$ à $(99,14)$ ; exactement quatre formules ne correspondent à aucune classe et quatre classes ne sont atteintes par aucune formule. Corrections : $z_{21}$ (supprimer le facteur $(k-3)$), $z_{80},z_{84}$ ($(2k-7)\to(2k-17)$), $z_{176}$ ($\tfrac1{84}\to\tfrac18$). Après correction l'identité est polynomiale en $k$ et les 208 formules coïncident avec les 208 classes sur les trois coefficients. Le recensement corrigé n'impose que $0\le n_3\le4158$, $2n_3\le z_{11}\le4n_3$, $4\mid z_{11}$ : rien de nouveau sur $n_3$.
+\textbf{Reproductibilité} \st{?} : les scripts exigent le source \TeX{} d'arXiv et un clone du dépôt public, absents d'ici ; les fichiers JSON produits sont présents et suffisent à revérifier les identités finales. L'auteur n'a pas été contacté.
+
+\section{Notes tierces sur la branche d'ordre 3 \st{T}}\label{sec:tiers}
+\paragraph{Lemme de l'hexagone.} Soit $g$ d'ordre 3 sans point fixe ; par Ishida (prop.~8.7) il y a six orbites triangulaires $T_0,\dots,T_5$ et 27 orbites indépendantes. Entre deux orbites, les arêtes sont absentes ou forment un appariement équivariant ($\lambda=1$). Si le graphe des adjacences entre les six orbites triangulaires est un $C_6$ sans corde, d'appariements $(i,a)\sim(i+1,a+\varepsilon_i)$, alors $\sum\varepsilon_i=0$ dans $\F_3$.
+Preuve (résumée) : $BB^{\mathsf T}=6I+6J-5F-F^2=:G_0$ ($B$ incidence binaire $6\times27$, $F$ adjacence du $C_6$) ; $u=(-1,-1,0,1,1,0)$, $v=(1,0,-1,-1,0,1)$ sont dans le noyau entier de $G_0$, donc $B^{\mathsf T}u=B^{\mathsf T}v=0$ (10 supports possibles) ; le premier moment $D_{ij}=\sum_a a\,R_{(i,0),(j,a)}$ du résidu $R=12I+2J-P^2-P$ vérifie $u^{\mathsf T}Dv=0$ par sommation sur les 27 orbites extérieures, et le calcul direct donne $u^{\mathsf T}Dv=-h$, $h=\sum\varepsilon_i$.
+Vérification dans le dépôt : \code{check\_c3\_hexagon.py} (indépendant, numpy) et rejeu du vérificateur original (1366 motifs de phases, 352 compatibles, contrôle hostile détecté). \textbf{Portée} : un sous-cas ; deux des trois holonomies exclues ; n'exclut ni $C_3$ ni le motif $C_6$ ; priorité bibliographique non établie.
+\paragraph{Suivi.} (1) Pont avec l'équation linéaire de \code{Lundle22/conway-99-cyclic-lifts} : le lemme est la contraction par le noyau entier de $G_0$ du bloc triangulaire de $QM+MQ+M\equiv0\pmod3$ ($M$ = premiers moments), elle-même obtenue par la règle de Leibniz sur les moments ; vérifié indépendamment. (2) Généralisation aux 156 graphes à six sommets : 87 ont une entrée négative de $G_0$, 25 ne sont pas PSD, 44 survivent ; noyaux entiers de dimension 0 (29), 1 (13), 2 (2 : $3K_2$ et $C_6$) ; seul $C_6$ donne une équation de phase non triviale (rang 1). Vérifié par un second programme (bibliothèque standard, couverture des $2^{15}$ graphes étiquetés) et par \code{crosscheck.py} (saturation des noyaux par forme normale de Smith). Non testés : l'équation quadratique de Lundle22, les sous-Grams incluant des orbites indépendantes, la factorisation binaire des 44 Grams PSD.
+
+\section{Anomalies, lacunes et corrections à apporter au dépôt}\label{sec:anomalies}
+\begin{enumerate}[nosep]
+\item \st{?} \textbf{Trois logs non documentés.} \code{results/batch\_kissat\_one10.log} contient \code{s UNSATISFIABLE / EXIT 20} ; \code{batch\_kissat\_one00.log} et \code{batch\_kissat\_dis.log} contiennent \code{Killed / EXIT 137}. Ils ont été ajoutés au \emph{premier} commit (19:00:45), dix minutes après le lancement de la batterie (18:50), ne figurent pas dans le bilan de la nuit, et aucun script du dépôt ne génère les CNF « one00/one10/dis00/dis10 ». Reconstruction la plus plausible : sous-découpage sur l'adjacence de $u_0$ à la sœur $\{(1,0),(2,1)\}$ ; dans le cas one ce sous-cas est vide par (I) (bloc 1 saturé par $D(U_0)$), d'où un UNSAT en quelques minutes, sans contenu ; les deux autres ont été tués pour relancer « one » entier et « dis00/dis10 ». \textbf{Ce log ne doit pas être cité comme un résultat} tant que la CNF correspondante n'est pas regénérée et documentée.
+\item \st{?} \code{run\_batch.sh} pointe vers un chemin absolu d'un autre répertoire de travail et lance 6 instances, alors que le bilan en résume 7 ; le mode \code{-q} a supprimé toutes les statistiques (le bilan le note).
+\item \st{?} Sorties non archivées : \code{rowfix\_seed*.json}, \code{result\_cpsat\_none.json}, \code{rows\_U0.npy} (nombre de lignes candidates de $U_0$), traces de \code{joint\_dfs}/\code{sout\_dfs}, résultats \code{probe99} à $k=14$. Les énoncés correspondants du texte reposent sur la mémoire de session.
+\item \st{?} Rédaction : \code{README} et \code{NOTE\_involution\_case.md} présentent encore la condition $\F_2$ comme dérivée de la « structure 2-adique » et comme « information véritablement supplémentaire » (remarque~\ref{rem:statut}).
+\item \st{?} L'audit d'ordre 7 dépend de deux entrées externes non incluses (§\ref{sec:audit}).
+\item Points vérifiés sans réserve : les lemmes de rigidité, le théorème d'équivalence, les spectres, le théorème $\F_2$, l'ordre $15\,360$ du stabilisateur, l'exhaustivité du découpage, la validité du sous-découpage dis, les contrôles $k=4$ et $k=6$, les corrections de l'audit (identités finales), les deux vérifications tierces.
+\end{enumerate}
+
+\section{Ce qu'un chercheur devrait vérifier (par ordre d'effort croissant)}\label{sec:verif}
+\begin{enumerate}[nosep]
+\item \textbf{(10 min)} Lemmes~\ref{lem:flip}, \ref{lem:noself}, proposition~\ref{prop:D}. Élémentaires ; toute la suite en dépend.
+\item \textbf{(30 min)} Théorème~\ref{thm:modele} : l'énumération des sept types de paires, et le fait que « $A[u,\sigma u]=0$ » est bien une hypothèse justifiée et non une variable.
+\item \textbf{(20 min)} Théorème~\ref{thm:F2} et sa remarque de statut ; propositions~\ref{prop:specQout}, \ref{prop:F3}, \ref{prop:parite} (\st{N}, jamais relues par un humain).
+\item \textbf{(30 min)} Le découpage en cas et le sous-découpage dis ; la reconstruction du « one10 » (§\ref{sec:anomalies}).
+\item \textbf{(1 h)} Rejouer \code{orbit\_sat.py --m 2 --solve} et \code{--m 3 --solve}, puis regénérer les trois CNF et vérifier qu'elles ont bien 666\,183 variables et 1,51 M clauses.
+\item \textbf{(accès institutionnel)} Vérification~\ref{ver:biblio} sur Behbahani--Lam 2011 et Crnković--Maksimović 2020.
+\item \textbf{(1 h, avec les figures de l'article)} Confirmer les quatre coquilles de l'audit d'ordre 7 sur les dessins des classes 21, 80, 84, 176, et prévenir l'auteur.
+\end{enumerate}
+
+\section{Ce que nous aimerions voir démontré ou calculé}\label{sec:demontrer}
+Classé par impact sur la branche involution. Pour chaque question : pourquoi, et ce que cela débloque.
+
+\begin{question}[décider la branche par un générateur ordonné]\label{q:gen}
+Construire les tables $(a,b)$ orbite par orbite (ou la matrice $\Qout$ puis les signes), avec : entrelacement des sous-matrices principales de $\Qout$ contre $\{12,(-2)^6,3^{20},(-4)^{15}\}$ et de $\Sout$ contre $\{0^7,3^{20},(-4)^{15}\}$ ; les contraintes linéaires $N_b^{\mathsf T}\Qout=4J-2N_b^{\mathsf T}$ et $C^{\mathsf T}\Sout=0$ ; le couplage $D$ ; les filtres de rang $\F_2$ ($\le20$) et $\F_3$ ($\le15$) sur les sous-matrices ; rejet d'isomorphes sous $S_2\wr S_7$ (nauty). \emph{Pourquoi} : c'est la seule voie identifiée dont l'issue est certifiable dans les deux sens (« $|\Aut|\in\{1,3\}$ » ou un graphe de Conway). \emph{Débloque} : la moitié restante du programme de symétrie.
+\end{question}
+
+\begin{question}[exclure un cas à la main]\label{q:cas}
+Le cas \emph{sœur} ($D(U_0)=(1,2,1)$) est le plus contraint : $u_0$ n'a alors aucun autre voisin sur les blocs 1 et 2, et ses dix autres voisins forment, sur les blocs $3..7$, un multigraphe 4-régulier à 10 arêtes couplé en $5K_2$ dans $N(u_0)$. Existe-t-il un argument de comptage qui exclue ce cas, ou qui force la structure de $D$ relativement à la fibration sur $T(7)$ (par exemple : $D$ ne couple jamais deux sœurs, ou couple toujours des orbites de blocs disjoints) ? \emph{Débloque} : réduit d'un tiers les instances, et surtout indique quelle structure cachée porter dans le générateur.
+\end{question}
+
+\begin{question}[matrices d'orbites à la Behbahani--Lam pour $p=2$]\label{q:orbit}
+Le problème « $\Qout\in\{0,1,2\}^{42\times42}$, une entrée 2 et dix entrées 1 par ligne, sommes par bloc, $\Qout^2+\Qout=12I+4J-\Sh$ » est un problème de matrice d'orbites ordinaire, avec 8 lignes forcées sur 50. Les outils existants (Behbahani--Lam, Crnković--Maksimović) peuvent-ils l'énumérer ? Combien y a-t-il de telles matrices à équivalence près ? \emph{Débloque} : si zéro, la branche est close sans signes ; si peu, le relèvement (signes puis $99$ sommets) est facile.
+\end{question}
+
+\begin{question}[congruences par comptage d'orbites contre les recensements]\label{q:parite}
+Avec les figures des 208 classes d'ordre 7 (et des classes d'ordre 4 à 6), calculer pour chaque classe le nombre de copies $\sigma$-invariantes (un point fixe $x$ plus trois orbites parmi 49, soit 18\,424 ensembles) en fonction de la structure forcée, et comparer sa parité à celle de la formule affine corrigée. Toute classe dont la formule a une parité constante (par exemple $z_{12}=3465$, le moulin à trois pales, dont les 35 copies invariantes sont bien en nombre impair) fournit un test ; une contradiction tuerait la branche. Même programme mod 3 pour la branche d'ordre 3. \emph{Débloque} : une preuve d'exclusion sans recherche exhaustive, ou des clauses de parité globales pour le SAT.
+\end{question}
+
+\begin{question}[le contenu $7$-adique]\label{q:7}
+Sur $\Z_7$, $(S-3I)^2=-7(S-3I)$ ; on sait seulement $7\le\rg_{\F_7}(S-3I)\le22$ et $\rg_{\F_7}(A-3I)\ge26$ (dépôt public). Déterminer la forme normale de Smith $7$-adique de $S-3I$ et de $Q-3I$, et la relier au $7$-rang de $A-3I$ (Brouwer--van Eijl) via $\Z_7^{99}=\Lambda_e\oplus\Lambda_o$ (2 est inversible). \emph{Débloque} : le seul invariant $p$-adique non épuisé par la proposition~\ref{prop:F3}.
+\end{question}
+
+\begin{question}[code LCD]\label{q:code}
+Classer ou borner les codes LCD $[42,20]$ contenus dans $(\operatorname{col}N_b)^\perp$ dont le projecteur $K$ vérifie : $K+N_bN_b^{\mathsf T}$ est $0/1$, à diagonale nulle, 10-régulière (remarque de §\ref{sec:demontre}). Les identités de MacWilliams excluent-elles cette configuration ? \emph{Débloque} : une obstruction purement mod 2, ou une énumération par sous-espaces plutôt que par graphes.
+\end{question}
+
+\begin{question}[cube-and-conquer]\label{q:cube}
+Compter les lignes valides de $U_0$ à équivalence près sous $\operatorname{Stab}(U_0)$ (ordre 15\,360 ; \code{rows.py} les énumère sans quotienter) ; le dépôt estime $10^4$--$10^5$ lignes brutes. Avec BreakID pour casser la symétrie résiduelle et un journal DRAT par cube, une campagne certifiée est-elle réaliste (jours-cœurs) ? \emph{Débloque} : une preuve UNSAT vérifiable indépendamment (drat-trim), à défaut d'un générateur.
+\end{question}
+
+\begin{question}[une identité trace--rang plus fine]\label{q:ishida}
+La méthode d'Ishida exclut les involutions du graphe de Moore manquant mais redonne seulement $a_1(t)=14$ ici. Existe-t-il une version « forme quadratique » ou « réseau libre $\Z_2[C_2]$ » qui utilise le couplage $D$ (par exemple les 21 cycles $C_4$ invariants) ? \emph{Débloque} : une exclusion sans ordinateur.
+\end{question}
+
+\begin{question}[antériorité]\label{q:ant}
+Quelqu'un a-t-il déjà calculé le cas $p=2$ de $(99,14,1,2)$, même partiellement (matrices d'orbites, ou dans l'analyse de $\Z_6$) ? Le lemme de l'hexagone (§\ref{sec:tiers}) est-il déjà écrit quelque part ? \emph{Débloque} : éviter de refaire, ou s'appuyer sur un code existant.
+\end{question}
+
+\section{Ressources nécessaires}\label{sec:besoins}
+\begin{itemize}[nosep]
+\item \textbf{Documents} : Behbahani--Lam 2011 (Discrete Math.\ 311) ; Crnković--Maksimović 2020 (Contrib.\ Discrete Math.\ 15) ; les figures de Reimbayev 2026 ; éventuellement Wilbrink 1984 (ordre 11) et la traduction anglaise de Makhnev--Minakova.
+\item \textbf{Outils} : nauty/Traces sous Linux (pynauty n'a pas pu être installé sous Windows) ; BreakID ou shatter ; drat-trim ou cake\_lpr ; CaDiCaL/Kissat (déjà dans l'image \code{satbox}), éventuellement Gimsatul.
+\item \textbf{Calcul} : une machine Linux 32--64 cœurs pendant plusieurs jours, pour Q\ref{q:gen} ou Q\ref{q:cube}. Les CNF se regénèrent en 2 s.
+\item \textbf{Humain} : la liste de §\ref{sec:verif}, en priorité les points 1--4 (deux heures au total).
+\end{itemize}
+
+\appendix
+\section{Reproduction}
+\begin{verbatim}
+python -m pip install sympy numpy python-sat ortools     # Python 3.12
+python code/z2/orbit_sat.py --m 2 --solve   # SAT, releve verifie srg(9,4,1,2)
+python code/z2/orbit_sat.py --m 3 --solve   # UNSAT
+python code/z2/orbit_sat.py --m 7 --case one --out k14_one.cnf
+docker build -t satbox code/z2 && kissat --time=28800 k14_one.cnf
+python notes/third_party/check_c3_hexagon.py
+python notes/third_party/c3_suivi_generalisation/verify_generalisation.py
+docker build -t texbox -f report/Dockerfile.tex report && \
+  docker run --rm -v "$PWD/report:/work" texbox pdflatex dossier_chercheurs_fr.tex
+\end{verbatim}
+
+\section{Bibliographie du dépôt}
+\begin{itemize}[nosep]
+\item A.\,A.~Makhnev, I.\,M.~Minakova, Diskretn.\ Mat.\ 16:1 (2004) 95--104, DOI 10.4213/dm144 ; trad.\ Discrete Math.\ Appl.\ 14:2 (2004) 201--210.
+\item M.~Behbahani, \emph{On strongly regular graphs}, thèse, Concordia, 2009 (LAC NR63369) ; M.~Behbahani, C.~Lam, Discrete Math.\ 311 (2011) 132--144.
+\item D.~Crnković, M.~Maksimović, Contrib.\ Discrete Math.\ 15 (2020) 22--41.
+\item P.\,G.~Cesarz, A.\,J.~Woldar, Algebraic Combinatorics 8 (2025) 379--398.
+\item D.~Thakkar, S.~Severini, arXiv:2608.11211v2 (2026). Y.~Ishida, arXiv:2606.29183v2 (2026). R.~Reimbayev, arXiv:2608.19410v1 (2026).
+\item YesterdaysLemon/conway-99-research ; Lundle22/conway-99-cyclic-lifts ; ibenarb/conway99-research ; infinityscroll/conway99-order3-f27 (GitHub, 2026).
+\item A.\,E.~Brouwer, C.\,A.~van Eijl, \emph{On the p-rank of the adjacency matrices of strongly regular graphs}, J.\ Algebraic Combin.\ 1 (1992) 329--346 (pour Q\ref{q:7}).
+\end{itemize}
+\end{document}
