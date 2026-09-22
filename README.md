@@ -1,56 +1,65 @@
-# Conway's 99-graph — the involution branch (research log, 2026-09-21)
+# Conway's 99-graph — the involution branch (research log)
 
-Private research repository. Everything here is either cited to a primary source or proved/computed in the repository.
-**Nothing here resolves the existence of srg(99,14,1,2).**
+Private research repository on one branch of the existence problem for srg(99,14,1,2): **a putative Conway 99-graph Γ with an automorphism
+of order 2**. Everything here is either cited to a primary source or proved/computed in the repository.
+**Nothing here resolves the existence of srg(99,14,1,2), and no case of the involution branch has been eliminated.**
 
-## 0. One-paragraph summary
-|Aut(Γ)| ∈ {1, 2, 3} for a putative Conway 99-graph Γ (Makhnev–Minakova 2004; Behbahani–Lam 2009/2011; Crnković–Maksimović 2020;
-Cesarz–Woldar 2025). The one-fixed-point Z7 case, called "open" by Thakkar–Severini (arXiv:2608.11211), was closed at the orbit-matrix
-level in 2009/2011. The **involution branch has never been computed**. We show it is completely rigid (Fix(t) = {x}, t = flip of every
-matched pair of N(x), no vertex outside N(x) adjacent to its image, the μ-graphs {u,tu} form a perfect matching on the 42 outer orbits),
-reduce it to an exact 42-orbit model (validated SAT/CP-SAT encodings), derive a **new necessary condition** from the 2-adic structure
-(eigenlattices are free Z₂[C₂]-modules ⇒ rank_F2(Γ̄ + NbNbᵀ) = 20 with Γ̄² + Γ̄ = NbNbᵀ over F₂), and report first computations (all inconclusive).
-Separately we audit Reimbayev's order-seven census (arXiv:2608.19410): four typos, after which it is exactly the repository's wave-23 family
-and gives no new constraint on n₃.
+**Where to start**
+- Running computations (lab machine): **`LAB_INSTRUCTIONS.md`**.
+- What was checked, and what was wrong: `notes/AUDIT_2026-09-22.md`.
+- The mathematics: `report/dossier_chercheurs_fr.pdf` (French, full state, revision 2) or `report/conway99_involution_report.pdf` (English, short).
 
-## 1. Established (with sources) — see `report/conway99_involution_report.tex` §1
-- Makhnev–Minakova 2004 (Diskr. Mat. 16:1, DOI 10.4213/dm144, Theorem 1): prime-order automorphism ⇒ Fix = one vertex (order 2 or 7), empty (3 or 11), or a triangle (3).
-- Behbahani 2009 thesis (LAC NR63369), Thm 4.14 / Table 21: no orbit matrices for p = 5, 7, 11 (all fixed-point counts) nor p = 3 with fixed points. p = 2 not computed.
-- Crnković–Maksimović 2020: orders 6 and 9 excluded. Cesarz–Woldar 2025: 2 | |G| ⇒ |G| | 6; 7 | |G| ⇒ G ≅ Z7 (weaker than B–L for 7).
-- Repo `YesterdaysLemon/conway-99-research`: rigorous 708 ≤ n₃ ≤ 4158; full order-7 affine family (wave 23); three-centre compatibility (wave 206, unmerged branch); universal rank_F7(M) ≥ 27.
+## 0. Summary
+|Aut(Γ)| ∈ {1, 2, 3} (Makhnev–Minakova 2004; Behbahani 2009 / Behbahani–Lam 2011; Crnković–Maksimović 2020; Cesarz–Woldar 2025). To our knowledge
+the involution case has never been computed (Behbahani's table starts at p = 3). An involution t fixes exactly one vertex x and flips every matched
+pair of N(x) (essentially Makhnev's lemma). This repository adds the **perfect matching D** on the 42 outer σ-orbits (N(u) ∩ N(σu) is always a full orbit),
+an **exact 42-orbit model** (1722 bits, constraints (R),(D),(I),(P)), which splits exactly into an ordinary-quotient stage Q and a sign stage S, and invariants
+usable as filters (Spec(Q_out) = {12, (−2)^6, 3^20, (−4)^15}; rank_F2(Γ̄ + Nb Nbᵀ) = 20; mod-3 ranks). These invariants are consequences of the model,
+not independent obstructions. Generic SAT/CP-SAT runs (up to 8 h per case) are all undecided. Separately: an audit of Reimbayev's order-seven census
+(arXiv:2608.19410): four typos, after which it adds no constraint on n₃.
 
-## 2. New in this work
-- Rigidity of the involution and the orbit-level exact model (`NOTE_involution_case.md` §2; report §2).
-- Theorem (report §3): free Z₂[C₂]-structure of the eigenlattices ⇒ exact F₂-rank equation for the single-adjacency graph on the 42 orbits.
-- Audit of arXiv:2608.19410 (`AUDIT_reimbayev_order7.md`): z₂₁ (drop (k−3)), z₈₀ = z₈₄ ((2k−7) → (2k−17)), z₁₇₆ (1/84 → 1/8).
-- Literature correction: Z7 case closed since 2009/2011; repo waves 69/72 on order 11 redundant with Behbahani–Lam.
+## 1. Status
+| Item | Status |
+|---|---|
+| Rigidity (t = flip, u ≁ σu, a₁(t) = 14) | Proved; flip lemma essentially Makhnev (Bielefeld notes). |
+| Matching D, exact orbit model (R),(D),(I),(P) | Proved; code reviewed line by line; **validated on srg(243,22,1,2)** (m = 11, 0 violations). |
+| CNF encoding at m = 11 (`control_bvls.py --cnf`) | **Pending, lab machine.** |
+| Case split sib / one / dis on D(U0) | Proved exhaustive (Stab(U0) of order 15 360 has 3 orbits). |
+| Spec(Q_out), F₂ rank 20, F₃ ranks | Proved; general-k analogues checked on srg(243,22,1,2). Filters, not obstructions. |
+| SAT/CP-SAT on the full model | 7 × 8 h UNKNOWN; CP-SAT 15–25 min UNKNOWN. A timeout is not evidence. |
+| `results/batch_kissat_one10.log` (UNSAT) | **Do not cite.** Undocumented sub-case, empty by construction (see `notes/ONE10_PROVENANCE.md`). |
+| Order-7 census audit | Four typos; re-verified offline from the archived JSONs. No new constraint. |
+| **Next task** | Enumerate the Q_out orbit matrices (Stage Q) — `LAB_INSTRUCTIONS.md` §4. |
 
-## 3. Tested (scope) and open
-- Tested: S-relaxation CP-SAT 25 min → UNKNOWN; joint model with the row of U₀ fixed → CaDiCaL ≥ 30 min CPU ×4 undecided, CP-SAT 15 min UNKNOWN;
-  native CaDiCaL/Kissat batch on 3 cases (+2 subcases), 8 h limit → see `results/`.
-- Open: the involution branch itself (a decision either way is certifiable); the order-3 fixed-point-free branch (crowded); the asymmetric case (no known method).
+## 2. Corrections made on 2026-09-22 (details in `notes/AUDIT_2026-09-22.md`)
+- The dossier's "new congruence" (#induced C4 odd) was empty: c4 = 2079 in every srg(99,14,1,2). Removed.
+- The k = 4 / k = 6 controls were too weak to catch a model error; the strong control `code/z2/control_bvls.py` was added.
+- "Rank 20 is genuinely additional information" was wrong (it follows from the model); fixed in all reports.
+- The "signed-only relaxation" (`cpsat_model.py`, `dfs_backup.py`) omits Cᵀ S_out = 0; documented.
+- The k = 4 probe finds 1 labelled solution, not 3; the Q − 3I part of the dossier's Prop. F3(iv) was unproved; credits and bibliography fixed.
+- The order-3 third-party notes (`notes/third_party/`) were removed as off-topic (recoverable at commit `9eb634d`).
 
-## 4. Layout
-- `report/` — `conway99_involution_report.pdf` (English, technical) and **`involution_notes_fr.pdf` (notes en français : ce que j'explore, ce que j'ai trouvé, ce qui tourne)**, with sources.
-- `notes/` — `NOTE_involution_case.md`, `AUDIT_reimbayev_order7.md`, `RESEARCH_MEMORY.md`, `SOURCES.md`, **`WHAT_WOULD_HELP.md`** (what is missing / what a researcher could provide).
-- `code/z2/` — `orbit_sat.py` (CNF model + lift/verify), `cpsat_orbit.py`, `run_orbit.py`, `row_fix.py`, `anneal_orbit.py` (recuit simulé), `joint_dfs.py`, `sout_dfs.py`, `rows.py`, `Dockerfile`, `run_batch.sh`.
-- `code/r7_check/` — `parse_r7.py`, `match705.py`, `corrected.py`, `family_n3.py` (order-7 audit; needs the arXiv TeX source and the public repo).
-- `results/` — JSON results and solver logs.
+## 3. Layout
+- `LAB_INSTRUCTIONS.md` — what the lab session runs, in which order, and the rules for reporting.
+- `report/` — `dossier_chercheurs_fr` (full state, French), `conway99_involution_report` (English), `involution_notes_fr` (French, pedagogical); `Dockerfile.tex`.
+- `notes/` — `AUDIT_2026-09-22.md`, `NOTE_involution_case.md`, `ONE10_PROVENANCE.md`, `AUDIT_reimbayev_order7.md`, `WHAT_WOULD_HELP.md`, `SOURCES.md`, `RESEARCH_MEMORY.md` (historical).
+- `code/z2/` — `orbit_sat.py` (exact CNF model + lift), `cpsat_orbit.py`, `run_orbit.py`, `row_fix.py`, `rows.py`, `joint_dfs.py`, `sout_dfs.py`,
+  `anneal_orbit.py`, `anneal_struct.py`, `control_bvls.py` (strong control), `probe99/` (generic 99-vertex model), `Dockerfile` (satbox), `run_batch.sh`;
+  `common.py` / `cpsat_model.py` / `dfs_backup.py` (weaker signed relaxation, see above).
+- `code/r7_check/` — order-7 audit scripts (need the arXiv TeX and the public repo) and their JSON outputs.
+- `results/` — solver logs and the overnight batch summary.
 
-## 5. Reproduce (Python 3.12, `uv pip install sympy numpy python-sat ortools`)
+## 4. Reproduce (Python 3.12: `sympy numpy python-sat ortools`; generate CNFs under Docker/WSL, the repo checks out CRLF on Windows)
 ```
-python code/z2/orbit_sat.py --m 2 --solve      # control k=4: SAT, lifted matrix verified as srg(9,4,1,2)
-python code/z2/orbit_sat.py --m 3 --solve      # control k=6: UNSAT (srg(19,6,1,2) does not exist)
+python code/z2/orbit_sat.py --m 2 --solve      # weak control: SAT, lift verified as srg(9,4,1,2)
+python code/z2/orbit_sat.py --m 3 --solve      # weak control: UNSAT (srg(19,6,1,2) does not exist)
+python code/z2/control_bvls.py                 # strong control on srg(243,22,1,2), light (< 2 min)
+python code/z2/control_bvls.py --cnf           # CNF-encoding check, ~20 GB RAM: lab machine only
 python code/z2/orbit_sat.py --m 7 --case one --out k14_one.cnf
-docker build -t satbox code/z2 && sh code/z2/run_batch.sh 28800
+docker build -t satbox code/z2 && sh code/z2/run_batch.sh 28800 "$PWD"
 ```
 
-## 5b. External audit (2026-09-22) — READ THE WARNING BEFORE USING IT
-`report/dossier_chercheurs_fr.pdf` (+ `.tex`) and `notes/ONE10_PROVENANCE.md` were written by a **different session on a different machine**,
-without the CNFs or intermediate outputs of the original session. They are an external audit, not part of the original work.
-Statements tagged **[S]/[R]** there are the repository's own, re-read; statements tagged **[N]** are new claims by a single reader and must be
-re-proved independently before being cited or merged into this README. `results/batch_kissat_one10.log` (UNSAT) is undocumented and must not be
-cited as a result until the test in `notes/ONE10_PROVENANCE.md` has been run on the machine that holds the CNFs. Nothing there eliminates any case.
-
-## 6. Third-party notes (verified here)
-- `notes/third_party/C3_hexagon_holonomy.md` (ChatGPT, 2026-09-21): in the order-3 fixed-point-free branch, if the six triangular orbits form a chordless C6, the matching holonomy around the hexagon is 0 in F3. Checked line by line and recomputed independently (`notes/third_party/check_c3_hexagon.py`). Scope: one sub-case of C3; novelty not established.
+## 5. Principal sources
+Makhnev–Minakova, Diskr. Mat. 16:1 (2004), DOI 10.4213/dm144; Makhnev, Bielefeld notes; Behbahani, thesis (2009) and Behbahani–Lam, Discrete Math. 311 (2011);
+Crnković–Maksimović, Contrib. Discrete Math. 15 (2020); Cesarz–Woldar, Algebraic Combinatorics 8 (2025); Keramatipour, arXiv:2604.23037;
+Thakkar–Severini, arXiv:2608.11211; Ishida, arXiv:2606.29183; Reimbayev, arXiv:2608.19410; YesterdaysLemon/conway-99-research. Links: `notes/SOURCES.md`.

@@ -1,5 +1,8 @@
 # The involution case of Conway's 99-graph: exact reduction, new necessary conditions, first computations
-(working note, 2026-09-21; all statements below are either cited to a primary source or derived here with proof sketches; computational claims point to reproducible scripts in `scratchpad/z2_signed/`)
+(working note, 2026-09-21; all statements below are either cited to a primary source or derived here with proof sketches; the scripts referred to as `scratchpad/z2_signed/` are the ones now in `code/z2/`)
+
+> Revised 2026-09-22 (see `notes/AUDIT_2026-09-22.md`): §2(a) is essentially Makhnev's lemma; the rank-20 statement of §3 follows from the model
+> (it is not "extra information"); the k=4/k=6 controls are weak, the strong control is `code/z2/control_bvls.py` (srg(243,22,1,2)).
 
 ## 1. Status of the symmetry programme (verified against primary sources)
 Let Γ be a putative srg(99,14,1,2), G = Aut(Γ).
@@ -9,8 +12,8 @@ Let Γ be a putative srg(99,14,1,2), G = Aut(Γ).
   (all admissible fixed-point counts) nor for p = 3 with fixed points ⇒ prime divisors of |G| are 2 and 3, order 3 is fixed-point-free.
   p = 2 was **not** computed (the table starts at p = 3).
 - Crnković–Maksimović 2020: no G of order 6 or 9. Cesarz–Woldar 2025 (computer-free): 2 | |G| ⇒ |G| | 6; 7 | |G| ⇒ G ≅ Z7.
-- Hence |G| ∈ {1, 2, 3}. The order-3 (fixed-point-free) branch is being attacked by several public projects; the **involution branch has
-  never been computed**. Thakkar–Severini (arXiv:2608.11211v2) and the Deep-Research dossier call the one-fixed-point Z7 case "open";
+- Hence |G| ∈ {1, 2, 3}. The order-3 (fixed-point-free) branch is being attacked by several public projects; the **involution branch has,
+  to our knowledge, never been computed**. Thakkar–Severini (arXiv:2608.11211v2) and the Deep-Research dossier call the one-fixed-point Z7 case "open";
   this is a misreading — it was closed at the orbit-matrix level in 2009/2011.
 - Ishida (arXiv:2606.29183) recovers a₁(t) = 14 for an involution t from his trace–rank identity (no exclusion).
 
@@ -41,8 +44,8 @@ i.e. L_θ ≅ Z₂^{a_θ} ⊕ Z₂[C₂]^{c_θ} with a_θ = tr(t|L_θ) = χ_θ(t
 lattice M = (1−t)Z₂⁹⁹ (in which A acts as S) gives rank_F₂(S mod 2) = 27, i.e. with Γ̄ := Γ₁ mod 2 (the 10-regular "single" graph on the
 42 orbits) and Nb = the 42×7 orbit/block incidence:
       rank_F₂(Γ̄ + Nb Nbᵀ) = 20,  and (from the mod-2 Gram identities)  Γ̄² + Γ̄ = Nb Nbᵀ  over F₂.
-Consequently K := Γ̄² is a symmetric idempotent of rank exactly 20 with K Nb = 0, and Γ̄ = K + Nb Nbᵀ. The rank statement is not
-implied by the pairwise counting identities (which only give K² = K and rank K even); it is genuinely extra information.
+Consequently K := Γ̄² is a symmetric idempotent of rank exactly 20 with K Nb = 0, and Γ̄ = K + Nb Nbᵀ. The mod-2 pairwise identities alone only give K² = K and rank K even; but the value 20 follows from the integer identity
+S² + S = 12I and tr S = −7, which the exact model (§2(d)) implies. So it is a global invariant / late filter, not an independent obstruction.
 
 ## 4. Computations (all reproducible; controls included)
 - `orbit_sat.py` (CNF, pysat/CaDiCaL) and `cpsat_orbit.py` (OR-Tools CP-SAT) implement (d) for general k=2m.
@@ -52,7 +55,7 @@ implied by the pairwise counting identities (which only give K² = K and rank K 
   (3,4,0) disjoint} (all other choices are Stab(U₀)-equivalent; |Stab(U₀)| = 15 360).
 - Results: S-relaxation (49×49 signed quotient) CP-SAT 25 min: UNKNOWN. Joint model, whole row of U₀ fixed to a random valid
   neighbourhood: CaDiCaL undecided after ≥ 30 min CPU on 4 instances (so an exhaustive first-row case split, ~10⁴–10⁵ cases, is
-  out of reach with this encoding). Three global CaDiCaL runs (sib/one/dis) launched 17:50; see result_*.json.
+  out of reach with this encoding). Overnight native CaDiCaL/Kissat batch (7 instances, 8 h each): all UNKNOWN, see `results/BATCH_2026-09-21_overnight.md`.
   A timeout is not evidence either way.
 
 ## 5. Assessment and what would settle the branch

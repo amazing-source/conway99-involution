@@ -18,9 +18,9 @@
 \newcommand{\rk}{\operatorname{rank}}
 \newcommand{\srg}{\operatorname{srg}}
 \title{Conway's 99-graph: the involution case\\
-\large Exact reduction, a new necessary condition, an audit of the order-seven census, and first computations}
+\large Exact reduction, an exact $\F_2$-rank identity, an audit of the order-seven census, and first computations}
 \author{Research log of an AI-assisted session (Claude, 21 September 2026)\\ \small operated by D. Djematene; every claim is either cited to a primary source or proved below}
-\date{21 September 2026 --- working version}
+\date{21 September 2026 --- working version; revised 22 September 2026 after an independent audit (\texttt{notes/AUDIT\_2026-09-22.md})}
 \begin{document}
 \maketitle
 
@@ -28,8 +28,8 @@
 Let $\Gamma$ be a putative strongly regular graph $\srg(99,14,1,2)$ (Conway's 99-graph). We (i) record the exact state of the automorphism
 programme from primary sources, which leaves $|\!\operatorname{Aut}(\Gamma)|\in\{1,2,3\}$ and shows that the one-fixed-point $\Z_7$ case, described
 as open in recent work, was in fact closed at the orbit-matrix level in 2009/2011; (ii) show that the involution case is completely rigid and reduce it
-to an exact finite problem on $42$ orbits, with a perfect matching structure; (iii) derive a new necessary condition from the $2$-adic structure of the
-eigenlattices under the involution (they are \emph{free} $\Z_2[C_2]$-lattices), giving an exact $\F_2$-rank equation; (iv) audit the order-seven
+to an exact finite problem on $42$ orbits, with a perfect matching structure; (iii) derive an exact $\F_2$-rank equation for the graph of single adjacencies (a consequence of the quotient
+equations, useful as a filter, not an independent obstruction); (iv) audit the order-seven
 induced-subgraph census of Reimbayev (arXiv:2608.19410) and locate four typographical errors, after which the census is exactly equivalent to a
 system already verified in the public repository \texttt{conway-99-research} and yields no new constraint; (v) report the first exact computations on
 the involution case (validated SAT/CP-SAT models; all runs so far inconclusive). Nothing here resolves the existence problem.
@@ -52,9 +52,11 @@ to our knowledge, never been the object of an exact computation.
 \section{Rigidity of the involution}
 Let $t\in\operatorname{Aut}(\Gamma)$ be an involution; by \cite{MM04}, $\Fix(t)=\{x\}$. Root $\Gamma$ at $x$: $N(x)$ induces a perfect matching $7K_2$ with
 blocks $B_i=\{(i,0),(i,1)\}$, $i=1,\dots,7$. Every vertex at distance $2$ has exactly two neighbours in $N(x)$ (as $\mu=2$), which lie in different blocks
-(as $\lambda=1$), and the $84$ outer vertices are in bijection with the $84$ unordered pairs $\{(i,s),(j,e)\}$, $i<j$ (the forced-structure reduction of
-\cite{TS26}, also implicit in Keramatipour and Lou--Murin). The only unknown is the $12$-regular outer graph $H$.
+(as $\lambda=1$), and the $84$ outer vertices are in bijection with the $84$ unordered pairs $\{(i,s),(j,e)\}$, $i<j$ (the classical rooted reduction, written out e.g.\ in \cite{CW25}, \cite{Ker26} and
+\cite{TS26}). The only unknown is the $12$-regular outer graph $H$.
 
+Lemma~\ref{lem:flip} is essentially Makhnev's lemma $|\Fix(t)|=1+|\Fix(t)\cap[a]|+2l$ \cite{Mak} (with $\Fix(t)=\{x\}$, $l=0$), and $a_1(t)=14$ is in \cite{MM04};
+what appears to be new here is Proposition~\ref{prop:matching} and the exact model built on it.
 \begin{lemma}\label{lem:flip}
 $t$ acts on the inner vertices as the flip $\sigma:(i,s)\mapsto(i,1-s)$ in every block, and on labels by $\sigma\{a,b\}=\{a',b'\}$.
 \end{lemma}
@@ -90,7 +92,7 @@ Then $Q^2+Q-12I=2N$ ($N_{UV}=|V|$), $Q_{\mathrm{out}}=\Gamma_1+2D$ with $\Gamma_
 Writing $S=\begin{pmatrix}-I_7&C^{\mathsf T}\\ C&S_{\mathrm{out}}\end{pmatrix}$ with $C^{\mathsf T}C=12I_7$: $C^{\mathsf T}S_{\mathrm{out}}=0$, $S_{\mathrm{out}}^2+S_{\mathrm{out}}=12I-CC^{\mathsf T}$,
 $S_{\mathrm{out}}\in\{0,\pm1\}^{42\times42}$ with ten nonzeros per row, $\operatorname{Spec}(S_{\mathrm{out}})=\{0^7,3^{20},(-4)^{15}\}$, and $(S_{\mathrm{out}}+4I-\tfrac13CC^{\mathsf T})/7$ is a projector of rank $20$.
 
-\section{A new necessary condition from the $2$-adic structure}
+\section{An exact $\F_2$-rank identity}
 \begin{theorem}\label{thm:rank}
 Let $\Gamma$ admit an involution, and let $\bar\Gamma\in\F_2^{42\times42}$ be the adjacency matrix of $\Gamma_1$ (the graph of single adjacencies on the $42$ outer orbits) and
 $N_b\in\F_2^{42\times7}$ the orbit/block incidence. Then
@@ -112,7 +114,9 @@ $\bar\Gamma N_b=0$ (every vertex has an even number of single neighbours on each
 \begin{remark}
 A first version of this proof went through the $2$-adic eigenlattices ($L_3\cong\Z_2[C_2]^{27}$, $L_{-4}\cong\Z_2[C_2]^{22}$ free, via Brou\'e's theorem on
 $p$-permutation lattices); the elementary derivation above, pointed out by an independent check, needs only the spectrum of $S$ and a Schur complement.
-The pairwise counting identities only yield $K^2=K$ and $\rk K$ even; the exact value $20$ is genuinely additional information.
+The mod-$2$ pairwise identities alone only yield $K^2=K$ and $\rk K$ even. However the value $20$ follows from the integer identity $S^2+S=12I$ and $\operatorname{tr}S=-7$,
+which are consequences of the exact model below; it is therefore \emph{not} an independent obstruction, but a global invariant usable as a (late) filter in a generator.
+The analogue at $k=22$ ($\rk_{\F_2}(\bar\Gamma+N_bN_b^{\mathsf T})=44$) is verified on the Berlekamp--van Lint--Seidel graph (\texttt{code/z2/control\_bvls.py}).
 Mod $7$ one finds that $S_{\mathrm{out}}-3I$ is nilpotent of index $2$ on a $35$-dimensional complement of $\operatorname{span}(C)$ and
 $\rk_{\F_7}(S-3I)\le22$; this is consistent with the universal bound $\rk_{\F_7}(M)\ge27$ established in \cite{repo} for
 $M=B^{\mathsf T}(3I-A)B+J\equiv-B^{\mathsf T}(A-3I-4J)B\pmod 7$ ($B$ the vertex--triangle incidence). We found no contradiction.
@@ -129,11 +133,13 @@ The corrected census imposes only $0\le n_3\le4158$, $2n_3\le z_{11}\le4n_3$, $4
 \begin{itemize}[nosep]
 \item Scripts: \texttt{orbit\_sat.py} (CNF), \texttt{cpsat\_orbit.py} (CP-SAT), both implementing (R),(D),(I),(P) for general $k=2m$, with a lift to the $99\times99$
 matrix and an integer verification of $A^2+A-(k-2)I=2J$. Controls: $k=4$ gives SAT and the lifted matrix is $\srg(9,4,1,2)$ (Paley(9) has such an involution);
-$k=6$ gives UNSAT at once ($\srg(19,6,1,2)$ does not exist). For $k=14$: $1722$ primary variables, $666\,183$ CNF variables, $1.51$M clauses.
+$k=6$ gives UNSAT at once ($\srg(19,6,1,2)$ does not exist). These two controls are weak (the $k=4$ model has 3 variables). A strong control was added on 22 September:
+the Berlekamp--van Lint--Seidel graph $\srg(243,22,1,2)$ \cite{BvLS} with the involution $x\mapsto-x$ (one fixed point) is the $k=22$ instance of the same model, and its orbit table
+satisfies (R),(D),(I),(P) with zero violations. For $k=14$: $1722$ primary variables, $666\,183$ CNF variables, $1\,510\,448$ clauses.
 \item Sound case split on $D(U_0)$ for $U_0=(1,2,0)$: sibling $(1,2,1)$, one shared block $(1,3,0)$, disjoint $(3,4,0)$; for the disjoint case a further
 split on $u_0\sim\{a,b'\}$ (the block swap $1\leftrightarrow2$ makes the two single-adjacency subcases equivalent).
 \item Results so far: signed-quotient relaxation (CP-SAT, 25 min): UNKNOWN. Joint model with the whole row of $U_0$ fixed: CaDiCaL undecided after $\ge30$ min CPU
-on four instances; CP-SAT 15 min: UNKNOWN (2\,477 conflicts). Native CaDiCaL/Kissat batch (7 instances, 8 h): running at the time of writing.
+on four instances; CP-SAT 15 min: UNKNOWN (2\,477 conflicts). Native CaDiCaL/Kissat batch (7 instances, 8 h each): all UNKNOWN (\texttt{results/BATCH\_2026-09-21\_overnight.md}).
 A timeout is not evidence.
 \end{itemize}
 
@@ -151,6 +157,9 @@ Either outcome is certifiable: ``no involution, hence $|\!\operatorname{Aut}(\Ga
 \bibitem{TS26} D.~Thakkar, S.~Severini, A forced-structure reduction and verifiable bounds for Conway's 99-graph, arXiv:2608.11211v2 (18 Sep 2026).
 \bibitem{Ish26} Y.~Ishida, No involutions in the missing Moore graph, arXiv:2606.29183v2 (2026).
 \bibitem{Rei26} R.~Reimbayev, Induced subgraphs of order seven and their frequencies in $\srg(n,k,1,2)$, arXiv:2608.19410v1 (19 Aug 2026).
+\bibitem{Mak} A.\,A.~Makhnev, Graphs and automorphisms, Bielefeld summer school notes, \url{https://www.math.uni-bielefeld.de/~baumeist/sommerschule/makhnev.pdf}.
+\bibitem{Ker26} A.~Keramatipour, Approaching the Conway-99 problem using SAT solvers, arXiv:2604.23037 (2026).
+\bibitem{BvLS} E.\,R.~Berlekamp, J.\,H.~van Lint, J.\,J.~Seidel, A strongly regular graph derived from the perfect ternary Golay code, in: A Survey of Combinatorial Theory, North-Holland, 1973, 25--30.
 \bibitem{repo} YesterdaysLemon, conway-99-research (GitHub), waves 1--212 (2026-07-22 to 2026-08-01), in particular waves 23, 43, 44, 206.
 \end{thebibliography}
 \end{document}

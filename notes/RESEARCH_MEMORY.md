@@ -1,5 +1,8 @@
 # Conway-99 — working research memory (2026-09-21)
 
+> Historical session log, kept as written. Where it disagrees with `notes/AUDIT_2026-09-22.md` or `LAB_INSTRUCTIONS.md`, those win.
+> In particular: the k=4/k=6 controls mentioned below are weak (see `code/z2/control_bvls.py`), and "never computed by anyone" means "to our knowledge".
+
 ## Established (with source)
 - Existence of srg(99,14,1,2) open (Brouwer `?`; Thakkar–Severini v2 18 Sep 2026; Reimbayev 19 Aug 2026).
 - |Aut| ∈ {1, 2, 3}: Makhnev–Minakova 2004 (|G| | 2·3³·7·11, fixed subgraphs of prime-order elements:

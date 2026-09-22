@@ -6,7 +6,7 @@ par SAT/CP-SAT sans résultat. Rien ci-dessous n'est bloquant pour ce qui est d�
 
 ## A. Documents non obtenus (accès institutionnel)
 1. **D. Crnković, M. Maksimović**, *Construction of strongly regular graphs having an automorphism group of composite order*,
-   Contrib. Discrete Math. 15(1) (2020) 22–41 — exclusion des groupes d'ordre 6 et 9 pour (99,14,1,2). Question précise : leur analyse de Z6
+   Contrib. Discrete Math. 15(1) (2020) 22–41 — exclusion des groupes d'ordre 6 et 9 pour (99,14,1,2) (le résumé, lu le 22/09, cite Z6, S3, Z9, E9). Question précise : leur analyse de Z6
    a-t-elle construit/énuméré des matrices d'orbites pour l'involution (50 orbites) ? Si oui, quel a été le coût et la méthode ?
 2. **M. Behbahani, C. Lam**, *Strongly regular graphs with non-trivial automorphisms*, Discrete Math. 311 (2011) 132–144 — version publiée
    de la thèse (que nous avons) ; vérifier si p = 2 y est discuté pour (99,14,1,2) et quelle borne de points fixes est utilisée.
@@ -24,8 +24,8 @@ par SAT/CP-SAT sans résultat. Rien ci-dessous n'est bloquant pour ce qui est d�
   en 2 s (`code/z2/orbit_sat.py`).
 
 ## D. Vérification humaine (le plus précieux)
-1. Le **Théorème de rang F₂** (rapport §3) : la seule étape non élémentaire est « un réseau de p-permutation d'un p-groupe sur Z_p est un réseau
-   de permutation » (Broué 1985, *On Scott modules and p-permutation modules*, J. Algebra 96). Un algébriste peut confirmer en dix minutes.
+1. Le **Théorème de rang F₂** (rapport §3) : la preuve est désormais élémentaire (spectre de S + complément de Schur) ; Broué n'est plus nécessaire.
+   C'est une conséquence du modèle, pas une obstruction indépendante (révision du 22/09).
 2. Les lemmes de rigidité (§2) sont élémentaires mais méritent une relecture (en particulier l'équivalence exacte du modèle (R),(D),(I),(P) avec A²+A−12I=2J).
 3. L'**audit Reimbayev** (4 coquilles) : un mail à l'auteur (R. Reimbayev) serait utile — nos corrections sont vérifiées symboliquement et contre le dépôt public.
 

@@ -6,6 +6,8 @@
 - Crnković, Maksimović (2020), Contrib. Discrete Math. 15(1), 22–41 — https://cdm.ucalgary.ca/article/view/62323 (not obtained)
 - Cesarz, Woldar (2025), Algebraic Combinatorics 8(2), 379–398 — https://alco.centre-mersenne.org/item/10.5802/alco.418.pdf
 - Ishida (2026), No involutions in the missing Moore graph — arXiv:2606.29183
+- Keramatipour (2026), Approaching the Conway-99 problem using SAT solvers — arXiv:2604.23037 (abstract read 2026-09-22)
+- Berlekamp, van Lint, Seidel (1973), srg(243,22,1,2) from the ternary Golay code — used as the strong control in code/z2/control_bvls.py
 - Reimbayev (2026), Induced subgraphs of order seven … — arXiv:2608.19410 (TeX source audited)
 - Thakkar, Severini (2026) v2 — arXiv:2608.11211
 - YesterdaysLemon/conway-99-research (GitHub), incl. branches codex/wave206-global-extension, codex/wave212-global-coupling

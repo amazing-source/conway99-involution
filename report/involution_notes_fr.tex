@@ -21,7 +21,7 @@
 \newcommand{\Aut}{\operatorname{Aut}}
 \title{Le graphe de Conway et la branche « involution »\\ \large Notes de recherche : ce que j'explore, ce que j'ai trouvé, ce qui tourne}
 \author{Journal de la session du 21 septembre 2026 (Claude, sous la direction de D.~Djematene)}
-\date{Version de travail --- tout énoncé est soit cité à une source primaire, soit démontré ici}
+\date{Version de travail --- tout énoncé est soit cité à une source primaire, soit démontré ici. Révisée le 22 septembre 2026 (voir \texttt{notes/AUDIT\_2026-09-22.md})}
 \begin{document}
 \maketitle
 
@@ -47,21 +47,23 @@ Une \emph{symétrie} (automorphisme) est une permutation des sommets qui envoie 
 \item \textbf{Makhnev--Minakova 2004} (Diskr. Mat. 16:1, th.~1) : si $g$ est une symétrie d'ordre premier, l'ensemble $\Fix(g)$ de ses points fixes est
   un seul sommet ($|g|\in\{2,7\}$), vide ($|g|\in\{3,11\}$) ou un triangle ($|g|=3$) ; et $|\Aut|$ divise $2\cdot3^3\cdot7\cdot11$.
 \item \textbf{Behbahani 2009 / Behbahani--Lam 2011} (thèse, table 21) : par énumération exhaustive de « matrices d'orbites », aucune symétrie
-  d'ordre $5$, $7$ ou $11$ n'est possible, ni d'ordre $3$ avec points fixes. Il ne reste que les ordres $2$ et $3$. \textbf{L'ordre 2 n'a jamais été calculé} :
-  leur table commence à $p=3$.
+  d'ordre $5$, $7$ ou $11$ n'est possible, ni d'ordre $3$ avec points fixes. Il ne reste que les ordres $2$ et $3$. \textbf{L'ordre 2 n'y est pas calculé} :
+  leur table commence à $p=3$ (à confirmer sur l'article de 2011).
 \item \textbf{Crnković--Maksimović 2020} : pas de groupe d'ordre $6$ ni $9$. \textbf{Cesarz--Woldar 2025} : preuves sans ordinateur de résultats plus faibles.
 \end{itemize}
 Bilan : $|\Aut|\in\{1,2,3\}$. Un article récent (Thakkar--Severini, ar\-Xiv:2608.11211) et le dossier de départ présentaient le cas $\Z_7$ comme ouvert :
 c'est une erreur de lecture, il est clos depuis 2009. Le cas d'ordre 3 est attaqué en ce moment par plusieurs projets publics.
-\textbf{Le cas d'ordre 2 --- une involution --- n'a été calculé par personne.} C'est la branche que j'ai choisie : elle est vierge, et elle est rigide.
+\textbf{Le cas d'ordre 2 --- une involution --- n'a, à notre connaissance, été calculé par personne} (Keramatipour, arXiv:2604.23037, a essayé des solveurs SAT sur le problème
+sans symétrie imposée, sans succès). C'est la branche que j'ai choisie : elle est, semble-t-il, vierge, et elle est rigide.
 
 \section{Pourquoi la branche involution est rigide}
 Soit $t$ une involution ($t^2=\mathrm{id}$) du graphe. Par Makhnev--Minakova, $t$ fixe exactement un sommet $x$.
 \emph{Enracinons} le graphe en $x$ : ses 14 voisins forment 7 paires appariées (blocs) $B_i=\{(i,0),(i,1)\}$, car $\lambda=1$ ; chacun des 84 sommets
 restants a exactement deux voisins parmi ces 14 ($\mu=2$), dans deux blocs différents ($\lambda=1$), et ces deux voisins l'identifient : les 84 sommets extérieurs
-sont en bijection avec les 84 \emph{étiquettes} $\{(i,s),(j,e)\}$, $i<j$ (réduction de Thakkar--Severini). Toutes les arêtes entre les 15 sommets intérieurs
+sont en bijection avec les 84 \emph{étiquettes} $\{(i,s),(j,e)\}$, $i<j$ (réduction enracinée classique, écrite notamment par Cesarz--Woldar, Keramatipour et Thakkar--Severini). Toutes les arêtes entre les 15 sommets intérieurs
 et les 84 extérieurs sont donc forcées ; l'inconnue est le graphe $H$ des arêtes entre sommets extérieurs (chaque extérieur y a $12$ voisins).
 
+Le lemme suivant est essentiellement celui de Makhnev (notes de Bielefeld : $|\Fix(t)|=1+|\Fix(t)\cap[a]|+2l$, d'où $l=0$) ; ce qui est propre à ce travail commence avec le couplage $D$.
 \begin{lemma}[l'involution est forcée]
 $t$ agit sur les sommets intérieurs comme le « retournement » $\sigma:(i,s)\mapsto(i,1-s)$ de chaque bloc, et sur les étiquettes par $\sigma\{a,b\}=\{a',b'\}$
 (où $a'$ est le partenaire de $a$).
@@ -103,7 +105,7 @@ vérifie $A^2+A-12I=2J$ en entiers) ; l'absence de solution prouve qu'aucun grap
 $\pm1$ par ligne) satisfait $C^{\mathsf T}S_{\mathrm{out}}=0$ et $S_{\mathrm{out}}^2+S_{\mathrm{out}}=12I-CC^{\mathsf T}$, d'où le spectre $0^7,3^{20},(-4)^{15}$
 et le fait que $(S_{\mathrm{out}}+4I-\tfrac13CC^{\mathsf T})/7$ est un projecteur de rang 20. Ces structures sont ce que j'ai utilisé pour chercher des obstructions.
 
-\section{Ce que j'ai découvert : une condition nécessaire nouvelle}
+\section{Ce que j'ai établi : une identité de rang exacte}
 L'idée vient d'un article de juin 2026 (Ishida, « No involutions in the missing Moore graph ») : regarder non pas les valeurs propres, mais les
 \emph{réseaux} entiers $2$-adiques que les projecteurs découpent, et leur structure comme modules sur le groupe engendré par $t$.
 
@@ -125,9 +127,10 @@ $Q_{\mathrm{out}}^2+Q_{\mathrm{out}}=12I+4J-\mathrm{Sh}$.
 \end{proof}
 Ma première preuve passait par les réseaux $2$-adiques et un théorème de Broué (réseaux de $p$-permutation) ; une vérification indépendante a fait remarquer
 que le spectre de $S$ et un complément de Schur suffisent. L'énoncé ne change pas, la preuve est plus courte et n'utilise que le lemme~\ref{lem:noself}.
-Pourquoi c'est nouveau : les identités de comptage (deux voisins communs, etc.) ne donnent que « $K=\bar\Gamma^2$ est idempotente de rang pair » ;
-la valeur exacte $20$ vient de la structure des réseaux, pas du comptage. Ce n'est \emph{pas} une contradiction --- j'ai vérifié qu'elle est compatible avec
-tout ce que l'on sait, y compris le plancher $\rg_{\F_7}(M)\ge27$ établi par le dépôt public --- mais c'est un filtre exact utilisable dans une recherche.
+Statut (révisé le 22 septembre) : les identités de comptage réduites mod 2 ne donnent que « $K=\bar\Gamma^2$ est idempotente de rang pair », mais la valeur $20$
+découle de l'identité entière $S^2+S=12I$ et de $\operatorname{tr}S=-7$, qui sont elles-mêmes des conséquences du modèle exact. Ce n'est donc \emph{pas} une obstruction
+indépendante, et ce n'est pas une contradiction (elle est compatible avec tout ce que l'on sait, y compris le plancher $\rg_{\F_7}(M)\ge27$ du dépôt public) :
+c'est un invariant exact, utilisable comme filtre tardif dans une recherche. Son analogue à $k=22$ est vérifié sur le graphe $\srg(243,22,1,2)$ de Berlekamp--van Lint--Seidel.
 
 \section{Ce que j'ai vérifié en chemin : l'audit du recensement d'ordre sept}
 Le dossier recommandait d'exploiter le recensement des 208 sous-graphes induits à 7 sommets (Reimbayev, arXiv:2608.19410). J'ai transcrit les 208 formules
@@ -140,10 +143,11 @@ polynomiale en $k$ et les 208 formules coïncident avec le dépôt sur tous les 
 \section{Ce que je fais calculer, et ce que ça a donné}
 \begin{itemize}[nosep]
 \item Modèles exacts (\texttt{orbit\_sat.py}, \texttt{cpsat\_orbit.py}) validés sur les contrôles : $k=4$ donne une solution qui, relevée en $9\times9$, est bien
-la tour $3\times3$ ; $k=6$ est immédiatement impossible (aucun $\srg(19,6,1,2)$). Pour $k=14$ : 666\,183 variables, 1,51~M de clauses.
+la tour $3\times3$ ; $k=6$ est immédiatement impossible (aucun $\srg(19,6,1,2)$). Ces deux contrôles sont faibles (3 variables à $k=4$) ; contrôle fort ajouté le 22 septembre :
+le graphe $\srg(243,22,1,2)$ de Berlekamp--van Lint--Seidel, avec l'involution $x\mapsto-x$, satisfait le modèle à $k=22$ sans aucune violation. Pour $k=14$ : 666\,183 variables, 1,51~M de clauses.
 \item Découpage en trois cas selon l'orbite double $D(U_0)$ de l'orbite de référence (sœur, un bloc commun, disjointe) ; les autres choix s'y ramènent par symétrie.
 \item Résultats : relaxation signée (CP-SAT, 25 min) : indécis. Modèle complet avec la ligne de $U_0$ entièrement fixée : indécis après $\ge30$ min de CPU
-(CaDiCaL, 4 instances) et 15 min (CP-SAT). Une batterie CaDiCaL/Kissat natifs (7 instances, 8~h) et un recuit simulé tournent cette nuit.
+(CaDiCaL, 4 instances) et 15 min (CP-SAT). Batterie CaDiCaL/Kissat natifs (7 instances, 8~h chacune) : toutes indécises. Recuits simulés : plateaux loin de zéro.
 Un dépassement de temps n'est \emph{pas} une preuve.
 \end{itemize}
 
