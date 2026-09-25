@@ -302,3 +302,24 @@ blocs), dont la partie lointaine est Σ_{R⊂β^c} χ₁R χ₂R. **Piste princi
 contrôler la partie proche pour obtenir 2(t₁+t₂+t₃) ≠ valeur imposée, comme au Théorème D.
 **État honnête.** Exclu : tout N à ≤ 6 arêtes, et tout N contenant une configuration de GT/GT2. Ouvert : N dense (en particulier
 N = K₇ sans paire frère, dont le modèle de Fano).
+
+## 15. Lemme du coin (PROUVÉ) : les triangles D sont presque impossibles
+**Coin de triangle D.** Paire tordue P = ij : orbite A₁ appariée par i à A₂ ∈ ik (carré Q₁ = (A₁,A₂)), orbite sœur B₁ appariée par j à
+B₂ ∈ jk (carré Q₂ = (B₁,B₂)), avec le même troisième bloc k : β(Q₁) = β(Q₂) = β = {i,j,k}. (Toute arête d'un 3-cycle du graphe D, en
+particulier toute paire du modèle de Fano, est un coin.) Notations : F_β = les 12 orbites des 6 paires de β^c ; far(X,Y) = nombre
+d'orbites de F_β voisines de X et de Y ; e = G_{A₂B₂} ∈ {0,1} (arête R_k possible) ; Y_A = orbites voisines de A₁ dans les paires kr,
+R_B = voisins R_k de B₂.
+**Comptages exacts.** (G²)_{A₁B₁} = 2 (sœurs), (G²)_{A₁B₂} = 3 − 2e, (G²)_{A₂B₁} = 3 − 2e, (G²)_{A₂B₂} = 3 − e (D(A₁) = A₂, D(B₂) = B₁,
+saturations de R_i en A₁, A₂ et de R_j en B₁, B₂). D'où far(A₁,B₁) ≤ 2 et far(A₁,B₂) ≤ 3 − 2e − |Y_A ∩ R_B|.
+**Minoration (9.2).** A₁ a 6 + ω(A₁) orbites voisines dans F_β ; chacune a au moins un voisin dans Q₂, sauf au plus une « orbite zéro »
+Z₀(Q₂) (elle n'existe que si l'apex extérieur W₂ de Q₂ est dans F_β et ω(Q₂) = 0), et l'apex W₂ en a deux. Donc
+  6 + ω(A₁) − [Z₀(Q₂) ~ A₁] + [W₂ ~ A₁] ≤ far(A₁,B₁) + far(A₁,B₂) ≤ 5 − 2e − |Y_A ∩ R_B|.
+**Lemme du coin.** À tout coin : e = 0, ω(A₁) = ω(B₁) = 0, Y_A ∩ R_B = R_A ∩ Y_B = ∅, les deux carrés ont leur apex extérieur dans F_β
+et une orbite zéro, Z₀(Q₂) ~ A₁, Z₀(Q₁) ~ B₁, W₂ ≁ A₁, W₁ ≁ B₁, far(A₁,B₁) = far(B₁,A₁) = 2 (les deux μ-partenaires de P sont dans β^c),
+far(A₁,B₂) = far(B₁,A₂) = 3. (En particulier les carrés d'un coin ne sont jamais « serrés » : le cas serré est contradictoire.)
+**Tableau des types** (orbite de F_β → voisine de A₁, A₂, les deux (W₁) ou aucune (Z₀(Q₁)) ; idem pour Q₂) : le cas
+« W₁ de type B₂ et W₂ de type A₂ » donne far(A₂,B₂) = 4 > 3 − e : exclu. Il reste W₁ = Z₀(Q₂) ou W₂ = Z₀(Q₁).
+**Triangle D complet** (carrés Q_i, Q_j, Q_k sur β = {i,j,k}, trois coins) : les trois disjonctions forcent un 3-cycle
+apex → orbite zéro : (W_i = Z₀(Q_j), W_j = Z₀(Q_k), W_k = Z₀(Q_i)) ou le cycle inverse ; chaque apex touche exactement une orbite de
+chaque paire de β (p. ex. W_i ~ A₁, A₂, C₂). Le tableau des 9 orbites génériques de F_β est alors déterminé à un paramètre p ∈ {0,1,2}
+près ; tous les comptages sont cohérents. Il reste à exclure cette structure (pas encore fait).
