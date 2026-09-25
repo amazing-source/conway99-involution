@@ -7,6 +7,7 @@ Règle de cohérence : tout lemme général doit être vrai pour m = 2 et m = 11
 arithmétique propre à m = 7 (ici θ − τ = 7 = m).
 Consigne opérateur : quand un raisonnement bute, inventer l'outil plutôt que chercher une solution existante.
 Étiquettes : PROUVÉ / VÉRIFIÉ (sur m = 2, 11) / CONJECTURÉ / IMPASSE.
+Mise à jour du 25/09 (confirmée par l'opérateur) : les solveurs sont de nouveau permis, mais seulement en petits tests (≤ 5 min), quand ils sont indispensables à une résolution ou à une vérification importante, avec contrôles, et sans jamais s'y reposer. Les mathématiques restent la méthode par défaut.
 
 ## 0. Notations (voir `NOTE_involution_case.md` §2)
 Γ = srg(99,14,1,2), σ involution, Fix(σ) = {x}. Blocs B_i = {(i,0),(i,1)} (i = 1..7) de N(x) ; σ échange les deux sommets de
