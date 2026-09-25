@@ -653,3 +653,17 @@ mais elle reste dans le cadre C2 des configurations.
   Au bloc C_j, ω(P^a) = 0 force l'unique 6-cycle P^a–A₁′–Y–P^b–Y′–A₂′ ; ce n'est pas une contradiction.
 - **Verdict (IMPASSE honnête).** Aucun blocage n'est forcé, donc la capacité (9) couvre la demande (≤ 7) : Hall ne mord pas. Pour
   conclure, il faudrait forcer au moins 3 blocages (ω = 1, ou un apex hors de F_β), et rien ne les force.
+**Cas ancré (6,0,3⁵) par la même voie** (travail de la session « structures », vérifié par échange le 25/09). [RÉSULTAT], négatif :
+- L'étoile en A est un 6-cycle, 3 + 3, ou (A; Z, B_x) plus un 4-cycle : 2 + 2 + 2 est exclu, car une composante liée a une queue de
+  degré sortant ≥ 4, et seul Z en a un.
+- Il y a 9 demandes : une par étoile en B, dirigée vers le bloc t − 2, et 4 venues de l'étoile en A. Chacune n'est compatible qu'avec
+  les 3 carrés d'un seul bloc B.
+- Hall par bloc donne demande(b) ≤ 1 + 2 = 3 = offre(b) : aucune violation.
+- Aux blocs saturés (« tendus »), la seule contrainte forcée est ω(P₂b) = 0. Elle est réalisable dans 19.1.
+- Les égalités des orbites |D| = 0 sont automatiques. Plus généralement, l'identité 18.2 n'a de contenu que par ses plafonds : au
+  plus une orbite zéro par carré ; un zéro exige ω(Q) = 0 et W ∈ F_β ; au plus une orbite apex par carré.
+- Cascade apex → zéro (seul couplage non vide trouvé) : une étiquette apex w d'un carré Q via k, avec k(w) = k, a ω = o = 0 et
+  est l'orbite zéro des |D_k(w)| − 1 autres carrés de D_k(w).
+**Bilan de la piste 4 (IMPASSE).** Aucun des deux cas ancrés restants ne se ferme avec les ingrédients actuels : il reste du jeu
+(9 demandes pour 15 carrés, et au plus 7 pour 9), et aucun blocage n'est forcé. Pour que Hall morde, il faudrait forcer des blocages
+(ω = 1, ou un apex hors de F_β), c'est-à-dire encore forcer une structure : c'est le même verrou sous une autre forme.
