@@ -691,3 +691,18 @@ exploite l'asymétrie globale (seul le caractère trivial voit j = 1, de norme 9
    - Mod 8, le local ne tranche pas entre 3 et 7 pour t = 1 (blocs de rang 1 ; BvLS réalise 3). Les invariants plus fins sont ceux du
      genre 2-adique, déjà épuisés au §4.
 **Verdict (IMPASSE).** L'asymétrie « j voit 11 » existe à p = 2, mais elle tombe exactement sur la valeur locale forcée.
+**Complément après lecture de la preuve de C3 (dépôt conway99-c3-experimental, lu pour la démarche seulement, avec l'accord de
+l'utilisateur).**
+- La démarche de C3 : les deux spécialisations de E₃ (quotient Q et matrice d'Eisenstein M) donnent **le même espace quadratique
+  sur F₃**, d'où l'égalité des symboles de Legendre de leurs discriminants. Or seul le côté trivial voit j (norme 33 = 3·11), et 11
+  n'est pas un carré modulo 3.
+- **Pourquoi l'analogue échoue en C2 :**
+  1. à p = 2, F₂^× est trivial, donc l'étape « même espace mod p » ne dit rien ;
+  2. au premier ordre (mod 4), le point fixe unique fournit exactement le terme correctif.
+- [RÉSULTAT] **Forme générale.** Soit une srg de v impair munie d'une involution à exactement un point fixe, et θ une valeur propre de
+  multiplicité f avec E_θ 2-entier. Comme u₊u₋ = det Λ_θ, on a R ≡ det(Λ_θ) modulo les carrés, et donc
+  **det(Λ_θ)_impair ≡ 1 + f/v (mod 4)**. Contrôles : Paley 9 et BvLS (4 cas sur 4).
+- Pour 99 (θ = 3) : det Λ₃ = 7^α·11 et 1 + 6/11 ≡ 3 (mod 4), ce qui force α pair. **C'est exactement le Théorème A corrigé** : la
+  démarche C3 transposée redonne une parité déjà connue, sans contradiction.
+- [RÉSULTAT] Au passage, l'analogue du « point 1 » de C3 (§4) : les vecteurs invariants de Λ₃ ont une coordonnée paire au point fixe,
+  par la ligne x de N = 11(A + 4I) − 2J, qui donne v_x ≡ Σ_{y∼x} v_y = 2Σ_blocs ≡ 0 (mod 2).
