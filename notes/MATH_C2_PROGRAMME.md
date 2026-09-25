@@ -515,3 +515,28 @@ en (iii). Le Théorème P ferme le prototype ouvert au §18.
 et (6,0,3,3,3,3,3) (un bloc ancre tout, un bloc n'ancre rien, les cinq autres forment le tournoi régulier sur 5 sommets). Le budget des
 zéros n'y est pas saturé (au plus 9 orbites |D| = 3 dans le second cas), donc ω n'est pas forcé à 0 : il faut y raffiner (ii)–(iv).
 Hors configurations ancrées : chaînes tordues de longueur ≥ 4, mélanges, carrés disjoints ; 19.1 s'y applique tel quel.
+
+## 20. Arrêt de la piste « configurations », retour au cœur du graphe (2026-09-25)
+**Suite des pistes (IMPASSE honnête).** Cas ancré (6,3,3,3,2,2,2) : une structure liée (u; s, w) avec s → w impose out(s) ≥ 4 (sinon
+K₂,₂ en s, 19.1), d'où un triangle cyclique L₁ → L₂ → L₃ → L₁ et In(L_j) = {L_{j−1}, q_j}, q_j ∈ C, L_{j−1} → q_j ; de même un bras C d'une
+composante liée de l'étoile en A doit être battu par son partenaire. Cas (6,0,3⁵) : 9 orbites |D| = 3 seulement, budget non saturé,
+aucune contradiction. Le mécanisme du Théorème P (ω ≡ 0 forcé) ne s'y applique pas. Piste arrêtée ici, sur consigne de l'opérateur.
+**Le cœur, sans involution.** Autour d'un sommet x : N(x) = 7K₂ (blocs) ; les 84 sommets à distance 2 sont en bijection avec les paires
+de voisins de x non adjacents, c'est-à-dire avec les **arêtes du graphe cocktail CP(7) = K₇ₓ₂** sur les 14 voisins. Γ existe si et
+seulement s'il existe un graphe H (84 sommets, 12-régulier) sur E(CP(7)) avec, N étant l'incidence arête–sommet de CP(7) et P l'échange
+des partenaires de bloc :
+  (E1) HN = 2J − N(I + P)   (u = {a,b} a 1 voisin contenant a, 1 contenant a′, 2 contenant tout autre élément) ;
+  (E2) H² + H = 12I + 2J − NNᵀ   ((H² + H)_{uw} = 2 − |u ∩ w| pour u ≠ w : c'est tout λ = 1, μ = 2).
+Spectre forcé : {12, (−2)⁶, 0⁷, 3⁴⁰, (−4)³⁰} (les −2 sont les vecteurs d'incidence de bloc, les 0 les vecteurs c_t, 7 dimensions).
+**Plan.** Pour une paire de blocs P = ij, les 4 arêtes {a,b}, {a,b′}, {a′,b}, {a′,b′} et x, a, a′, b, b′ forment une grille 3×3 ou non ;
+« x est plat » si les 21 paires sont des grilles et si chaque couplage entre deux grilles disjointes (parfait, par 9.1) préserve les
+droites (isomorphisme de C₄).
+**Théorème D′ (PROUVÉ, aucun automorphisme supposé).** Dans une srg(99,14,1,2), aucun sommet n'est plat.
+*Preuve.* Si x est plat, les vecteurs χ_P(u) = (−1)^{ε_i(u)+ε_j(u)} (21, orthogonaux à 1, n_t, c_t) engendrent un espace H-invariant sur
+lequel H = A_s − 2I, A_s signature de Kneser KG(7,2) (les couplages préservant les droites envoient χ_P sur ±χ_{P′}). Le spectre (E2) y
+impose {3, −4}, soit A_s² = 3A_s + 10I, et l'étape (6) du Théorème D (équilibre des triangles, 2(t₁+t₂+t₃) ≠ 0) conclut. ∎
+(Le Théorème D en est le cas « involution » : un couplage commutant avec σ préserve les antipodes, donc les droites.)
+**Lecture.** Les deux membres connus de la famille (m = 2, 11) sont des graphes de Cayley sur F₃ⁿ issus de codes ternaires : tous leurs
+sommets sont plats. Les cas ouverts sont exactement 7 | m (v = 99, 6273, 494019, aucun n'est une puissance de 3). Un graphe à 99 sommets
+devrait donc être **non plat en chaque sommet** : un objet sans aucun modèle affine connu. Piste de cœur : montrer que λ = 1, μ = 2
+force la platitude (au moins en un sommet), ou mesurer globalement le défaut de platitude (grilles comptées : 9 par grille).
