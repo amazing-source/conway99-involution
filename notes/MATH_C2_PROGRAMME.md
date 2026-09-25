@@ -706,6 +706,15 @@ l'utilisateur).**
   démarche C3 transposée redonne une parité déjà connue, sans contradiction.
 - [RÉSULTAT] Au passage, l'analogue du « point 1 » de C3 (§4) : les vecteurs invariants de Λ₃ ont une coordonnée paire au point fixe,
   par la ligne x de N = 11(A + 4I) − 2J, qui donne v_x ≡ Σ_{y∼x} v_y = 2Σ_blocs ≡ 0 (mod 2).
+  (Plus simplement : 3v_x = Σ_{y∼x} v_y = 2Σ, et θ = 3 est impair. Le fait est trivial.)
+- **CORRECTION (25/09, laboratoire `Desktop/c2_experimental`, note 24 et N24).** La « forme générale » ci-dessus est une
+  **tautologie** et n'exclut jamais rien.
+  - Λ_θ ⊗ Z₂ est unimodulaire **pair** (E_θ1 = 0 est un vecteur caractéristique), donc det ≡ (−1)^{f/2} (mod 4) sans involution.
+  - Dès que f est pair, 1 + f/v ≡ (−1)^{f/2} (mod 4).
+  - Le cran suivant, l'invariant d'Arf, a une formule locale : Arf = w̃·w̃/2, contrôlée dans 50 cas sur 50 sur de vrais graphes.
+    Pour 99, il est automatique pour Λ₃ ; pour Λ₋₄, il équivaut à σ_S ≡ 1 (mod 8), déjà établi au §4.
+  - **Antériorité** : le laboratoire C2 du 23/09 (`c2_experimental`, N09 et notes 09–10) avait déjà conclu que le transfert de C3 est
+    vide pour une involution et qu'aucune obstruction de genre ne tuera C2. Le §23 le redémontre sans l'avoir su.
 
 **No-go de « structures » (reçu le 25/09, qui explique pourquoi la transposition de C3 ne mord pas).**
 - La démarche C3 demande un opérateur entier M ≡ Q (mod 𝔭) vérifiant (M + 4)(M − 3) = 0, sans terme en J.
