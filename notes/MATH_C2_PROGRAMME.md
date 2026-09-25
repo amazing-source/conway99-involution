@@ -831,3 +831,33 @@ chaînes de longueur ≥ 4 restent ouvertes.
 **Conséquence.** Le comptage des zéros exportés (18.3) contre le budget 84, fait par « structures » par minimisation locale sur les
 ordres cycliques des 6-cycles libres (calcul de leur labo), exclut le type tout-tordu (3,3,3,3,3,6). Les comptages exacts qu'il
 utilise sont désormais établis en général. Le Théorème F ne dépend plus du lemme de partition pour ces comptages.
+
+## 26. Tout-tordu pur : lemme de l'orbite morte (« structures », relu ici) et état du résidu (25/09)
+Cadre : Σ = ∅, toutes les paires tordues, et le graphe D décompose K₇ en cycles. Soit x ∈ X ⊂ ij, appariée par i vers {i,k}, libre en
+j ; on pose R_x = [7] ∖ {i,j,k}. Les contraintes suivantes sont toutes relues ici.
+- **F1** (27.1 du labo) : φ_x(it) = 0 pour t ≠ k.
+- **C0** : n_k = 0 si le cycle D de x est le triangle {i,j,k}.
+- **C2** : n_a + n_b + φ(ab) = 1 pour un triangle D {j,a,b}.
+- **C4** : y_c + y_d + φ(cd) = 3 pour un triangle D {k,c,d}. C'est le comptage exact §25.
+- **C6** : Σ_r y_r = 2 − n_k.
+- **C8** : n_t + y_t + Σ_s φ(ts) = 4 pour t ∈ R_x. C'est μ = 2 avec ±e_t.
+
+Notations : y_r = φ_x(kr) ; n_r = φ_x(jr) compte les voisins R_j de x, qui sont ses deux voisins sur le 6-cycle libre en j.
+
+**Lemme 26.1 (orbite morte, « structures », PROUVÉ, relu).** Si le cycle D de x est le triangle {i,j,k} et s'il existe des triangles D
+{j,a,b} et {k,c,d} avec {a,b,c,d} = R_x, contradiction.
+*Preuve.* On somme C8 sur {a,b}, puis sur {c,d}, en notant X les φ croisés. On substitue N_ab + N_cd = 2 (C0), φ(ab) = 1 − N_ab (C2),
+y_c + y_d = 3 − φ(cd) (C4) et y_a + y_b = φ(cd) − 1 (C6). On obtient X = 7 + N_ab − φ(cd) et X = 3 + N_ab − φ(cd). ∎
+
+**Conséquence.** Toute chaîne de trois triangles D, T₁ – T – T₃, où T₁ et T₃ passent par deux sommets distincts de T et couvrent le
+reste, est impossible.
+
+**Exclusions par calcul exhaustif** (labo « structures », hors du régime sans solveur de cette branche). Le calcul énumère les
+systèmes locaux C0–C8 par orbite, avec le budget des doubles (42 par orbite, 16.1). Il est recoupé par un second solveur indépendant
+(0 désaccord sur 670 clés) et refait à la main pour Fano et (3⁵, 6).
+- Exclus : (3⁷), (3⁵,6), (3⁴,4,5), (3³,5,7), (3³,6,6) et (3³,4³).
+- Partiellement exclus : (3²,4,5,6) et (3²,5³).
+- **Résidu tout-tordu : 14 types.** Ce sont (4⁴,5), (4,4,6,7), (4,5,5,7), (4,5,6,6), (5³,6), (7,7,7), les types à un seul triangle et
+  (3²,4,4,7), plus une partie de (3²,4,5,6) et de (3²,5³).
+- Pour cette branche, seuls F, 26.1 et (3⁵,6) sont acquis à la main (§16, §25, 26.1). Le reste est un résultat de calcul, à
+  convertir en arguments lisibles si possible.
