@@ -34,7 +34,8 @@ Les digones de R_i sont exactement les paires D contenues dans O_i. Pour tout U 
 En holonomie signée : une arête U–W de R_i a h = s_UW C_Ui C_Wi = +1 si elle est dans m_i, −1 si elle est dans π_i.
 
 ## 2. Un invariant 7-adique nouveau (PROUVÉ)
-**Théorème A.** Pour toute srg(99,14,1,2), e′ := rank_F7(A − 3I) est pair.
+**Théorème A (CORRIGÉ le 25/09 après l'audit adverse d'Astra).** Pour toute srg(99,14,1,2), α := rank_F7((A − 3I)|_{1⊥}) est pair,
+donc e′ := rank_F7(A − 3I) = α + 1 est **impair** (la version initiale disait « e′ pair » : faux, voir la preuve ; concorde avec L2 de C1).
 **Théorème B.** Dans le cas involution, r := rank_F7(S − 3I) est pair ; de façon équivalente
 e := rank_F7((S_out − 3I)|_{C⊥}) = r − 7 est impair (1 ≤ e ≤ 15).
 
@@ -53,9 +54,12 @@ Donc (3n − σ_X)·7⁻¹ ≡ f + 6d + 4k (mod 8).
 σ_S = tr S + 2Σ_{X<Y} S_XY ≡ −7 + 2·294 ≡ 1 (mod 4). Modulo 4 : w·w ≡ 3(3·49 − 1) ≡ 2, et 22 + 6d ≡ 2 + 2d. Donc d = r est pair.
 Le bloc intérieur de S − 3I est −4I ≡ 3I (inversible mod 7), d'où r = 7 + rank(complément de Schur) ; ce complément est
 Y = S_out − 3I + 2B (mod 7), nul sur span(C), égal à S_out − 3I sur C⊥, d'où e = r − 7. ∎
-*Preuve de A.* X = A − (terme J) : on applique (i)–(iv) à K₋₄ = Z⁹⁹ ∩ E₋₄ (E₋₄ = (3I − A)/7 + J/63, 2-entière, 63E₋₄ ≡ 2(3I − A) mod 7).
+*Preuve de A.* X = A − (terme J) : on applique (i)–(iv) à K₋₄ = Z⁹⁹ ∩ E₋₄ (E₋₄ = (3I − A)/7 + J/63, 2-entière). **Erreur corrigée :**
+63E₋₄ = −9(A − 3I) + J ≡ 2(3I − A) + J (mod 7), et non 2(3I − A) (le J manquait ; sur 1 l'ancienne formule donnait 0 d'un côté,
+6·1 de l'autre). Plus proprement, 7E₋₄ ≡ (3I − A) + 4J (mod 7) : nul sur 1 (−11 + 396 = 385 ≡ 0), égal à 3I − A sur 1⊥ ; donc
+d = α, alors que (A − 3I)1 = 11·1 ≢ 0 donne e′ = α + 1.
 1 ∈ E₁₄ donc w = E₋₄(1) = 0 : K₋₄ est pair, oddity 0. La partie 3-adique est 9^{±1} (recollement avec Z·1, norme 99), 3-excess ≡ 8 ≡ 0.
-Donc 0 ≡ 44 + 6e′ + 4k (mod 8), e′ pair. ∎
+Donc 0 ≡ 44 + 6α + 4k (mod 8) : α pair, **e′ impair**. ∎
 
 *Contrôles.* m = 2 (Paley 9, p = 3, θ − τ = 3) : même argument, prédiction rank_F3(S − I) pair ; calcul à la main : rang 2. VÉRIFIÉ.
 *Cohérence (IMPASSE partielle).* Les décompositions alternatives (K_C ⊥ K₃′ ⊥ K₋₄′ dans l'espace extérieur, partie invariante Q̃,
@@ -78,8 +82,9 @@ de blocs + 42 hexagones antipodaux à une paire intérieure + 140 hexagones anti
   fixée par S_out² + S_out = 12I − B ; chaque arête apparaît 18 fois dans Σ P_UW, d'où Σ_{U<W}((G²)_UW + s_UW + B_UW)/2 ≡ 0,
   soit n₋ pair. Les réseaux ne donnent donc, au-delà de la combinatoire, que l'information 7-adique.
 - **Reformulation (Théorème B′).** N := S − 3I mod 7 est symétrique, N² = 0, rang r pair, et la forme x ↦ xᵀNx sur F₇⁴⁹/ker N est
-  *hyperbolique* (discriminant (−1)^{r/2}). Pour le graphe entier (Théorème A′) la forme induite par A − 3I mod 7 est de
-  discriminant −(−1)^{e′/2} : *non déployée*. La partie σ-invariante est donc non déployée elle aussi.
+  *hyperbolique* (discriminant (−1)^{r/2}). Pour le graphe entier (Théorème A′, CORRIGÉ) : on travaille sur W = 1⊥, en dimension α = e′ − 1
+  (l'exposant e′/2 initial n'était pas entier) ; avec α = 2m l'oddité donne m + k ≡ 1 (mod 2), et la forme induite par A − 3I sur W
+  mod 7 est *non déployée* dans les deux cas (m pair : dét non carré ; m impair : dét carré, alors que (−1)^m = −1 n'est pas un carré mod 7). La partie σ-invariante est donc non déployée elle aussi.
   Une contradiction viendrait d'un sous-espace totalement isotrope explicite trop grand, ou d'un calcul indépendant du type de Witt.
 
 ## 5. Heuristique « 7 | k » (CONJECTURÉ comme piste)
@@ -125,7 +130,7 @@ Types : sib ⟺ n_s = 2 ; « un bloc » ⟹ n_s = 0 ; « disjoint » ⟹ n_s ∈
 Compression sur les paires de blocs. Sym = vecteurs constants sur chaque paire P (21), Alt = h(P,ε) = (−1)^ε g(P) (21) ;
 Sym = span(Nb) ⊕ Sym′. T = compression de Q_out sur Sym (T_PP = n_s(P), T_PP′ = e(P,P′)/4, e = nb d'arêtes de H entre les 4+4
 étiquettes), Q_A = compression sur Alt ((Q_A)_PP = −n_s(P), (Q_A)_PP′ = (q₀₀ + q₁₁ − q₀₁ − q₁₀)/2 avec q_ab = Q_{P_a P′_b}),
-K = bloc Sym′→Alt, K_PP′ = (q_P(P′₀) − q_P(P′₁))/2, q_P(Z) = nb de voisins de z dans P. Comme Nb⊥ est Q-invariant avec Q² + Q = 12 :
+K : Alt → Sym′ (lignes indexées par Sym′, colonnes par Alt ; l'ancienne mention « Sym′→Alt » était inversée, audit d'Astra), K_PP′ = (q_P(P′₀) − q_P(P′₁))/2, q_P(Z) = nb de voisins de z dans P. Comme Nb⊥ est Q-invariant avec Q² + Q = 12 :
   T² + T + KKᵀ = (12I + 4J − Sh)|_Sym  et  Q_A² + Q_A + KᵀK = 12I   (identités exactes).
 Sommes de lignes : Σ_{P′∩P=∅} T_PP′ = 8 + n_s(P), Σ_{|P′∩P|=1} T_PP′ = 4 − 2n_s(P).
 **Lemme 8.1 (paires frères, PROUVÉ).** Si P est frère : toute étiquette disjointe de P a exactement un voisin dans P, et aucune
@@ -386,7 +391,8 @@ une étiquette de 12 (droite 123, troisième point 3).
     φ_u(47) + φ_u(56) = 6 − 2 = 4, et φ ≤ 2 (D(u) ⊂ 13 ou 23) : **φ_u(47) = φ_u(56) = 2 pour les 4 étiquettes de 12.**
 (c) Énoncé intrinsèque : les étiquettes d'une paire P de la droite ℓ ont deux voisins dans chacune des deux autres paires de la
     « triade » T_p (les trois paires opposées au point p = ℓ ∖ P sur les trois droites passant par p ; T₃ = {12, 47, 56}). Une
-    collinéation fixant 3 et envoyant 12 sur 56 préserve T₃ : les 4 étiquettes de 56 ont aussi deux voisins dans 47.
+    collinéation fixant 3 et envoyant 12 sur 56 préserve T₃ (réétiquetage des blocs dans l'argument, qui ne dépend que de la
+    configuration de Fano du graphe D ; ce n'est pas un automorphisme de Γ) : les 4 étiquettes de 56 ont aussi deux voisins dans 47.
 (d) Donc 8 étiquettes w avec φ_w(47) = 2 et D(W) ∉ 47 (partenaires D sur 123 et 356), alors que n_s(47) = 0 et le lemme 16.1 en
     autorise au plus 4. Contradiction. ∎
 *Remarque.* Seules les droites passant par 1, 2, 5 ou 6 servent (347 n'est pas utilisée). Le point clé est que chaque droite fournit
@@ -453,7 +459,7 @@ les quatre termes c_{36}, c_{37}, c_{56}, c_{57} sont nuls (types différents po
 Ouvert : configurations de même β avec grappes non maximales (à classer par les grappes, outils : 17.2, 17.3, 17.1, GT2, 12.1–12.2) ;
 configurations contenant des fourches, des chaînes tordues de longueur ≥ 4 ou des carrés disjoints (hors du cadre « même β »).
 
-## 18. Hors du cadre « même β » : identité de bloc, saturation du troisième bloc (PROUVÉ) et le cas de Paley (OUVERT)
+## 18. Hors du cadre « même β » : identité de bloc, saturation du troisième bloc (PROUVÉ) et le cas de Paley (OUVERT ici ; fermé au §19)
 Notation : pour une étiquette w de paire P_w et un bloc k ∉ P_w, D_k(w) = ensemble des **digones de R_k dont le β évite P_w**
 (carrés « un bloc » via k entre kr et ks avec r, s ∉ P_w, et paires frères kr avec r ∉ P_w) ; h_k(w) = nombre de voisins proches de w
 (ceux qui partagent un bloc avec w : m, π de ses deux éléments, ou ses frères) qui rencontrent k ; pour Q ∈ D_k(w), a_Q(w) = [w a deux
@@ -592,3 +598,13 @@ Il n'existe pas de contrôle positif en N = K₇ (BvLS n'a aucune torsion). La r
   - i_R : couples (paire d'étiquettes de R, voisin commun situé dans R).
   Contrôles : grille (4, 0, 4) → 0 ; srg(9,4,1,2) et les 55 paires de BvLS → 0 échec (« structures »). Le terme a_R n'a aucun contrôle
   positif : les deux graphes connus ont a = 0. En torsion maximale de C1 (s = a = i = 0), le total vaut 8.
+
+## Audit adverse d'Astra (autre modèle, 25/09, relayé par « structures ») — bilan
+- **Erreur réelle** : Théorème A (§2) et A′ (§4), corrigés ci-dessus (e′ impair, α = e′ − 1 pair). Le Théorème B n'est pas touché ;
+  GT, F, P, D n'utilisent pas A.
+- Notation corrigée : K : Alt → Sym′ (§8), sans changement des identités.
+- **Tient** : 12.1, 12.2 ; g(x) ≤ 14 ; 9.2(ii) ; lemme du coin ; 11.4–11.7 ; F (collinéation = réétiquetage de l'argument) ;
+  P ; D. 17.3–17.4 tiennent dans le cadre « même β » : ne pas retirer l'hypothèse sur les grappes.
+- Bibliographie : le texte de Paduchikh identifié porte sur (85,14,3,2) et ne se transpose pas ; citer Cesarz–Woldar dans sa
+  version publiée (Algebraic Combinatorics 8(2), 2025) ; ajouter Wilbrink 1984 (pas d'ordre 11) ; Thakkar–Severini (arXiv
+  2608.11211 v2) décrit encore le cas Z₇ à un point fixe comme ouvert, à tort (Behbahani–Lam).
