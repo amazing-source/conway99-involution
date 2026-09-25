@@ -157,3 +157,148 @@ F_β = les 24 étiquettes des 6 paires de {4,5,6,7}, w l'apex extérieur de l'ar
      « demi-arêtes » (autres éléments de m_b, P_b, y_d, y_d′) tombent dans les quatre blocs lointains, une chacune.
 Les 6 paires lointaines d'un carré « un bloc » forment 3 couples complémentaires : c'est la configuration exacte de l'argument
 de parité du Théorème D (P = 12, P′ = 13, R ⊂ {4,5,6,7}). Piste : un argument de parité local sur chaque carré non frère.
+
+## 10. Théorème D local (PROUVÉ) et conséquence
+Pour P frère et R disjointe : chaque orbite de R touche exactement une orbite de P, donc le bloc 2×2 est une permutation
+((Q_A)_PR = ±1, K_RP = 0) ou du type (2,0) ((Q_A)_PR = 0, K_RP = ±1) ; (2,0) exige R non frère et une étiquette de P
+μ-partenaire d'une paire partageante non adjacente de R. Si toutes les paires qui interviennent sont frères, les identités
+exactes (Q_A² + Q_A + KᵀK)_{PX} = 12δ n'ont plus de correction et l'argument du Théorème D s'applique tel quel.
+**Théorème D local.** S'il existe trois blocs t, a, b tels que ta et tb soient frères et que toutes les paires de [7]∖{t},
+sauf éventuellement ab, soient frères, alors contradiction.
+*Preuve.* P = ta, P′ = tb. Pour R ⊂ [7]∖{t,a,b} (6 paires, 3 couples complémentaires) : (Q_A²)_{PP′} = Σ_R χ_PR χ_RP′ car les
+colonnes P, P′ de K sont nulles (toutes les paires disjointes de P ou de P′ sont dans [7]∖{t}, frères sauf ab qui partage
+un bloc avec les deux) ; l'équilibre des triangles (P,Y,R̄) s'obtient comme au Théorème D par la ligne exacte de P en R̄
+(tous les Y concernés sont dans [7]∖{t}, frères). D'où 2(t₁+t₂+t₃) = 0, absurde. ∎
+**Remarque (IMPASSE partielle).** Sous l'hypothèse du Théorème D local, toute arête tc de N (c ∉ {a,b}) laisse c de degré 1
+dans N, ce que 8.5 interdit ; donc N ⊂ {ab}, puis N = ∅ par 8.5. La version locale n'exclut donc rien de plus que 8.5 + Théorème D.
+Ce que 8.5 + Théorème D excluent : N = ∅ et |N| ≤ 2 ; plus généralement tout N ayant un sommet de degré 1.
+Plus petit N non exclu : un triangle de K₇ (p. ex. {12, 13, 23}). Là, pour deux paires frères partageant un bloc, chaque couple
+complémentaire mélange frère et non frère : il faut comprendre l'interaction frère / non frère (motifs (2,0)).
+
+## 11. Le graphe N des paires non frères (PROUVÉ)
+Notations : N ⊂ E(K₇) (paires non frères, vues comme arêtes sur les 7 blocs), d_i = degré du bloc i dans N,
+n_far(P) = nombre d'arêtes de N disjointes de P, φ_u(R) = nombre de voisins de u dans la paire R.
+**Lemme 11.1 (comptage lointain).** Pour P ∈ N et u ∈ P : u a exactement un voisin dans chaque paire frère disjointe de P
+(perfection de la grille, 9.1 : son seul voisin dans G_S est une étiquette de S), et 8 + n_s(P) voisins lointains en tout. Donc
+  Σ_{R ∈ N, R∩P=∅} φ_u(R) = n_far(P) − 2 + n_s(P),   en particulier n_far(P) ≥ 2 − n_s(P) ≥ 1.
+**Lemme 11.2.** Si D(U) est de type disjoint (dans R), φ_u(R) = 2, donc n_far(P) ≥ 4 − n_s(P) ≥ 3.
+Les partenaires D des orbites non frères sont non frères : type « un bloc » ⟺ arêtes de N adjacentes, type « disjoint » ⟺ arêtes
+de N disjointes.
+**Lemme 11.3 (liaison).** Si d_i = 2 (arêtes ij, ik de N), la partie non frère de R_i vit sur les 4 orbites de ij ∪ ik ; si une
+orbite de ij est D-appariée à ik à travers i, l'orbite sœur l'est aussi (R_i 2-régulier, digones saturés). De plus, sans digone
+en i ni arête sœur, les 4 orbites forment un 4-cycle de R_i.
+Rappel : une arête sœur simple U–U′ (n_s = 1) appartient à R_i ET à R_j (m dans l'un, π dans l'autre).
+**Conséquences.**
+- (C1) aucun bloc de degré 1 dans N (8.5) ; (C2) toute arête de N a au moins 2 arêtes de N disjointes, 3 si elle porte une orbite
+  de type disjoint ; (C3) n_s = 1 ⟹ type disjoint.
+- |N| ≤ 4 impossible : 3 arêtes ⟹ couplage (degrés 1) ; 4 arêtes à degrés ≥ 2 ⟹ C₄, où 12 n'a qu'une arête disjointe.
+- **N = C₅ impossible.** Chaque arête n'a que 2 arêtes disjointes, donc pas de type disjoint, donc tout est « un bloc » ; tous
+  les degrés valent 2, donc (11.3) D induit un couplage parfait des 5 arêtes du cycle en arêtes adjacentes : impossible, 5 est impair.
+- Triangle composante {ij, ik, jk} de N (d_i = d_j = d_k = 2) : un appariement « un bloc » dans le triangle force la troisième
+  arête à être de type disjoint avec n_s = 0 (R_j et R_k saturés), donc n_far ≥ 4.
+- Deux triangles disjoints {12,13,23} ∪ {45,46,56} : n_far = 3 partout, donc (point précédent) aucun « un bloc », tout est
+  « disjoint » avec n_s = 1 sur les 6 paires, et chaque étiquette n'a comme voisins dans l'autre triangle que sa paire D.
+  Survit aux comptages actuels : À TRAITER.
+**Lemme 11.4 (parité d'orientation, PROUVÉ).** Une arête sœur simple de P = ij (n_s = 1) est de type m en un bout et π en
+l'autre (u = {a,b} ~ {a,b′} : m pour M_a au bloc i, π au bloc j). Si le bloc i est de degré 2 dans N avec deux arêtes ij, ik
+de n_s = 1, R_i est le 4-cycle formé des deux arêtes sœurs (opposées) et de deux arêtes croisées ; R_i alternant m/π, les deux
+arêtes sœurs ont le même type en i. Donc le long d'un cycle de N dont tous les blocs sont de degré 2 et toutes les arêtes de
+n_s = 1, le type s'inverse sur chaque arête et se conserve à chaque bloc : **un tel cycle est de longueur paire**.
+**Deux triangles disjoints : impossible.** D'après §11, tout y est de type disjoint avec n_s = 1 ; chaque triangle est un cycle
+impair de blocs de degré 2 : contradiction avec 11.4.
+**Liste à 6 arêtes.** Les graphes à 6 arêtes, de degré minimal 2, dont chaque arête a au moins 2 arêtes disjointes sont C₆, 2C₃ et
+K₂,₃ (K₄, papillon, C₅ + corde échouent au critère des arêtes disjointes). 2C₃ est exclu ; restent C₆ et K₂,₃.
+**Lemme 11.5 (règle des 2-chemins entre sœurs, PROUVÉ).** Soit P = ij avec n_s(P) = 0, orbites sœurs U, U′. L'entrée (U,U′) de
+S_out² + S_out = 12I − B donne Σ_Z s_UZ s_ZU′ = 0 (B_UU′ = 0 pour des sœurs), et côté Q, (G²)_UU′ = 2 − 2(G_{U,D(U′)} + G_{D(U),U′})
+∈ {0, 2}. Si W est voisin commun de U et U′ par R_i (chemin U–W–U′ dans R_i : une arête m, une π, car R_i alterne), son 2-chemin
+a le signe h₁h₂ C_Ui C_U′i = −C_Ui C_U′i ; par R_j c'est −C_Uj C_U′j = +C_Ui C_U′i (car C_Ui C_U′i C_Uj C_U′j = −1 pour des sœurs).
+Donc : **U, U′ ont au plus un voisin commun par R_i et au plus un par R_j** ; deux voisins communs par le même R_i sont impossibles.
+**Corollaire 11.6 (blocs de degré 2).** Si d_i = 2 (arêtes e, e′), alors n_s(e) = n_s(e′) (une arête sœur de e est dans R_i et
+sature le côté e), et R_i est soit deux digones (paire liée « un bloc » à travers i, n_s = 0), soit le cas S (deux arêtes sœurs,
+n_s = 1). Le 4-cycle sans arête sœur mettrait U, U′ à distance 2 deux fois dans R_i : exclu par 11.5.
+**Corollaire 11.7 (composantes cycles).** Si une composante de N est un cycle (tous ses blocs de degré 2), n_s est constant sur
+elle ; « tout lié » est impossible (une arête serait liée à ses deux voisines, or D(U) est unique), donc n_s = 1, cas S partout,
+tout de type disjoint (n_far ≥ 3), et longueur paire (11.4). D'où à nouveau C₅ exclu, et **C₆ ⟹ n_s = 1, cas S partout, tout disjoint**.
+**K₂,₃** (N = {13,14,15,23,24,25}) : n_far = 2 ⟹ pas de disjoint ⟹ n_s = 0 ; les blocs 3, 4, 5 sont de degré 2 ⟹ paires liées
+13–23, 14–24, 15–25 ; R₁ (et R₂) est un 6-cycle sans digone sur les orbites de 13, 14, 15, où deux sœurs ne peuvent être à distance 2
+qu'une fois (11.5). À TRAITER.
+**Forme élémentaire de 11.5 (μ-partenaires).** Pour P = ij, les 4 paires « partageantes » ({a,b},{a,b′}), ({a′,b′},{a′,b}) (partage
+d'un élément du bloc i) et ({a,b},{a′,b}), ({a,b′},{a′,b′}) (bloc j) forment deux σ-classes. Une paire partageante non adjacente a
+exactement un voisin commun extérieur (μ = 2, l'élément partagé étant l'autre) ; une σ-classe a donc une unique orbite
+μ-partenaire, notée Z_i(P) et Z_j(P). Un sommet adjacent à deux étiquettes d'orbites différentes de P est μ-partenaire de leur paire.
+Une orbite voisine de U et de U′ par le bloc i (elle contient a ou a′) touche deux étiquettes partageant leur élément du bloc j :
+c'est Z_j(P). D'où « au plus un voisin commun par R_i » ; le signe du Lemme 11.5 en découle (et la compensation des signes est
+alors automatique). Si n_s(P) = 1, une classe est adjacente (arête sœur) et l'autre a un unique μ-partenaire.
+**Répartition des μ-partenaires.** Pour R ∈ N, chaque classe non adjacente de R a son μ-partenaire soit proche (rencontre un bloc
+de R), soit lointain dans une paire frère (motif (2,0) pour cette paire frère), soit lointain dans une paire de N. Avec 11.1 :
+N₂^frère(R) = N₀^frère(R) et N₀^N(R) − N₂^N(R) = 8 − 4n_s(R), où N₂^N compte les μ-partenaires lointains dans N et les paires D de type
+disjoint (2 étiquettes chacun).
+
+## 12. Théorème GT : paire frère propre (PROUVÉ)
+Vecteurs ε̂_P = (e_{P₀} − e_{P₁})/√2 ∈ Alt ⊂ Nb⊥, 1̂_P = (e_{P₀} + e_{P₁})/√2. Pour P frère, par 8.1 chaque orbite disjointe de P touche
+exactement une orbite de P, donc exactement :
+  Qε̂_P = −2ε̂_P + Σ_{R∩P=∅} τ_PR ζ_PR,  ζ_PR = ε̂_R (bijection, τ = χ_PR) ou 1̂_R (motif (2,0), R ∈ N),   Q1̂_P = 2·1̂_P + Σ_{R∩P=∅} 1̂_R.
+Dire que P est **propre** : toute paire disjointe de P est frère (⟺ toute arête de N rencontre un bloc de P) ; alors tous les ζ_PR
+sont des ε̂_R.
+**Théorème GT.** S'il existe trois blocs t, a, b tels que ta, tb, ab soient frères et que ta soit propre, contradiction.
+*Preuve.* P = ta, P′ = tb, C = les 4 autres blocs. (i) Q² = 12 − Q sur Nb⊥ appliqué à ε̂_P et développé avec la formule exacte donne
+Σ_{R∩P=∅} χ_PR Qε̂_R = 10ε̂_P + Σ_R χ_PR ε̂_R ; la composante sur ε̂_P′ (P′ partage t avec P) donne Σ_{R⊂C} χ_PR χ_RP′ = 0
+(les R ⊂ C sont frères, donc en bijection avec P et P′). (ii) Pour R ⊂ C, la composante sur ε̂_R̄ (R̄ = C∖R) donne l'équilibre des
+triangles (P, R, R̄). (iii) Pour le couple (R, R̄), l'identité exacte (Q_A² + Q_A + KᵀK)_{RR̄} = 0 ne fait intervenir que les Y disjoints de
+R ∪ R̄, i.e. les trois paires de {t,a,b}, toutes frères, et aucun terme K (aucune arête de N dans {t,a,b}) : les triangles (R, Y, R̄)
+sont équilibrés, en particulier (P′, R, R̄). (iv) Donc χ_PR χ_RP′ = χ_PR̄ χ_R̄P′ et la somme (i) vaut 2(t₁+t₂+t₃) ≠ 0. ∎
+**K₂,₃ exclu** (t = 1, a = 2, b = 6 : 12, 16, 26 frères, et toute arête de N rencontre {1,2}).
+**Portée.** Si N ⊂ étoile(t) ∪ étoile(a) avec ta ∉ N : soit un bloc b a tb, ab ∉ N (GT s'applique), soit (degré minimal 2)
+N = K₂,₅ entre {t,a} et les 5 autres blocs. Restent donc, parmi les N de couverture par sommets ≤ 2 : K₂,₅, et les cas ta ∈ N.
+Bilan provisoire des N exclus : ∅, |N| ≤ 5, 2C₃, K₂,₃ ; à 6 arêtes reste C₆.
+
+## 13. Équilibre généralisé et exclusion de C₆ (PROUVÉ)
+**Lemme 12.1 (équilibre généralisé).** Soient S, S′ frères disjointes et Y une des trois paires des trois blocs restants (Y de type
+quelconque). La composante sur ε̂_S′ du développement exact de Q²ε̂_S = 12ε̂_S − Qε̂_S donne Σ_{Y} d_Y = 3χ_{SS′}, où d_Y = χ_SY χ_YS′ si
+(S,Y) et (S′,Y) sont des bijections, d_Y = κ_SY K_YS′ = ±1 si ce sont deux motifs (2,0), et d_Y = 0 si les types diffèrent. Donc
+les trois d_Y valent χ_SS′ : **(S,Y) et (S′,Y) ont le même type** (bijection ou (2,0)), et les triangles sont équilibrés.
+**Lemme 12.2.** Pour Y ∈ N, soit Π_Y le graphe de Petersen (disjonction) sur les 10 paires des 5 blocs hors de Y, restreint aux
+paires frères. Le type (bijection / (2,0)) par rapport à Y est constant sur chaque composante connexe. Or le nombre de paires
+frères de type (2,0) pour Y est au plus le nombre de classes non adjacentes de Y (2 − n_s(Y)) : une composante d'au moins 3 paires
+frères est entièrement de type bijection.
+**C₆ exclu.** N = cycle 1-2-3-4-5-6, bloc 7 isolé ; par 11.7 : n_s = 1 partout, cas S partout, tout de type disjoint. Pour Y = 12,
+disons l'arête sœur partageant l'élément du bloc 1 ; la classe du bloc 2 a un μ-partenaire Z qui évite le bloc 2 et ne peut pas
+rencontrer le bloc 1 (dans R₁, 4-cycle du cas S, les deux orbites de 12 sont adjacentes, donc sans voisin commun). Z est donc dans une
+paire de {3,…,7} : pas une paire frère (Π_12 restreint aux 7 paires frères est connexe, donc tout bijection par 12.2), donc Z ∈ {34, 45, 56}.
+Mais pour u ∈ 12, Σ_{R∈N, R∩12=∅} φ_u(R) = n_far − 2 + n_s = 2 est entièrement pris par la paire D(u) ; le représentant de Z, voisin de deux
+étiquettes de 12 d'orbites différentes, serait dans D de ces deux orbites : D(U) = D(U″) = Z, contradiction (D est un couplage). ∎
+**Bilan : tout N à au plus 6 arêtes est exclu** (∅, 1 à 5 arêtes, 2C₃, K₂,₃, C₆).
+**Théorème GT2 (rétablit l'ancien 8.3, PROUVÉ).** Soient ta, tb frères et C = [7]∖{t,a,b}. La composante sur ε̂_tb du développement
+exact de Q²ε̂_ta = 12ε̂_ta − Qε̂_ta donne Σ_{R⊂C} c_R = 0, avec c_R = χ_{ta,R}(Q_A)_{R,tb} si (ta,R) est une bijection,
+κ_{ta,R}K_{R,tb} si c'est un motif (2,0). Pour un couple complémentaire {R, R̄} de C :
+- R, R̄ frères : les triangles (ta,R,R̄) et (tb,R,R̄) sont équilibrés (12.1 avec S = R, S′ = R̄, Y = ta ou tb), donc c_R = c_R̄ = ±1 ;
+- R frère, R̄ ∈ N : 12.1 pour (ta,R) et (tb,R) donne type(ta,R̄) = type(tb,R̄) = type(R,R̄) et, dans les deux cas (bijection ou
+  (2,0) : κ_{ta,R̄}K_{R̄R} = χ_{ta,R}, κ_{tb,R̄}K_{R̄R} = χ_{tb,R}), c_R̄ = c_R = ±1.
+Donc si chaque couple contient une paire frère, la somme vaut 2(t₁+t₂+t₃) ≠ 0 : contradiction. Autrement dit :
+**pour tous t, a, b avec ta et tb frères, un des trois couplages parfaits du K₄ sur C est entièrement dans N.** (Ni propreté ni
+hypothèse sur ab ne sont nécessaires ; GT en est un cas particulier.)
+
+## 14. Le côté dense : structure des appariements D (PROUVÉ sauf mention) et cœur du problème
+**Graphe D sur les paires.** Chaque paire a 2 orbites, chacune appariée par D : le graphe « P ~ P′ si une orbite de P est
+appariée à une orbite de P′ » est 2-régulier sur les 21 paires : boucles (paires frères), 2-cycles « liés » (les deux orbites de
+P appariées aux deux de P′ par le même bloc), et cycles de longueur ≥ 3. Une paire ij est **tordue** si ses orbites sont
+appariées l'une par i, l'autre par j. Une chaîne de paires tordues P_m = t_{m−1}t_m est exactement un cycle t₀t₁…t_{k−1} de K₇.
+Si toutes les paires sont non frères et tordues, D induit une décomposition de K₇ en cycles ; l'exemple extrême est
+**le plan de Fano** (7 triangles-droites, 3 carrés par droite, β(carré) = la droite). 21 est impair : sans paire frère il existe
+un cycle D impair.
+**Parité par bloc (PROUVÉ).** En chaque bloc t, le nombre de paires non frères ayant une orbite appariée « un bloc » par t (tordues
+ou mixtes « un bloc + disjoint ») est pair ; c'est une condition de T-joint, compatible avec les cycles de K₇ : pas d'obstruction.
+**Parité φ (PROUVÉ, sans contenu).** Un carré « un bloc » par t entre tj et tk définit une bijection φ : bloc j → bloc k
+(u = {e,β} ~ v = {e,γ} ⟹ φ(β) = γ) ; le long d'une chaîne tordue de longueur k, le produit des signes s(β)s(γ) vaut (−1)^k
+automatiquement (les orbites sœurs ont des parités opposées). Pour exclure les chaînes impaires il faudrait une raison
+structurelle forçant ce produit à +1 : NON TROUVÉE. Vérifié à la main que le triangle tordu {12,13,23} est localement cohérent
+(λ, μ, (I) sur les 19 sommets concernés), et que les identités Q², S², traces (Γ₁ : 70 − x_one − 2x_dis triangles équilibrés),
+comptages de μ-partenaires et de budgets restent automatiquement cohérents dans le modèle de Fano.
+**Sondes du côté dense (PROUVÉ).** Un carré « un bloc » est presque parfait envers les 6 paires de β^c (Lemme 9.2) : c'est l'analogue
+d'une grille. Deux carrés de même β (paire liée, ou deux carrés d'une même droite de Fano) ont les mêmes 6 paires lointaines,
+groupées en 3 couples complémentaires — et dans Fano les deux paires d'un couple sont sur deux droites passant par le même point de β.
+Identité exacte disponible : ⟨Gf̂₁, Gf̂₂⟩ = 3(G_D)₁₂ − η₁₂ (f̂ = vecteur D-alterné du carré, η = Gram des vecteurs de différence de
+blocs), dont la partie lointaine est Σ_{R⊂β^c} χ₁R χ₂R. **Piste principale (NON ABOUTIE)** : établir l'équilibre des couples et
+contrôler la partie proche pour obtenir 2(t₁+t₂+t₃) ≠ valeur imposée, comme au Théorème D.
+**État honnête.** Exclu : tout N à ≤ 6 arêtes, et tout N contenant une configuration de GT/GT2. Ouvert : N dense (en particulier
+N = K₇ sans paire frère, dont le modèle de Fano).
