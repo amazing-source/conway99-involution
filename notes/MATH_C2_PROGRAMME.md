@@ -567,3 +567,13 @@ Reformulation qui pourrait servir d'idée neuve (non exploitée) : à k = 28, ke
 2 dimensions** en chaque sommet (« accidents 7-adiques »), et ces accidents portent la partie U de Λ₋₄, **anisotrope** (L22 : U non
 hyperbolique ; en dimension 2, anisotrope). Montrer qu'un accident est toujours isotrope (z·z ≡ 0) exclurait k = 28 ; montrer qu'ils
 contiennent un sous-espace totalement isotrope de dimension (30 − k)/2 exclurait tout k. Aucun argument en ce sens pour l'instant.
+
+## Statut de relecture externe (mis à jour le 2026-09-25)
+Il n'existe pas de contrôle positif en N = K₇ (BvLS n'a aucune torsion). La relecture indépendante est donc le seul garde-fou.
+- **Théorème P (§18–19) : VÉRIFIÉ EN ENTIER**, maillon par maillon, par la session « structures » (sur b56e836). Maillons
+  relus : 9.2(ii), 18.1, 18.2 (h_k = 2 + ω), |D_k| = d_k − 2[j → k], la saturation (i), les cibles interdites (ii), f ≤ 1 (iii),
+  et f ≡ 1 impossible (iv).
+- **Théorème F (§15–16) : vérifié SOUS HYPOTHÈSE.** Relus : 16.1 et les étapes (a)–(d). Restent en cours de relecture : le lemme
+  du coin, le triangle complet (3-cycle apex → zéro, far(A₂,B₂) = 3), le lemme de partition et la ligne « droite » de la partition.
+- Borne g(x) ≤ 14 au point fixe (§11–13) : conclusion vérifiée ; deux trous de rédaction corrigés (b56e836). Preuves internes de
+  GT, 11.4–11.7, 12.1–12.2 et du Théorème D : logique suivie par la relecture, sans re-dérivation.
