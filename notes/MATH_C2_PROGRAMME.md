@@ -323,3 +323,22 @@ far(A₁,B₂) = far(B₁,A₂) = 3. (En particulier les carrés d'un coin ne so
 apex → orbite zéro : (W_i = Z₀(Q_j), W_j = Z₀(Q_k), W_k = Z₀(Q_i)) ou le cycle inverse ; chaque apex touche exactement une orbite de
 chaque paire de β (p. ex. W_i ~ A₁, A₂, C₂). Le tableau des 9 orbites génériques de F_β est alors déterminé à un paramètre p ∈ {0,1,2}
 près ; tous les comptages sont cohérents. Il reste à exclure cette structure (pas encore fait).
+**Lemme de partition (PROUVÉ, triangle D extrême).** Au troisième bloc k, les 8 orbites des paires kr (r ∈ β^c) sont partagées
+exactement en Y_{A₁}, R_{A₂}, Y_{B₁}, R_{B₂} (2 orbites chacun) : les intersections sont vides par le lemme du coin (μ-partenaires de ij
+hors des paires k, Y_A ∩ R_B = R_A ∩ Y_B = ∅, |R_A ∩ R_B| = 3 − far(A₂,B₂) = 0, apex lointains). Idem aux blocs i et j. Donc chaque
+orbite « à un bloc » (paires t r, t ∈ β, r ∈ β^c) a exactement un voisin parmi les 6 orbites de la droite, chaque orbite lointaine en a
+exactement 3, chaque orbite de la droite en a 4 à un bloc et 6 lointaines. Par couverture des éléments : une étiquette à un bloc a
+8 voisins à un bloc et 3 lointains ; une étiquette lointaine a 6 voisins à un bloc et 3 lointains.
+**Partition équitable (PROUVÉ) — mais cohérente (IMPASSE).** {x}, intérieurs de β (6), intérieurs de β^c (8), étiquettes de la droite (12),
+à un bloc (48), lointaines (24) : partition équitable de quotient
+  x : (0,6,8,0,0,0) ; Iβ : (1,1,0,4,8,0) ; Iβc : (1,0,1,0,6,6) ; L : (0,2,0,2,4,6) ; O : (0,1,1,1,8,3) ; F : (0,0,2,3,6,3).
+Vérifié à la main : B² + B − 12I = 2·(tailles des classes) ligne par ligne, spectre {14, 3³, (−4)²} : aucune contradiction spectrale.
+Dans le modèle de Fano, les 7 partitions (une par droite) sont compatibles entre elles (chaque étiquette est « de la droite » pour
+1 droite, « lointaine » pour 2, « à un bloc » pour 4 ; les sommes de voisins concordent). Le triangle extrême résiste donc à toutes les
+contraintes invariantes par σ ; il faut une information anti-invariante (côté S) ou plus fine que la partition.
+**Cycles D impairs de longueur ≥ 5 (IMPASSE provisoire).** Pour une chaîne tordue t₀…t_{n−1} avec n ≥ 4, les deux carrés d'une paire P_m
+ont β_{m−1} = {t_{m−2},t_{m−1},t_m} et β_m = {t_{m−1},t_m,t_{m+1}} : 3 paires lointaines communes seulement. La majoration
+(G²)_{A₁B₂} = 3 − 2G_{A₂B₂} tient toujours, mais la minoration ne porte que sur la part a + b des voisins lointains de A₁ tombant dans
+F_{β_m} (a = voisins β_{m−1}-lointains dans les paires de T_m, b = y-doubles dans les paires t_{m−2}x), inconnue : pas de contradiction.
+**Interaction entre droites (Fano, PROUVÉ, cohérent).** Pour deux droites L, L′ se coupant en t, avec F_L = L∖{t}, F_{L′} = L′∖{t} :
+e(F_L,F_{L′}) ≥ 2, e(F_L, paires t de L′) = 6 − e_FF, e(paires t, paires t) = e_FF − 2 (comptage d'arêtes d'orbites) — cohérent.
