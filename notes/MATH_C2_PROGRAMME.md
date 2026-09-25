@@ -667,3 +667,27 @@ mais elle reste dans le cadre C2 des configurations.
 **Bilan de la piste 4 (IMPASSE).** Aucun des deux cas ancrés restants ne se ferme avec les ingrédients actuels : il reste du jeu
 (9 demandes pour 15 carrés, et au plus 7 pour 9), et aucun blocage n'est forcé. Pour que Hall morde, il faudrait forcer des blocages
 (ω = 1, ou un apex hors de F_β), c'est-à-dire encore forcer une structure : c'est le même verrou sous une autre forme.
+
+## 23. La démarche de C3 transposée à C2 (consigne relayée par C1, 25/09) : cohérente, sans contradiction
+Démarche (d'après la description relayée par C1 ; le dépôt C3 n'a pas été ouvert, faute d'accord direct de l'utilisateur) : on
+compare deux spécialisations d'un même module hermitien libre sur l'anneau local Z_p[G], dont les discriminants sont congrus, puis on
+exploite l'asymétrie globale (seul le caractère trivial voit j = 1, de norme 99 = 9·11).
+[RÉSULTAT]
+1. **Seul p = 2 compte.** Pour p impair, Z_p[C₂] ≅ Z_p × Z_p, les deux spécialisations sont indépendantes, et il n'y a aucune congruence.
+2. **Invariant local à p = 2.** Pour θ ∈ {3, −4}, F = E_θZ₂⁹⁹ est libre sur Z₂[C₂] (quotient de Brauer nul : le numérateur de
+   (E_θ)_xx est pair) et pair (car ⊥ 1). Posons R = det(Λ_θ^+)/det(Λ_θ^−) (parties unités 2-adiques). Alors
+   **R ≡ 1 + 2t (mod 4)**, avec t = (E_θ)_xx/2 (mod 2).
+   *Preuve.*
+   - det(H₋ + 2S′) ≡ det H₋·(1 + 2 tr(H₋⁻¹S′)) (mod 4).
+   - tr(H₋⁻¹S′) ≡ h̄(u, w̄) = h̄(w̄, w̄), où u est le vecteur de Wu de h̄ et w̄ représente q(x) = b(x, σx) (mod 2), qui est linéaire.
+   - Sur Z⁹⁹, q(x) ≡ x_x, d'où (1 + σ)w̃ = E_θe_x et h̄(w̄, w̄) = (E_θ)_xx/2.
+   *Tests* (code/z2/c3_transpose_test.py), 4 sur 4 conformes : Paley 9 (θ = 1 et −2 : t = 0, R = 1) ; BvLS (θ = 4 : t = 0, R = 1 ;
+   θ = −5 : t = 1, R ≡ 3 mod 8).
+3. **Global pour 99.**
+   - det Λ₃^− = 2²⁷·7^r (réseau de S sur Z⁴⁹, r pair par le Théorème B).
+   - det Λ₃ = 7^α·11 (recollement d'indice 9 avec Z1, α pair par le Théorème A corrigé), et [Λ : Λ⁺ ⊕ Λ⁻] = 2²⁷.
+   - D'où R₃ = 7^{α−2r}·11 ≡ 3 (mod 8), alors que le local donne t = 3/11, impair, donc R ≡ 3 (mod 4) : **cohérent**.
+   - Pour θ = −4, R = 9·7^{α−2r} ≡ 1, et t = 2/9 : **cohérent**.
+   - Mod 8, le local ne tranche pas entre 3 et 7 pour t = 1 (blocs de rang 1 ; BvLS réalise 3). Les invariants plus fins sont ceux du
+     genre 2-adique, déjà épuisés au §4.
+**Verdict (IMPASSE).** L'asymétrie « j voit 11 » existe à p = 2, mais elle tombe exactement sur la valeur locale forcée.
