@@ -706,3 +706,15 @@ l'utilisateur).**
   démarche C3 transposée redonne une parité déjà connue, sans contradiction.
 - [RÉSULTAT] Au passage, l'analogue du « point 1 » de C3 (§4) : les vecteurs invariants de Λ₃ ont une coordonnée paire au point fixe,
   par la ligne x de N = 11(A + 4I) − 2J, qui donne v_x ≡ Σ_{y∼x} v_y = 2Σ_blocs ≡ 0 (mod 2).
+
+**No-go de « structures » (reçu le 25/09, qui explique pourquoi la transposition de C3 ne mord pas).**
+- La démarche C3 demande un opérateur entier M ≡ Q (mod 𝔭) vérifiant (M + 4)(M − 3) = 0, sans terme en J.
+- Or (A + 4I)(A − 3I) = A² + A − 12I = 2J (vérifié : A² = 12I − A + 2J pour (14, 1, 2)). Sur les orbites de σ, c = 4. Réduire
+  mod 𝔭 force donc 𝔭 | 2 : seul p = 2 est possible.
+- En 2, on ne voit que la forme bilinéaire, donc au plus la parité, c'est-à-dire le Théorème A. L'invariant d'Arf demanderait une
+  congruence mod 4, qui échoue car 2J ≢ 0 (mod 4).
+- Il faudrait une symétrie d'ordre impair pour que le symbole de Legendre morde : c'est le cas C3.
+- « structures » a aussi exclu le candidat sans symétrie H = (−A + i√3·T)/2, où T oriente les 33 droites. On a H ≡ A (mod π) et
+  H1 = −7·1, puisque T1 = 0. Aucun spectre entier à au plus 3 valeurs propres n'est compatible avec
+  χ ≡ x⁵⁴(x+1)⁴⁵ (mod 3) et les traces (affirmation de « structures », non revérifiée ici).
+- **Conclusion commune :** la famille genre/réseaux est épuisée pour C2 ; le verrou reste combinatoire.
