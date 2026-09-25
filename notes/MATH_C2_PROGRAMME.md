@@ -910,3 +910,14 @@ systèmes locaux C0–C8 par orbite, avec le budget des doubles (42 par orbite, 
   - Les trois cas de voisins de 0 se ferment en contradiction.
 - **État du tout-tordu à ≥ 3 triangles.** Il ne reste que les deux classes « à budget » : l'étoile A (trois équateurs) et le triangle
   de triangles. « structures » les rédige orbite par orbite.
+- **Famille 2c : étoile (4,4,4), classe A (trois équateurs), à la main, par le budget** (« structures », relue ici).
+  - **Lemme D.** C8 sommé sur R_x, avec C6, donne Σ_{P⊂R_x} φ(P) = 6 + n_k. Donc #doubles − #zéros = n_k parmi les 6 paires de R_x.
+  - **Centre.** Pour chacune des 6 orbites libres en 2, C0 et C2 donnent φ = 0 sur les deux axes, donc au moins 2 doubles : 12 en
+    tout.
+  - **Bloc non central** (6, par exemple ; la symétrie (Z₂)³ ⋊ S₃ est transitive sur ces blocs).
+    - L'orbite 5 (antipode) a 2 doubles par ML1.
+    - Ses deux voisins a et b sur le 6-cycle ont n_k = 1. Par C3, C5 et C8, chacun a 2 doubles.
+    - Soit 6 par bloc, et 36 pour les six blocs non centraux.
+  - **Total ≥ 48 > 42**, le budget des orbites (16.1, n_s = 0). Contradiction.
+- **Reste à ≥ 3 triangles : le triangle de triangles (famille 4).** La borne calculée vaut 51 : blocs d'intersection 8, blocs privés
+  7, bloc extérieur 6. La rédaction à la main est en cours.
