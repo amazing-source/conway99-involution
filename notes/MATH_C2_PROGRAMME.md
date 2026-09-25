@@ -191,7 +191,11 @@ Rappel : une arête sœur simple U–U′ (n_s = 1) appartient à R_i ET à R_j 
 **Conséquences.**
 - (C1) aucun bloc de degré 1 dans N (8.5) ; (C2) toute arête de N a au moins 2 arêtes de N disjointes, 3 si elle porte une orbite
   de type disjoint ; (C3) n_s = 1 ⟹ type disjoint.
-- |N| ≤ 4 impossible : 3 arêtes ⟹ couplage (degrés 1) ; 4 arêtes à degrés ≥ 2 ⟹ C₄, où 12 n'a qu'une arête disjointe.
+- |N| ≤ 4 impossible. Avec au plus 3 arêtes et degré minimal ≥ 2 (C1), le seul graphe possible est le triangle, où aucune arête n'a
+  d'arête disjointe (contre C2). Avec 4 arêtes et degré minimal ≥ 2, c'est C₄, où 12 n'a qu'une arête disjointe (contre C2).
+  *(Corrigé le 25/09 après relecture de la session « structures » : l'ancienne rédaction « 3 arêtes ⟹ couplage » oubliait le triangle.)*
+- 5 arêtes, degré minimal ≥ 2 : C₅ ou le losange K₄ − e. Le losange est exclu par (C2) : l'arête joignant ses deux sommets de degré 3
+  n'a aucune arête disjointe. *(Cas ajouté le 25/09, même relecture.)*
 - **N = C₅ impossible.** Chaque arête n'a que 2 arêtes disjointes, donc pas de type disjoint, donc tout est « un bloc » ; tous
   les degrés valent 2, donc (11.3) D induit un couplage parfait des 5 arêtes du cycle en arêtes adjacentes : impossible, 5 est impair.
 - Triangle composante {ij, ik, jk} de N (d_i = d_j = d_k = 2) : un appariement « un bloc » dans le triangle force la troisième
