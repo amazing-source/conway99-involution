@@ -861,3 +861,14 @@ systèmes locaux C0–C8 par orbite, avec le budget des doubles (42 par orbite, 
   (3²,4,4,7), plus une partie de (3²,4,5,6) et de (3²,5³).
 - Pour cette branche, seuls F, 26.1 et (3⁵,6) sont acquis à la main (§16, §25, 26.1). Le reste est un résultat de calcul, à
   convertir en arguments lisibles si possible.
+**Précisions de « structures » (25/09).**
+- En tout-tordu pur, n_r ≤ 1 automatiquement. Chaque paire jr n'a qu'une orbite libre en j, et les deux voisins de x sur le 6-cycle
+  libre sont deux orbites distinctes. Le cas n_r = 2 ne concerne que les mélanges.
+- **Répartition entre main et calcul.**
+  - L'orbite morte (26.1) tue à la main toute décomposition contenant une chaîne T₁ – T – T₃ : (3⁵,6) 420/420 ; (3³,5,7) 2520/2520 ;
+    (3⁴,4,5) 2520/5040 ; (3³,4³) 3150/5565 ; (3³,6,6) 1260/1890.
+  - Fait élémentaire : deux triangles disjoints plus un troisième forment toujours une chaîne. Le troisième triangle passe par le
+    7ᵉ point et par un sommet de chacun des deux autres.
+  - Sans chaîne, les triangles se coupent donc deux à deux. Il reste quatre familles : l'étoile, le quadrilatère, le triangle de
+    triangles, et Fano (Théorème F).
+  - Pour ces quatre familles, l'exclusion est encore **calculée**. « structures » en rédige une version à la main.
