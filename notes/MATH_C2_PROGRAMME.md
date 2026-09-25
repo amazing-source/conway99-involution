@@ -801,3 +801,33 @@ Les fourches (§16) sont ancrées, donc fermées.
 
 24.1 s'y applique tel quel. Mais les composantes de G_k y sont plus grandes : les orbites libres forment des cycles de R_k (19.1),
 et σ recolle les paires mixtes. Il faut donc contrôler G_k.
+
+## 25. Les comptages exacts d'un triangle D complet valent toujours : preuve en trois lignes par positivité (25/09)
+Question de « structures » : les comptages |N(w) ∩ Lab(β)| ∈ {2, 1, 3} (§15–§16), utilisés dans le Théorème F, valent-ils pour tout
+triangle D complet, ou seulement dans le cadre du lemme de partition ? **Ils valent pour tout triangle D complet**, et sans le lemme du
+coin. C'est le même principe que 9.1 (grilles).
+
+**Lemme 25.1.** Soit β = {i, j, k} portant un triangle D complet, c'est-à-dire trois carrés « un bloc » formés par les 6 orbites des
+paires de β. On pose Lab = les 12 étiquettes de ces paires, Iβ = les 6 intérieurs de β, et f = 3e_x + 2·1_{Iβ} + 1_{Lab}.
+- On a ‖f‖² = 45 et 1ᵀf = 27.
+- On a fᵀAf = 2(36 + 12 + 48 + E_L), où E_L est le nombre d'arêtes entre étiquettes de Lab. Les termes sont : x–Iβ, les droites de
+  Iβ, et Iβ–Lab (chaque étiquette a ses deux intérieurs dans Iβ).
+- Avec E₋₄ = (3I − A)/7 + J/63, on obtient **‖E₋₄f‖² = (24 − 2E_L)/7**.
+- Les trois carrés fournissent 12 arêtes distinctes, donc E_L ≥ 12. La positivité impose E_L ≤ 12. Donc **E_L = 12** et E₋₄f = 0,
+  c'est-à-dire Af = 3f + 3·1.
+- Lu sommet par sommet, cela donne les comptages exacts :
+  - une étiquette d'une paire de β a 2 voisins dans Lab (ses voisins de carré, sans aucune autre arête dans Lab) ;
+  - une étiquette « à un bloc » en a 1 ;
+  - une étiquette disjointe de β en a 3. ∎
+
+**Même principe pour une paire liée** (16.2) : Λ = (ij, ik) par i, et f = 2e_x + 2·1_{±e_i} + 1_{±e_j, ±e_k} + 1_{Lab(Λ)}. On obtient
+‖E₋₄f‖² = (16 − 2E_L)/7, et les deux carrés donnent E_L ≥ 8. Donc E_L = 8, et on retrouve les comptages 2 / 0 / 1 / 2 de 16.2 en
+trois lignes.
+
+**Limite.** Pour une chaîne tordue de longueur n ≥ 4, avec f = b e_x + a·1_{I_T} + 1_{Lab}, la meilleure borne est E_L ≲ 24 à n = 4.
+Or les carrés ne donnent que E_L ≥ 16 : ce n'est pas serré, et il n'y a pas de comptage exact. Cela concorde avec le §15 : les
+chaînes de longueur ≥ 4 restent ouvertes.
+
+**Conséquence.** Le comptage des zéros exportés (18.3) contre le budget 84, fait par « structures » par minimisation locale sur les
+ordres cycliques des 6-cycles libres (calcul de leur labo), exclut le type tout-tordu (3,3,3,3,3,6). Les comptages exacts qu'il
+utilise sont désormais établis en général. Le Théorème F ne dépend plus du lemme de partition pour ces comptages.
