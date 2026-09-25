@@ -872,3 +872,10 @@ systèmes locaux C0–C8 par orbite, avec le budget des doubles (42 par orbite, 
   - Sans chaîne, les triangles se coupent donc deux à deux. Il reste quatre familles : l'étoile, le quadrilatère, le triangle de
     triangles, et Fano (Théorème F).
   - Pour ces quatre familles, l'exclusion est encore **calculée**. « structures » en rédige une version à la main.
+- **Famille 1/4, Fano : seconde preuve entièrement à la main** (« structures », relue ici). On fixe un bloc j = 1, une orbite libre
+  d'indice i = 0, k = 2 et R_x = {3,4,5,6}.
+  - C0 et C2 : les deux voisins de x sur le 6-cycle libre sont un élément de {3,5} et un élément de {4,6}.
+  - Le candidat {3,6} (et {4,5} par la symétrie (3 5)(4 6)) donne, par C1, C2, C8 et C4, φ(45) = 3 > 2 : il est exclu.
+  - Les voisins de i sur le 6-cycle forment donc toujours, avec i, une droite qui évite j.
+  - L'unicité de la droite passant par deux points force alors un triangle dans le 6-cycle : contradiction.
+  - C'est une contradiction locale en un seul bloc, sans budget.
