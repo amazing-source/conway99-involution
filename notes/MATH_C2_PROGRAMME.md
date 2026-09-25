@@ -540,3 +540,12 @@ impose {3, −4}, soit A_s² = 3A_s + 10I, et l'étape (6) du Théorème D (équ
 sommets sont plats. Les cas ouverts sont exactement 7 | m (v = 99, 6273, 494019, aucun n'est une puissance de 3). Un graphe à 99 sommets
 devrait donc être **non plat en chaque sommet** : un objet sans aucun modèle affine connu. Piste de cœur : montrer que λ = 1, μ = 2
 force la platitude (au moins en un sommet), ou mesurer globalement le défaut de platitude (grilles comptées : 9 par grille).
+**Crédit et correction (2026-09-25, après lecture en seule lecture du dépôt amazing-source/conway99-c1, commit 9afb4d2).** Le
+Théorème D′ est un cas particulier du **L8 de C1** (« aucun point de Hamming », notes/105 de C1) : C1 exclut tout sommet dont les 21
+paires sont des grilles, sans supposer que les couplages préservent les droites ; C1 a aussi L10 (au plus 18 grilles par sommet) et
+L16 (Krein : P ≤ 1151, soit Σ|W| ≥ 1410). La question « demande de réparation de la parité contre offre » coïncide avec le verrou
+déclaré de C1 : il manque un **plafond de torsion** (P ≥ 1152). Les « 1 522 solutions locales » de C1 sont des modèles en un point de
+Hamming, désormais exclus par L8 : ils ne servent pas de cartes tordues. Seul élément possiblement transférable d'ici : dans le
+Théorème P, le plafond venait d'une ressource bornée (au plus une orbite zéro par carré presque parfait). Analogue général : un
+9-ensemble à e arêtes a ‖E₋₄1_S‖² = (36 − 2e)/7, donc une déviation quadratique totale ≤ 7(36 − 2e) chez les sommets extérieurs.
+Réserve de C1 : un Γ tordu « générique » aurait P ≈ 126, donc aucune moyenne ne donnera le plafond ; il devrait venir d'une rigidité.
