@@ -636,3 +636,20 @@ Principe : exhiber dans Γ une sous-structure qui serait un objet classique dont
 **Verdict provisoire.** Les réductions qui mordent exigent toutes l'existence d'une sous-structure (tissu, grille, coclique de
 Hoffman) que rien ne force. On retombe sur le même verrou : forcer l'existence d'un objet serré. Seule la piste 4 évite ce verrou,
 mais elle reste dans le cadre C2 des configurations.
+**Cas ancré (6,3,3,3,2,2,2) par la voie du transport (§22, piste 4), 25/09.**
+- [RÉSULTAT] **Le sous-cas « triangle des C transitif » est impossible.** Si C₁ → C₂ → C₃ et C₁ → C₃, les arcs des C vers les L
+  sont exactement les q_j → L_j, donc C₃ serait q_j pour deux valeurs de j. Or le degré entrant de C₃ depuis les L vaut 3 − 2 = 1, alors
+  que chaque q_j = C₃ exige L_{j−1} → C₃. Contradiction.
+- [RÉSULTAT] **Le tournoi restant est unique** (indices mod 3) : C_j → C_{j+1}, C_j → L_j, L_j → L_{j+1}, L_j → C_{j+1},
+  L_j → C_{j−1}, et tout → A. Les étoiles : liée (L_j; L_{j−1}, C_j), de queue L_{j−1} ; triangle en C_j sur {C_{j−1}, L_{j−1}, L_{j+1}}.
+  Dans l'étoile en A, les composantes liées ont une queue L (out(C) = 3 interdit une queue C).
+- [RÉSULTAT] **Demandes.** Les orbites |D| = 3 sont les X_j ∈ {C_j, L_{j−1}} (3 au total) et les orbites de l'étoile en A dont la queue
+  est un C. Il y en a au plus 4 : avec e_CC = e_LL (égalité des degrés), t_C ≤ e_CC + min(6 − 2e_CC, 3) ≤ 4. Une double arête C_x–L_x
+  aurait une queue C, ce qui est interdit. Total des demandes ≤ 7, pour une capacité de 9 carrés (3 étoiles en C).
+- [RÉSULTAT] **Blocages.** Dans chaque carré d'étoile en C, une seule orbite peut porter ω : celle de {C_j, C_{j−1}} en C_{j−1} pour S^a,
+  et celle de {C_j, L_{j+1}} en L_{j+1} pour S^b et S^c. Au bloc L_j, le graphe libre est forcé biparti entre
+  {U, U′, V₁, V₂} et {A₁, A₂, Z^b, Z^c}, mais une configuration avec ω = 0 partout existe localement :
+  U–Z^b–U′–A₂–V₂–Z^c–V₁–A₁–U.
+  Au bloc C_j, ω(P^a) = 0 force l'unique 6-cycle P^a–A₁′–Y–P^b–Y′–A₂′ ; ce n'est pas une contradiction.
+- **Verdict (IMPASSE honnête).** Aucun blocage n'est forcé, donc la capacité (9) couvre la demande (≤ 7) : Hall ne mord pas. Pour
+  conclure, il faudrait forcer au moins 3 blocages (ω = 1, ou un apex hors de F_β), et rien ne les force.
