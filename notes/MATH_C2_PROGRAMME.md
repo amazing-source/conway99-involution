@@ -585,3 +585,10 @@ Il n'existe pas de contrôle positif en N = K₇ (BvLS n'a aucune torsion). La r
   ((G² + G)_{UV} = 4 − Sh_UV), d'où 3. Définition de G désormais explicite au §0.
 - Borne g(x) ≤ 14 au point fixe (§11–13) : conclusion vérifiée ; deux trous de rédaction corrigés (b56e836). Preuves internes de
   GT, 11.4–11.7, 12.1–12.2 et du Théorème D : logique suivie par la relecture, sans re-dérivation.
+- **Version sans σ du Lemme 16.1** (établie le 25/09 avec la session « structures »). Pour une paire de classes R en x (4 étiquettes) :
+  Σ_{w extérieur ∉ R} C(n_R(w), 2) = 8 − s_R − a_R − i_R.
+  - s_R : paires sœurs adjacentes.
+  - a_R : paires antipodales adjacentes.
+  - i_R : couples (paire d'étiquettes de R, voisin commun situé dans R).
+  Contrôles : grille (4, 0, 4) → 0 ; srg(9,4,1,2) et les 55 paires de BvLS → 0 échec (« structures »). Le terme a_R n'a aucun contrôle
+  positif : les deux graphes connus ont a = 0. En torsion maximale de C1 (s = a = i = 0), le total vaut 8.
