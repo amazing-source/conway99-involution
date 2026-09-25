@@ -894,3 +894,19 @@ systèmes locaux C0–C8 par orbite, avec le budget des doubles (42 par orbite, 
     - les voisins de 3 ne sont ni {1,2} ni {1,5} ;
     - les voisins de 5 ne sont ni {1,2} ni {1,3}.
   - Les 6 cas pour les voisins de 2 mènent tous à une contradiction. **L'étoile (3³,6,6) est impossible.**
+- **Classes à relabellisation près, à la main** (« structures », relu ici).
+  - Étoile (6,6) : une seule classe (octaèdre ; 630).
+  - Étoile (4,4,4) : deux classes, A = trois équateurs (105) et B = un équateur plus deux cerfs-volants (630).
+  - « Étoile + transversale » (3⁴,4,5) : une seule classe (2520). Le 4-cycle contient a₂, b₂, c₂ et un x₁ ; les deux cycles sont
+    forcés. (Le vrai quadrilatère complet est impossible en (3⁴,4,5) : le 7ᵉ point y aurait un degré 6.)
+- **Famille 2b : étoile (4,4,4), classe B, à la main**, au bloc 6.
+  - L'orbite 4 relève de ML1 et l'orbite 2 de C0.
+  - Aux orbites 0, 1, 3 et 5, de petits systèmes C1–C8 excluent les paires de voisins {2,3}, {2,4} et {2,5}, ainsi que {4,5} et
+    {3,4}.
+  - Fermeture : a′ – b – 4 – a est forcé, et les deux placements restants se contredisent.
+- **Famille 3 : étoile + transversale, à la main**, au bloc 1.
+  - Les orbites 0 et 2 relèvent de ML1, C0 et C2.
+  - Les orbites 5 et 6 donnent 2φ = 6. Les orbites 3 et 4 donnent y ≥ 2 > Σy.
+  - Les trois cas de voisins de 0 se ferment en contradiction.
+- **État du tout-tordu à ≥ 3 triangles.** Il ne reste que les deux classes « à budget » : l'étoile A (trois équateurs) et le triangle
+  de triangles. « structures » les rédige orbite par orbite.
