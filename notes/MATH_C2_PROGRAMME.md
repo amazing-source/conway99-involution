@@ -442,3 +442,44 @@ les quatre termes c_{36}, c_{37}, c_{56}, c_{57} sont nuls (types différents po
 **État.** Exclu désormais, en plus de §§7–15 : Fano, toute configuration de même β sans grappe, C₃,₆, la grappe maximale 17.5.
 Ouvert : configurations de même β avec grappes non maximales (à classer par les grappes, outils : 17.2, 17.3, 17.1, GT2, 12.1–12.2) ;
 configurations contenant des fourches, des chaînes tordues de longueur ≥ 4 ou des carrés disjoints (hors du cadre « même β »).
+
+## 18. Hors du cadre « même β » : identité de bloc, saturation du troisième bloc (PROUVÉ) et le cas de Paley (OUVERT)
+Notation : pour une étiquette w de paire P_w et un bloc k ∉ P_w, D_k(w) = ensemble des **digones de R_k dont le β évite P_w**
+(carrés « un bloc » via k entre kr et ks avec r, s ∉ P_w, et paires frères kr avec r ∉ P_w) ; h_k(w) = nombre de voisins proches de w
+(ceux qui partagent un bloc avec w : m, π de ses deux éléments, ou ses frères) qui rencontrent k ; pour Q ∈ D_k(w), a_Q(w) = [w a deux
+voisins dans Q] (w étiquette-apex), z_Q(w) = [w n'en a aucun] (w étiquette-zéro) ; o_k(w) = voisins de w rencontrant k hors de ces carrés.
+**Lemme 18.1 (identité de bloc, exacte).** |D_k(w)| + Σ_Q a_Q(w) + o_k(w) + h_k(w) = 4 + Σ_Q z_Q(w).
+*Preuve.* w a exactement 4 voisins rencontrant k (μ(w,(k,0)) = μ(w,(k,1)) = 2). Ceux qui ne sont pas proches sont dans des paires kr,
+r ∉ P_w ; w ∈ F_β(Q) pour tout Q ∈ D_k(w), donc |N(w) ∩ Q| = 1 + a_Q − z_Q (9.2 ; 9.1 pour une paire frère : exactement 1). ∎
+**Corollaire 18.2 (saturation du troisième bloc).** Si l'orbite de x est appariée « un bloc » (x ∈ ij, via i, troisième bloc k),
+h_k(x) = 2 + ω(x) (le carré, plus ω), d'où
+  |D_k(x)| + ω(x) + a_k(x) + o_k(x) = 2 + z_k(x).
+(a) Au plus 2 − ω(x) des paires kr (r ∉ {i,j,k}) sont frères (chacune fournit à x un voisin rencontrant k).
+(b) Si |D_k(x)| ≥ 3, l'orbite de x est l'orbite zéro d'un des carrés de D_k(x).
+(c) **Budget des zéros.** Un carré a au plus une orbite zéro, qui n'existe que si ω(Q) = 0 et W ∈ F_β. D'où, sur les orbites X
+    appariées « un bloc » : Σ_X (|D_{k(X)}(X)| − 2)₊ ≤ nombre de carrés « un bloc » ayant une orbite zéro ≤ 21.
+**Corollaire 18.3 (règle des zéros générale).** Pour toute x appariée « un bloc » (même hors d'une structure de même β), Σ_{rs⊂R_x} φ_x(rs)
+= 6 + ω(x) et φ ≤ 2 sur ces paires, donc doubles(x) ≥ ω(x) + zéros(x). Chaque voisin R_j de x tombant dans une structure de même β
+{j, r, s}, s ∈ R_x, crée un zéro en rs (preuve de 17.3 inchangée). Les structures de même β **exportent** donc des doubles vers les
+étiquettes voisines, quelle que soit la nature de celles-ci.
+**Lemme 18.4 (chapeaux).** Même x, supposée ni apex ni zéro des carrés concernés et avec o_k(x) = 0. Si les deux orbites d'une paire
+rs ⊂ R_x sont appariées l'une par r à une orbite de kr, l'autre par s à une orbite de ks (« chapeau en k »), alors φ_x(rs) = 2 (x a un
+voisin dans chacun de ces deux carrés internes, et pas du côté kr / ks, qui compterait dans o_k). C'est le mécanisme du Théorème F
+(chapeaux 47, 56 en k = 3).
+*Budget.* Comme Σ_W c(W) = 42 − Σ n_s (16.1), le nombre d'orbites ayant au moins 2 doubles forcés est au plus (42 − Σ n_s)/2.
+
+**Configurations ancrées.** Sans paire frère et si chaque paire a ses deux orbites appariées par le même bloc (son ancre : fourches et
+2-cycles liés seulement), les ancres orientent K₇ (j → k si jk est ancrée en k) ; d_k = degré entrant (≠ 1), le graphe D en k est un
+ensemble de cycles « en étoile » (longueur 2 = lié). Pour X ∈ ij (ancre i) appariée à ik : |D_k(X)| = d_k − 2[j → k]. Le budget 18.2(c)
+devient, pour chaque carré en i de bras {b, c} avec b → c :
+  E := Σ_carrés [ (d_b − 2)₊ + (d_c − 4)₊ ] ≤ 21.
+**Le cas de Paley (OUVERT, prototype).** Tournoi de Paley sur Z₇ (t−1, t−2, t−4 → t) : chaque bloc ancre une étoile triangulaire.
+Aucun couple de carrés n'a le même β (les 21 triplets {s,s+1,s+2}, {s,s+2,s+4}, {s,s+3,s+4} sont distincts) : coin, lien, règle des
+zéros ne s'appliquent nulle part. Le budget est **exactement saturé** : E = 21 (chaque carré contribue (3 − 2) + 0). Donc chaque carré
+a ω = 0, son apex dans F_β et une orbite zéro. En chaque bloc k, les trois orbites de troisième bloc k portées par les paires de
+{k+1, k+2, k+4} ont |D_k| = 3 et sont exactement les orbites zéro des trois carrés de l'étoile en k (bijection) ; elles ont a = o = 0.
+Les trois autres orbites de troisième bloc k ont |D_k| = 1 et a + o = 1. Les apex ne sont jamais des orbites |D| = 3. Tous les autres
+comptages (identités de bloc sommées, fuites, 16.1) sont cohérents : **aucune contradiction à ce stade**.
+**État honnête.** Les outils locaux (λ, μ, près-perfection des carrés) sont épuisés sur les configurations sans deux carrés de même β :
+chaque identité y est soit automatique, soit saturée sans conflit. Le cas de Paley exige un argument non local : signes (côté S,
+anti-invariant), positivité (Gram de E₋₄ / E₃ sur des vecteurs portés par les étoiles) ou arithmétique 7-adique (Théorème B).
