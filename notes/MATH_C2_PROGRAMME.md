@@ -608,3 +608,31 @@ Il n'existe pas de contrôle positif en N = K₇ (BvLS n'a aucune torsion). La r
 - Bibliographie : le texte de Paduchikh identifié porte sur (85,14,3,2) et ne se transpose pas ; citer Cesarz–Woldar dans sa
   version publiée (Algebraic Combinatorics 8(2), 2025) ; ajouter Wilbrink 1984 (pas d'ordre 11) ; Thakkar–Severini (arXiv
   2608.11211 v2) décrit encore le cas Z₇ à un point fixe comme ouvert, à tort (Behbahani–Lam).
+
+## 22. Réduire Γ à des problèmes et résultats déjà connus (consigne du 25/09 : pas de moteur, des leviers existants)
+Principe : exhiber dans Γ une sous-structure qui serait un objet classique dont l'inexistence ou la classification est acquise.
+**Déjà exploité dans le corpus.**
+- Lam (pas de plan projectif d'ordre 10) : tissu de 11 grilles à couplages anti-isomorphes (L25 de C1).
+- Lloyd, Tietäväinen, Makhnev : cas plat (quotient de H(7,3)).
+- Unicité du STS(7) (Fano) : Théorème F, L8 de C1.
+- Théorème de Hall (injection de demandes dans des carrés) : Théorème P.
+- Classification des tournois réguliers à 7 sommets : Théorème P.
+**Candidats examinés ici.**
+1. **Ensembles intrigants** (théorie des tight sets et m-ovoïdes, géométrie finie). [RÉSULTAT] Une grille S est 3-intrigante (4 voisins
+   dedans, 1 dehors, par 9.1) et un ensemble c-serré T est (−4)-intrigant (|T| = 11c). Leurs vecteurs centrés vivent dans des espaces
+   propres différents, donc sont orthogonaux, d'où **|S ∩ T| = |S||T|/99 = c**. En particulier toute grille coupe toute coclique de
+   Hoffman en exactement 2 sommets ; un tissu de 11 grilles la découpe en 11 × 2 = 22. Mord seulement si les deux objets existent.
+2. **Coclique de Hoffman C (22 sommets).** [RÉSULTAT]
+   - Les ensembles N(u) ∩ C (u ∉ C) forment un design 2-(22, 4, 2) à 77 blocs, tous distincts, deux à deux d'intersection ≤ 2
+     (μ = 2 et C indépendant).
+   - Les 77 sommets extérieurs portent exactement 77 droites entièrement extérieures (chaque sommet extérieur en a 3 ; les 4 autres
+     droites passent par ses 4 voisins dans C) : une configuration (77₃).
+   - Reste à trouver une classification connue de ces designs (question bibliographique pour Astra). Ici non plus, rien ne force
+     l'existence de C.
+3. **Plans projectifs, Bruck–Ryser–Chowla, designs symétriques** : aucune autre source de design symétrique que les tissus. Rien.
+4. **Théorèmes min-max** (Hall, König, Tutte, flot maximal/coupe minimale). Les budgets du §16–19 sont des problèmes de b-couplage :
+   une coupe minimale violée est une contradiction. [PISTE] Écrire les deux cas ancrés restants, (6,3,3,3,2,2,2) et (6,0,3⁵), comme
+   problèmes de transport, et chercher une coupe violée (à la main : ce sont des réseaux de taille ≤ 42).
+**Verdict provisoire.** Les réductions qui mordent exigent toutes l'existence d'une sous-structure (tissu, grille, coclique de
+Hoffman) que rien ne force. On retombe sur le même verrou : forcer l'existence d'un objet serré. Seule la piste 4 évite ce verrou,
+mais elle reste dans le cadre C2 des configurations.
