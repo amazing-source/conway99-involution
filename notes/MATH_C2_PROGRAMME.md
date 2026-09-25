@@ -342,3 +342,103 @@ ont β_{m−1} = {t_{m−2},t_{m−1},t_m} et β_m = {t_{m−1},t_m,t_{m+1}} : 3
 F_{β_m} (a = voisins β_{m−1}-lointains dans les paires de T_m, b = y-doubles dans les paires t_{m−2}x), inconnue : pas de contradiction.
 **Interaction entre droites (Fano, PROUVÉ, cohérent).** Pour deux droites L, L′ se coupant en t, avec F_L = L∖{t}, F_{L′} = L′∖{t} :
 e(F_L,F_{L′}) ≥ 2, e(F_L, paires t de L′) = 6 − e_FF, e(paires t, paires t) = e_FF − 2 (comptage d'arêtes d'orbites) — cohérent.
+
+## 16. Budget μ local ; le modèle de Fano est impossible (PROUVÉ, 2026-09-25)
+Notation : pour une étiquette w et une paire P′ ∌ w, φ_w(P′) = nombre de voisins de w parmi les 4 étiquettes de P′ ; Lab(X) = étiquettes
+des paires d'une structure X.
+**Lemme 16.1 (budget μ local, exact).** Pour toute paire P′ :
+  Σ_{w ∉ P′} ( C(φ_w(P′), 2) − [D(W) ∈ P′] ) = 4 − 2n_s(P′).
+Si D(W) ∉ P′ on a φ_w(P′) ≤ 2 ; donc **au plus 4 − 2n_s(P′) étiquettes w, hors des partenaires D de P′, ont deux voisins dans P′**
+(exactement autant s'il n'y a pas de φ = 3). Globalement : Σ_w (nombre de « doubles » de w) = 84 − 2Σ_P n_s(P).
+*Preuve.* On compte les couples (w, {y,y′}), y, y′ ∈ P′ voisins de w, w extérieur hors de P′. Les 6 paires {y,y′} de P′ : 2 paires
+σ-conjuguées, dont les voisins communs sont les deux sommets du carré D (Lemme 1), soit 4 couples portés par les 4 étiquettes des
+orbites D(P′₀), D(P′₁) (hors de P′ si n_s ≤ 1 ; si n_s = 2 ces voisins sont dans P′ et ne comptent pas) ; 4 paires d'étiquettes sœurs
+(partageant un élément) : les 2n_s adjacentes n'ont que l'élément partagé comme voisin commun (λ = 1), les autres ont exactement un
+voisin commun extérieur (μ = 2). Aucun voisin commun n'est dans P′ lorsque n_s ≤ 1 (u ≁ σu). Enfin deux voisins de w dans une même
+orbite de P′ font de cette orbite D(W). ∎
+*Contrôle.* BvLS (m = 11) : les 55 paires vérifient l'identité (toutes frères : aucune étiquette extérieure n'a deux voisins dans une
+paire). VÉRIFIÉ. (m = 2 : une seule paire, énoncé vide.)
+
+**Comptages exacts d'un triangle D (rappel de §15, forme utilisée).** Si β = {i,j,k} porte un triangle D complet, pour toute étiquette
+w : |N(w) ∩ Lab(β)| = 2 si la paire de w est dans β, 1 si elle rencontre β en un bloc, 3 si elle est disjointe de β.
+
+**Théorème F.** Le modèle de Fano (les 21 paires tordues, graphe D = les 7 triangles portés par les droites d'un plan de Fano) est
+impossible.
+*Preuve.* Droites 123, 145, 167, 246, 257, 347, 356 ; chacune est un triangle D complet, donc satisfait les comptages exacts. Soit u
+une étiquette de 12 (droite 123, troisième point 3).
+(a) Si l'orbite de u est appariée par le bloc 1 (à 13) : les seuls voisins de u contenant un élément du bloc 1 sont les deux sommets
+    de son carré (digone de R₁), donc φ_u(1r) = 0 pour r = 4..7. Les droites 145, 167 rencontrent 12 en un bloc : φ_u(45) = φ_u(67) = 1.
+    Les deux voisins m₂(u), π₂(u) sont dans des paires 2r, r ∈ {4..7} (ni dans 12 : n_s = 0, ni dans 23 : u n'a que 2 voisins dans
+    Lab(123)). Les droites 246, 257 donnent φ(24)+φ(26)+φ(46) = 1 et φ(25)+φ(27)+φ(57) = 1, dont la somme vaut 2 + φ(46) + φ(57) :
+    φ_u(46) = φ_u(57) = 0. Si l'orbite de u est appariée par le bloc 2 (à 23), même raisonnement en échangeant 1 et 2 :
+    φ_u(46) = φ_u(57) = 1 et φ_u(45) = φ_u(67) = 0.
+(b) La ligne « droite » de la partition de 123 donne exactement 6 voisins de u dans les 6 paires de {4,5,6,7}. Dans les deux cas,
+    φ_u(47) + φ_u(56) = 6 − 2 = 4, et φ ≤ 2 (D(u) ⊂ 13 ou 23) : **φ_u(47) = φ_u(56) = 2 pour les 4 étiquettes de 12.**
+(c) Énoncé intrinsèque : les étiquettes d'une paire P de la droite ℓ ont deux voisins dans chacune des deux autres paires de la
+    « triade » T_p (les trois paires opposées au point p = ℓ ∖ P sur les trois droites passant par p ; T₃ = {12, 47, 56}). Une
+    collinéation fixant 3 et envoyant 12 sur 56 préserve T₃ : les 4 étiquettes de 56 ont aussi deux voisins dans 47.
+(d) Donc 8 étiquettes w avec φ_w(47) = 2 et D(W) ∉ 47 (partenaires D sur 123 et 356), alors que n_s(47) = 0 et le lemme 16.1 en
+    autorise au plus 4. Contradiction. ∎
+*Remarque.* Seules les droites passant par 1, 2, 5 ou 6 servent (347 n'est pas utilisée). Le point clé est que chaque droite fournit
+une *somme exacte* sur ses 3 paires ; le graphe D « de Fano » les rend toutes disponibles à la fois.
+
+**Lemme 16.2 (paires liées, PROUVÉ).** Soit Λ = (ij, ik) une paire liée par le bloc i : les orbites U, U′ de ij sont appariées par i aux
+orbites V, V′ de ik (carrés Q = (U,V), Q′ = (U′,V′), même β = {i,j,k}). Alors ω = 0 aux quatre orbites ; les apex W, W′ sont dans F_β
+et W = Z₀(Q′), W′ = Z₀(Q) ; far(U,U′) = far(V,V′) = 2, far(U,V′) = far(U′,V) = 3 et tous les voisins communs de ces orbites sont dans
+F_β. Comptages exacts : |N(w) ∩ Lab(Λ)| = 2 si w ∈ ij ∪ ik ; 0 si w ∈ jk ou w dans une paire ir (r ∉ β) ; 1 si w est dans une paire jr
+ou kr (r ∉ β) ; 2 si la paire de w est disjointe de β.
+*Preuve.* (i) (G²)_{UU′} = 2 − 2G_{UV′} − 2G_{VU′} = 2 (R_i saturé par les digones) ; (G²)_{UV′} = 3 − 2n_s(ij) − 2n_s(ik) = 3 (« un bloc »
+⟹ n_s = 0). (ii) Par 9.2 appliqué à Q′, les 6 + ω(U) orbites de F_β voisines de U ont chacune un voisin dans Q′, sauf Z₀(Q′), et
+l'apex W′ en a deux : 6 + ω(U) − [Z₀(Q′) ~ U] + [W′ ~ U] ≤ far(U,U′) + far(U,V′) ≤ 5. Donc ω(U) = 0, Z₀(Q′) existe (W′ ∈ F_β,
+ω(Q′) = 0), Z₀(Q′) ~ U, W′ ≁ U et far = G². Le même calcul pour V donne Z₀(Q′) ~ V : Z₀(Q′) a deux voisins dans Q, c'est W.
+Symétriquement W′ = Z₀(Q). (iii) Au bloc k, les 8 orbites des paires kr sont exactement réparties en Y_U, Y_{U′} (voisines de U, U′
+dans ces paires : 2 chacune par ω = 0 et μ(u,(k,·)) = 2) et R_k(V), R_k(V′) (2 chacune) : les six intersections sont vides car tous
+les voisins communs de U, U′, V, V′ sont dans F_β (sœurs ; paires D, apex dans F_β ; far = G²). Idem au bloc j. Au bloc i, R_i est
+saturé. Une étiquette de jk n'a pas de voisin dans Lab(Λ) (ce serait une arête de R_j ou R_k, dirigée vers jr ou kr par ω = 0).
+(iv) Une orbite de F_β a un voisin dans Q et un dans Q′, sauf W (2 + 0) et W′ (0 + 2). Contrôle : 8·10 = 16 + 16 + 48. ∎
+**Principe commun.** Le lemme du coin et 16.2 sont deux cas de : *deux carrés « un bloc » de même β, dont deux orbites sont sœurs*.
+Les structures « de même β » du graphe D sont exactement les boucles (paires frères), les 2-cycles liés et les triangles D ; chacune
+donne des sommes exactes |N(w) ∩ Lab(X)| (frère S : 2 si w ∈ S, 0 si la paire de w partage un bloc avec S, 1 si elle est disjointe).
+L'identité Σ_X |N(w) ∩ Lab(X)| = 12 est alors *automatique* (vérifié : c'est une combinaison des relations « 4 voisins partageants,
+8 disjoints ») ; comme pour Fano, la contradiction doit venir des contraintes par bloc (μ(w,(t,·)) = 2, couplages m, π) et du budget
+μ local. Restent hors de ce cadre : chaînes tordues de longueur ≥ 4, fourches (les deux orbites de ij appariées par i à ik et il),
+carrés de type disjoint.
+
+## 17. Règle des zéros : les configurations « de même β » sans grappe sont impossibles (PROUVÉ, 2026-09-25)
+Cadre : toute orbite non frère est appariée « un bloc » à l'intérieur d'une structure de même β (2-cycle lié ou triangle D). Une
+étiquette x est **en position A₁** si sa paire est ij, son orbite appariée par i (à ik), k = troisième bloc de sa structure S₁,
+β₁ = {i,j,k}, R_x = [7] ∖ β₁ (4 blocs). Toute étiquette non frère est en position A₁ pour un nommage convenable. On note (h; a, b) la
+structure liée de charnière h et de bras a, b (paires ha, hb). Rappels : ω(x) = 0, φ_x(ir) = 0 pour r ∈ R_x, φ_x(jk) = 0, x a
+exactement 2 voisins R_j dans des paires jr (r ∈ R_x), 2 voisins Y dans des paires kr, et Σ_{rs ⊂ R_x} φ_x(rs) = 6.
+**Lemme 17.1 (localisation des μ-partenaires).** Si P appartient à une structure de même β, toute étiquette w avec φ_w(P) = 2
+(D(W) ∉ P) est dans une paire disjointe de β. *Preuve.* w touche les deux orbites (sœurs) de P ; or far = G² pour ces deux orbites
+(lemme du coin, 16.2) : tous leurs voisins communs sont dans F_β. ∎
+**Lemme 17.2 (admissibilité).** Les deux voisins R_j de x sont dans deux paires distinctes jr, jr′ (sinon x serait μ-partenaire de
+jr, contre 17.1), et la structure S₂ de jr est un triangle {j,r,s} ou une structure liée (r; j, s), avec s ∈ R_x ∪ {k}. Jamais une
+paire frère (8.1), ni une charnière j (orbites non libres en j), ni (r; i, j) (ij en est la paire opposée : 0 voisin, 16.2).
+**Théorème 17.3 (règle des zéros).** Dans la situation 17.2, si s ≠ k, alors φ_x(rs) = 0 avec rs ⊂ R_x. Les zéros produits par les
+deux voisins R_j sont distincts. Comme Σ_{rs⊂R_x} φ_x(rs) = 6 avec φ ≤ 2, **le nombre de doubles de x dans R_x est au moins le nombre
+de zéros**, donc doubles(x) ≥ 2 − ε(x), où ε(x) = nombre de voisins R_j de x tombant dans une structure de triplet {j, r, k}.
+*Preuve.* La paire de x rencontre β₂ = {j,r,s} au seul bloc j (s ≠ i par 17.2), qui est un sommet de triangle ou un bras : le
+comptage exact de S₂ vaut 1 (§15, 16.2), déjà atteint par le voisin R_j, d'où φ_x(rs) = 0 (rs ∈ S₂). Deux zéros égaux forceraient
+β₂ = β₃ = {j,r,r′}, ce qu'aucune paire de structures ne réalise (vérification sur les quatre cas). ∎
+**Grappes.** ε(x) > 0 exige deux structures dont les triplets partagent deux blocs {j,k} non charnières dans les deux : plusieurs
+structures liées de mêmes bras {j,k}, ou une structure liée (r; j, k) et le triangle contenant jk. On appelle cela une **grappe**.
+**Corollaire 17.4.** Si toutes les structures du graphe D sont de même β et s'il n'y a aucune grappe, contradiction (sauf si tout est
+frère, Théorème D). *Preuve.* Budget global (16.1) : Σ_w doubles(w) = 84 − 4s, où s est le nombre de paires frères (n_s ∈ {0,2}
+ici), c'est-à-dire exactement le nombre d'étiquettes non frères. Or chacune en a au moins 2. ∎
+En général : Σ_x ε(x) ≥ nombre d'étiquettes non frères. **Il faut qu'en moyenne chaque étiquette non frère ait une arête
+exceptionnelle** : les grappes doivent être massives.
+*Cas particuliers.* Fano : deux droites ne partagent qu'un point, donc pas de grappe (deuxième preuve du Théorème F). Configuration
+C₃,₆ (triangles {7,1,2}, {7,3,4}, {7,5,6} ; structures liées (1;5,6), (2;5,6), (3;1,2), (4;1,2), (5;3,4), (6;3,4)) : x ∈ 12 appariée
+par 1 n'a aucune paire 2r admissible (23, 24 : paire opposée ; 25, 26 : charnière 2) : exclue par 17.2.
+**Exemple 17.5 (grappe maximale, EXCLUE).** K₅ sur {1..5} entièrement frère, 67 frère, et les 5 structures liées (h; 6, 7). Les 4
+doubles reçus par c6 (resp. c7) viennent des paires frères de [5] ∖ c (17.1), en motifs (2,0) : exactement 2 paires, disjointes (12.1),
+notées M_c ; le même M_c sert pour c6 et c7 (φ(c6) + φ(c7) = 2, comptage de (c; 6, 7)). Pour u dans une paire P de [5], le comptage du
+bloc 6 (Σ_{c∉P} φ_u(c6) = 3) force m(P) := #{c : P ∈ M_c} ∈ {0, 2}. Les 5 couples M_c forment alors un 5-cycle dans le graphe de
+disjonction de A = {P : m(P) = 2}, ce qui impose que A soit un 5-cycle de K₅ (pas de 3 arêtes deux à deux sécantes dans A). Or
+GT2 pour (t,a,b) = (1,2,4) (numérotation cyclique de A : 12 ∈ A, 14 ∉ A, {d,e} = {3,5}) : le couple frère {35, 67} contribue ±2 et
+les quatre termes c_{36}, c_{37}, c_{56}, c_{57} sont nuls (types différents pour 12 et 14 vis-à-vis de 3· et 5·). Somme ≠ 0. ∎
+**État.** Exclu désormais, en plus de §§7–15 : Fano, toute configuration de même β sans grappe, C₃,₆, la grappe maximale 17.5.
+Ouvert : configurations de même β avec grappes non maximales (à classer par les grappes, outils : 17.2, 17.3, 17.1, GT2, 12.1–12.2) ;
+configurations contenant des fourches, des chaînes tordues de longueur ≥ 4 ou des carrés disjoints (hors du cadre « même β »).
