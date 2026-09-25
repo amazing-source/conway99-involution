@@ -938,3 +938,30 @@ systèmes locaux C0–C8 par orbite, avec le budget des doubles (42 par orbite, 
   les étoiles (4,4,4) A et B, l'étoile + transversale, le triangle de triangles, et, par l'orbite morte, toutes les configurations à
   chaîne. Il reste le tout-tordu à au plus 2 triangles : (7,7,7), les types à 0, 1 ou 2 triangles, et une partie de (3²,4,5,6) et de
   (3²,5³).
+- **Corollaire de CL (« structures », relu ici) : en tout-tordu pur, deux triangles D disjoints sont impossibles.**
+  - Les trois cycles par le 7ᵉ bloc i apparient ses six voisins. Comme |T| est impair, un carré de pivot i a un bras s ∈ T et un bras
+    t ∈ T′.
+  - Au bloc s, l'orbite de {i,s} donne φ(ab) = 1 − N_ab par C2 sur T, et φ(ab) = 3 − N_ab par CL sur T′. Contradiction.
+  - Cela tue à la main (3²,4,5,6) pour 5040 décompositions sur 25200, et (3²,5³) pour 840 sur 5880.
+  - Il reste en tout-tordu : les types à deux triangles sécants (27 720 décompositions), à un triangle, ou sans triangle.
+
+## 27. Mélanges « un seul cycle tordu, le reste ancré » (M1) : trois familles mortes, H réduit (labo, notes 26–28 ; relu par « structures »)
+Dans M1, les paires tordues forment un seul cycle T, les autres paires sont ancrées, et il n'y a pas de carré disjoint. Les blocs de
+T ont d ≤ 2, et hors de T on a d ∈ {0, 2, 3, 6}.
+
+Lemmes généraux (Σ = ∅, carrés « un bloc »), tous à la main :
+- **28.1 (scission).** En tout troisième bloc, G_k est de type (6), (4,2) ou (3,3). Il y a au plus un cycle D fermé, de longueur ≤ 3.
+- **28.2 (export d'un C-bloc).** Pour o ∈ Out(k), les voisins D de {o,k} en o sont des paires {o,j} avec j ∈ In(k).
+- **28.4 (exclusion liée).** On suppose L_c = {i,k} liée en c, l'orbite (i,j,k) présente, et G_k = (4,2) avec j ∉ L_k. Alors
+  φ_x({c,k}) vaut 1 en c et 0 en k : contradiction.
+- **28.5 (paire propre liée).** Si L_c = {a,b} est liée et a → b, alors f_a ≥ 8 (sinon deux sœurs ont deux voisins communs sur le
+  graphe libre en a).
+
+Résultats :
+- **Les familles (a,c) = (0,1), (0,2) et (1,2) sont impossibles** (relu par « structures »).
+- En (1,1) à n = 3, seul le squelette S1, avec au moins un bloc β, survit.
+- H (T hamiltonien, tous les degrés égaux à 2) : **aucune configuration tout-α ne survit**. Les circulants (+2,+3) et (+2,−3) sont
+  morts.
+  - Un petit test de quelques secondes, qui n'applique que 28.4 et 28.5 avec contrôles, laisse 30 346 squelettes sur 131 220.
+  - Ils ont au plus 4 blocs α, et chaque bloc α a ses prédécesseurs consécutifs sur T.
+  - Le tout-β relève du cœur.
