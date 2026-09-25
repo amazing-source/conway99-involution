@@ -549,3 +549,17 @@ Hamming, désormais exclus par L8 : ils ne servent pas de cartes tordues. Seul �
 Théorème P, le plafond venait d'une ressource bornée (au plus une orbite zéro par carré presque parfait). Analogue général : un
 9-ensemble à e arêtes a ‖E₋₄1_S‖² = (36 − 2e)/7, donc une déviation quadratique totale ≤ 7(36 − 2e) chez les sommets extérieurs.
 Réserve de C1 : un Γ tordu « générique » aurait P ≈ 126, donc aucune moyenne ne donnera le plafond ; il devrait venir d'une rigidité.
+
+## 21. Tentative « le désordre sature le plafond 7-adique » (2026-09-25) — IMPASSE, déjà cartographiée par C1
+Idée : k = rank₇(A − 3I) − 15 a un plafond (Brouwer–van Eijl : k ≤ 30 ; L22 de C1, par le genre de Λ₋₄ et la formule d'oddité :
+**k ≤ 28**) et la torsion pousse k vers le haut ; il suffirait de montrer rank₇(M_x) ≥ 29 en un sommet (M_x = complément de Schur
+84 × 84 de la boule de x, C1). Constat après lecture de C1 (notes/97, 99, 101) :
+- l'idée elle-même est déjà chez C1 (L22 §5 : « la structure générique est interdite ») ;
+- les minorations locales prouvées s'arrêtent à 22 (L21, une droite générique) ; un bloc entièrement déterminé par la structure
+  locale plafonne à 24 (deux étoiles couplées, 24 × 24) : **aucune contradiction possible avec des blocs connus** ;
+- toute preuve de k ≥ 29 doit donc passer par les arêtes génériques inconnues (technique des relations de C1 sur quatre étoiles :
+  44 lignes, au moins 16 relations de lignes complètes forcées à k = 28), c'est-à-dire un gros calcul exact, ou une idée neuve.
+Reformulation qui pourrait servir d'idée neuve (non exploitée) : à k = 28, ker₇(M_x) dépasse le noyau rationnel de **exactement
+2 dimensions** en chaque sommet (« accidents 7-adiques »), et ces accidents portent la partie U de Λ₋₄, **anisotrope** (L22 : U non
+hyperbolique ; en dimension 2, anisotrope). Montrer qu'un accident est toujours isotrope (z·z ≡ 0) exclurait k = 28 ; montrer qu'ils
+contiennent un sous-espace totalement isotrope de dimension (30 − k)/2 exclurait tout k. Aucun argument en ce sens pour l'instant.
