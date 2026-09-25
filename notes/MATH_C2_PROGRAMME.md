@@ -921,3 +921,20 @@ systèmes locaux C0–C8 par orbite, avec le budget des doubles (42 par orbite, 
   - **Total ≥ 48 > 42**, le budget des orbites (16.1, n_s = 0). Contradiction.
 - **Reste à ≥ 3 triangles : le triangle de triangles (famille 4).** La borne calculée vaut 51 : blocs d'intersection 8, blocs privés
   7, bloc extérieur 6. La rédaction à la main est en cours.
+- **Lemme du complément (CL, « structures », PROUVÉ, relu ; général en Σ = ∅ avec des triangles D complets).** Si k porte un
+  triangle D {k,c,d} avec c, d ∈ R_x, alors, pour {a,b} = R_x ∖ {c,d}, on a **φ(ab) = 3 − N_ab**. Donc N_ab ≥ 1, et N_ab = 1 donne
+  un double.
+  - Preuve : différence des demi-sommes de C8, avec C4, C6 et N_ab + N_cd = 2 − n_k.
+  - CL redonne l'orbite morte (26.1) et ML1.
+- **Famille 4 : triangle de triangles, à la main, par le budget** (« structures », relue ici en entier, énumérations comprises).
+  - Cadre : T1 = {0,1,2}, T2 = {1,5,6}, T3 = {2,4,6} ; w = 3 ; les 4-cycles passent par w. La symétrie ρ = (1 6 2)(0 5 4) est
+    d'ordre 3.
+  - Bornes inférieures des doubles, obtenues par CL, C0–C8, le lemme D et les faits X1, X2, X3 :
+    - bloc w : ≥ 4 ;
+    - blocs d'intersection : ≥ 7 chacun (exactement 3 ordres du 6-cycle libre possibles) ;
+    - blocs privés : ≥ 6 chacun (exactement 5 ordres possibles).
+  - Total ≥ 43 > 42 : contradiction.
+- **BILAN : tous les types du tout-tordu à au moins 3 triangles sont exclus ENTIÈREMENT À LA MAIN.** Ce sont Fano, l'étoile (6,6),
+  les étoiles (4,4,4) A et B, l'étoile + transversale, le triangle de triangles, et, par l'orbite morte, toutes les configurations à
+  chaîne. Il reste le tout-tordu à au plus 2 triangles : (7,7,7), les types à 0, 1 ou 2 triangles, et une partie de (3²,4,5,6) et de
+  (3²,5³).
