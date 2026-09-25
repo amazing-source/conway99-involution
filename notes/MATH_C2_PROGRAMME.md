@@ -714,7 +714,18 @@ l'utilisateur).**
 - En 2, on ne voit que la forme bilinéaire, donc au plus la parité, c'est-à-dire le Théorème A. L'invariant d'Arf demanderait une
   congruence mod 4, qui échoue car 2J ≢ 0 (mod 4).
 - Il faudrait une symétrie d'ordre impair pour que le symbole de Legendre morde : c'est le cas C3.
-- « structures » a aussi exclu le candidat sans symétrie H = (−A + i√3·T)/2, où T oriente les 33 droites. On a H ≡ A (mod π) et
-  H1 = −7·1, puisque T1 = 0. Aucun spectre entier à au plus 3 valeurs propres n'est compatible avec
-  χ ≡ x⁵⁴(x+1)⁴⁵ (mod 3) et les traces (affirmation de « structures », non revérifiée ici).
+- « structures » a aussi exclu le candidat sans symétrie H = (−A + i√3·T)/2, où T oriente cycliquement les 231 droites (triangles).
+  **Vérifié ici, à la main :** H n'a pas de spectre entier à au plus 3 valeurs propres.
+  - H est hermitienne à coefficients dans Z[ω] (ω sur un arc orienté, ω̄ en sens inverse) et H ≡ A (mod π). Donc χ_H ∈ Z[x] et
+    χ_H ≡ χ_A ≡ x⁵⁴(x + 1)⁴⁵ (mod 3). Avec un spectre entier : 54 valeurs propres ≡ 0, 45 valeurs propres ≡ 2, aucune ≡ 1 (mod 3).
+  - tr H = 0 ; tr H² = 99·14 = 1386 ; tr H³ = 6·231 = 1386 (holonomie ω³ = 1 sur chaque droite).
+  - H1 = −7·1 (T1 = 0), et 7I + H = N_ω N_ω* ⪰ 0, donc −7 est la plus petite valeur propre.
+  - *Deux valeurs propres {−7, a}.* tr[(H + 7)(H − a)] = 1386 − 693a = 0 donne a = 2, et −7 ≡ 2 ≡ 2 (mod 3) : il n'y a pas
+    54 valeurs propres ≡ 0. Exclu.
+  - *Trois valeurs propres {−7, a, b}.* tr[(H + 7)(H − a)(H − b)] = 1386(8 − a − b) + 693ab = 0, soit **(a − 2)(b − 2) = −12**.
+    Avec a, b ≥ −6, cela laisse {1, 14}, {4, −4}, {0, 8}, {5, −2}, {−1, 6}.
+    - La règle mod 3 (aucune valeur ≡ 1) élimine les trois premiers et {5, −2}, puisque 1, 4, −2 ≡ 1. Il reste {0, 8} et {−1, 6}.
+    - {0, 8} : m₀ = 54, m₋₇ + m₈ = 45, tr H = 0 donne m₋₇ = 24 et m₈ = 21. Mais tr H² = 1176 + 1344 = 2520 ≠ 1386.
+    - {−1, 6} : m₆ = 54, m₋₇ + m₋₁ = 45, tr H = 0 donne 6m₋₇ = 279. Pas entier.
+  - Donc aucun spectre, pas même à trois valeurs propres, sans recherche.
 - **Conclusion commune :** la famille genre/réseaux est épuisée pour C2 ; le verrou reste combinatoire.
