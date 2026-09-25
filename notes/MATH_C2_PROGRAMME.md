@@ -14,6 +14,9 @@ chaque bloc. Sommets extérieurs = étiquettes {a,b} (a, b dans des blocs diffé
 Représentant de U = (ij,p), i < j : u = {(i,0),(j,p)}. a_UW = A[u,w], b_UW = A[u,σw].
 S (49×49, orbites intérieures puis extérieures) = [[−I7, Cᵀ],[C, S_out]], S² + S = 12I, spectre 3²⁷, (−4)²².
 C (42×7) : C_Ui = +1 si u ∋ (i,0), −1 si u ∋ (i,1), 0 sinon. CᵀC = 12I, CᵀS_out = 0, S_out² + S_out = 12I − B, B = CCᵀ.
+Q_out (42×42, côté invariant) : Q_UW = nombre de voisins de u dans l'orbite W ; Q_out² + Q_out = 12I + 4J − Sh (Sh = NbNbᵀ).
+**G := Q_out − 2D** (ajouté le 25/09 après relecture) : graphe des orbites SANS les arêtes D, 10-régulier, et D est la matrice du couplage
+des carrés. D'où G² + G = 8I + 4J − Sh − 2(GD + DG) − 2D ; les termes en D sont ceux qui produisent les « − 2e » du §15.
 
 ## 1. Structure locale (PROUVÉ)
 **Lemme 1 (21 carrés).** Pour u extérieur, N(u) ∩ N(σu) = {v, σv} et (u, v, σu, σv) est un 4-cycle induit, σ-invariant, σ = rotation
@@ -323,6 +326,9 @@ et une orbite zéro, Z₀(Q₂) ~ A₁, Z₀(Q₁) ~ B₁, W₂ ≁ A₁, W₁ �
 far(A₁,B₂) = far(B₁,A₂) = 3. (En particulier les carrés d'un coin ne sont jamais « serrés » : le cas serré est contradictoire.)
 **Tableau des types** (orbite de F_β → voisine de A₁, A₂, les deux (W₁) ou aucune (Z₀(Q₁)) ; idem pour Q₂) : le cas
 « W₁ de type B₂ et W₂ de type A₂ » donne far(A₂,B₂) = 4 > 3 − e : exclu. Il reste W₁ = Z₀(Q₂) ou W₂ = Z₀(Q₁).
+*Argument direct du 3-cycle (fourni par la relecture de « structures ») : les trois apex sont distincts (au coin ij, W_i ~ A₁ mais
+W_j ≁ A₁) ; chaque carré a au plus une orbite zéro, donc au plus un apex pointe vers lui (degré entrant ≤ 1) ; trois coins, au
+moins un arc chacun, degré entrant ≤ 1 sur 3 sommets : exactement un arc par coin, c'est-à-dire un 3-cycle.*
 **Triangle D complet** (carrés Q_i, Q_j, Q_k sur β = {i,j,k}, trois coins) : les trois disjonctions forcent un 3-cycle
 apex → orbite zéro : (W_i = Z₀(Q_j), W_j = Z₀(Q_k), W_k = Z₀(Q_i)) ou le cycle inverse ; chaque apex touche exactement une orbite de
 chaque paire de β (p. ex. W_i ~ A₁, A₂, C₂). Le tableau des 9 orbites génériques de F_β est alors déterminé à un paramètre p ∈ {0,1,2}
@@ -573,7 +579,9 @@ Il n'existe pas de contrôle positif en N = K₇ (BvLS n'a aucune torsion). La r
 - **Théorème P (§18–19) : VÉRIFIÉ EN ENTIER**, maillon par maillon, par la session « structures » (sur b56e836). Maillons
   relus : 9.2(ii), 18.1, 18.2 (h_k = 2 + ω), |D_k| = d_k − 2[j → k], la saturation (i), les cibles interdites (ii), f ≤ 1 (iii),
   et f ≡ 1 impossible (iv).
-- **Théorème F (§15–16) : vérifié SOUS HYPOTHÈSE.** Relus : 16.1 et les étapes (a)–(d). Restent en cours de relecture : le lemme
-  du coin, le triangle complet (3-cycle apex → zéro, far(A₂,B₂) = 3), le lemme de partition et la ligne « droite » de la partition.
+- **Théorème F (§15–16) : VÉRIFIÉ EN ENTIER** par la même session : 16.1, étapes (a)–(d), lemme du coin, tableau des types,
+  3-cycle du triangle complet (argument direct ajouté au §15), lemme de partition et comptages exacts 2 / 1 / 3. Signalement
+  de notation : « (G²)_{A₁B₂} = 3 − 2e » est correct avec G = Q_out − 2D (arêtes D exclues) ; la relecture appliquait à G l'identité de Q_out
+  ((G² + G)_{UV} = 4 − Sh_UV), d'où 3. Définition de G désormais explicite au §0.
 - Borne g(x) ≤ 14 au point fixe (§11–13) : conclusion vérifiée ; deux trous de rédaction corrigés (b56e836). Preuves internes de
   GT, 11.4–11.7, 12.1–12.2 et du Théorème D : logique suivie par la relecture, sans re-dérivation.
