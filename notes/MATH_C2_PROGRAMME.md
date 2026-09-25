@@ -880,3 +880,17 @@ systèmes locaux C0–C8 par orbite, avec le budget des doubles (42 par orbite, 
   - Les voisins de i sur le 6-cycle forment donc toujours, avec i, une droite qui évite j.
   - L'unicité de la droite passant par deux points force alors un triangle dans le 6-cycle : contradiction.
   - C'est une contradiction locale en un seul bloc, sans budget.
+- **Famille 2a : étoile (3³,6,6), à la main** (« structures », relue ici ligne à ligne).
+  - Représentant : triangles {0,1,2}, {2,3,5}, {2,4,6}, et 6-cycles (0,3,1,4,5,6) et (0,4,3,6,1,5). « Une seule classe à
+    relabellisation près » est affirmé par « structures » : ce sont les décompositions de l'octaèdre en deux 6-cycles, un fait de
+    calcul, à confirmer à la main.
+  - **ML1** : si k est porté par deux triangles qui couvrent R_x, alors n_k = 0, φ = 2 sur ces deux paires, et exactement un voisin
+    dans chacune.
+  - Au bloc critique 0, on établit cinq faits (F_a à F_e), chacun par un petit système C1–C8 écrit en entier. Ils interdisent certaines
+    paires de voisins sur le 6-cycle libre en 0 :
+    - 1 ≁ 2 ;
+    - 4 ~ 2 ⇒ 4 ~ 6 ;
+    - 6 ~ 2 ⇒ 6 ~ 4 ;
+    - les voisins de 3 ne sont ni {1,2} ni {1,5} ;
+    - les voisins de 5 ne sont ni {1,2} ni {1,3}.
+  - Les 6 cas pour les voisins de 2 mènent tous à une contradiction. **L'étoile (3³,6,6) est impossible.**
