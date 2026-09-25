@@ -483,3 +483,35 @@ comptages (identités de bloc sommées, fuites, 16.1) sont cohérents : **aucune
 **État honnête.** Les outils locaux (λ, μ, près-perfection des carrés) sont épuisés sur les configurations sans deux carrés de même β :
 chaque identité y est soit automatique, soit saturée sans conflit. Le cas de Paley exige un argument non local : signes (côté S,
 anti-invariant), positivité (Gram de E₋₄ / E₃ sur des vecteurs portés par les étoiles) ou arithmétique 7-adique (Théorème B).
+
+## 19. Le cas de Paley est impossible, et avec lui toute configuration ancrée régulière (PROUVÉ, 2026-09-25)
+(L'argument n'utilise pas les signes S : il combine la saturation du budget des zéros (18.2) et la 2-régularité de R_s.)
+**Lemme 19.1 (orbites libres en un bloc).** En un bloc s, appelons *libres* les orbites passant par s qui ne sont pas appariées par s.
+Sous R_s elles forment un graphe 2-régulier (cycles pairs, alternés m/π, de longueur ≥ 4 : les digones sont exactement les paires D
+via s, Lemme 3), sans arête entre deux orbites sœurs d'une paire à n_s = 0, et deux orbites sœurs (n_s = 0) y ont au plus un voisin
+commun (un tel voisin est le μ-partenaire de la classe partageant l'autre bloc, forme élémentaire de 11.5). En particulier les orbites
+libres en s ne peuvent pas être exactement les 2 orbites d'une paire, ni exactement les 4 orbites de deux paires (K₂,₂ interdit).
+**Corollaire 19.2 (configurations ancrées).** Dans une configuration ancrée (18 ; chaque paire a ses deux orbites libres en son bloc non
+ancre), le bloc s porte 2(6 − d_s) orbites libres, donc d_s ∉ {4, 5} ; d_s ≠ 1 par définition. D'où d_s ∈ {0, 2, 3, 6} et la suite des
+degrés entrants est 3⁷ (tournoi régulier), (6,3,3,3,2,2,2) ou (6,0,3,3,3,3,3).
+**Théorème P.** Aucune configuration ancrée sur un tournoi régulier n'existe ; en particulier le cas de Paley est impossible.
+*Preuve.* (i) *Saturation.* d ≡ 3 : chaque étoile est un triangle D. Pour un carré en t de bras j → k, l'orbite de {t,j} (troisième bloc
+k) a |D_k| = 3 − 2 = 1 et l'orbite de {t,k} (troisième bloc j) a |D_j| = 3 (t ∉ In(k) car k → t). Les 21 orbites avec |D| = 3 ont z ≥ 1
+(18.2) ; chaque carré a au plus une orbite zéro : injection de 21 orbites dans 21 carrés, donc **chaque carré a une orbite zéro, donc
+ω(Q) = 0 pour les 21 carrés** (une orbite zéro exige ω(Q) = 0).
+(ii) *Cibles interdites.* En un bloc s, Out(s) = {t₁,t₂,t₃}, paires libres Π_m = {s,t_m} (ancrées en t_m). L'orbite de Π_m appariée à
+{t_m, c} (c ∈ In(t_m) ∖ {s}) a pour troisième bloc c ; si c ∈ Out(s), ses arêtes R_s vers Π_c compteraient dans ω : par (i) elles sont
+interdites, et ses deux voisins R_s sont alors les deux orbites de la paire restante. Soit f(s,t) = |In(t) ∩ Out(s) ∖ {s}| (nombre de
+chemins s → c → t) = nombre d'orbites de {s,t} ayant une cible interdite.
+(iii) *f ≤ 1.* Si f(s,t₁) = 2 (t₂ → t₁, t₃ → t₁), l'orbite de Π₁ de troisième bloc t₂ a ses deux voisins dans Π₃ et l'autre les a
+dans Π₂. Si t₂ → t₃, l'orbite de Π₃ de troisième bloc t₂ a sa cible Π₂ interdite, donc ses deux voisins dans Π₁ : impossible, l'une des
+orbites de Π₁ est déjà saturée par Π₂. Si t₃ → t₂, symétrique. Donc f ≤ 1 partout.
+(iv) *f ≡ 1 impossible.* Σ_{arcs} f = nombre de triples transitifs = Σ_v C(3,2) = 21 = nombre d'arcs, donc f ≡ 1. En un bloc s, chaque
+Π_m a alors une orbite X_m forcée vers Π_{φ(m)} (φ(m) ≠ m). X_m est voisine de X_{φ(m)}, dont les deux voisins sont dans Π_{φ²(m)} ;
+il faut donc φ²(m) = m pour tout m : φ serait une involution sans point fixe de {1,2,3}. Impossible. ∎
+*Remarque.* Le seul tournoi doublement régulier sur 7 sommets est celui de Paley (f ≡ 1) ; les autres tournois réguliers tombent déjà
+en (iii). Le Théorème P ferme le prototype ouvert au §18.
+**Reste parmi les configurations ancrées :** (6,3,3,3,2,2,2) (étoile totale en un bloc, trois étoiles triangulaires, trois paires liées)
+et (6,0,3,3,3,3,3) (un bloc ancre tout, un bloc n'ancre rien, les cinq autres forment le tournoi régulier sur 5 sommets). Le budget des
+zéros n'y est pas saturé (au plus 9 orbites |D| = 3 dans le second cas), donc ω n'est pas forcé à 0 : il faut y raffiner (ii)–(iv).
+Hors configurations ancrées : chaînes tordues de longueur ≥ 4, mélanges, carrés disjoints ; 19.1 s'y applique tel quel.
