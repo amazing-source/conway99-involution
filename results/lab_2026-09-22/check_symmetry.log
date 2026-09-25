@@ -1,0 +1,8 @@
+|Stab(U0)| = 7680
+orbits of Stab(U0) on the other 41 orbits: sizes [1, 20, 20]
+  size  1, contains [(1, 2, 1)]
+  size 20, contains [(1, 3, 0)]
+  size 20, contains [(3, 4, 0)]
+case sib: |Stab(U0,D0)| = 7680, |<12 generators>| = 7680 -> EQUAL (orbit counts exact)
+case one: |Stab(U0,D0)| = 384, |<12 generators>| = 384 -> EQUAL (orbit counts exact)
+case dis: |Stab(U0,D0)| = 384, |<12 generators>| = 384 -> EQUAL (orbit counts exact)

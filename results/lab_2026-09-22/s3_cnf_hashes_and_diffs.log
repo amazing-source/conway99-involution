@@ -1,0 +1,80 @@
+## regenerate (Linux, LF) 2026-09-22T19:01:04+00:00
+m=7 case=sib vars=666183 clauses=1510448 build=1.4s
+Exception ignored in: <_io.TextIOWrapper name='<stdout>' mode='w' encoding='utf-8'>
+BrokenPipeError: [Errno 32] Broken pipe
+m=7 case=one vars=666183 clauses=1510448 build=1.4s
+Exception ignored in: <_io.TextIOWrapper name='<stdout>' mode='w' encoding='utf-8'>
+BrokenPipeError: [Errno 32] Broken pipe
+m=7 case=dis vars=666183 clauses=1510448 build=1.4s
+Exception ignored in: <_io.TextIOWrapper name='<stdout>' mode='w' encoding='utf-8'>
+BrokenPipeError: [Errno 32] Broken pipe
+m=7 case=none vars=666183 clauses=1510446 build=1.3s
+Exception ignored in: <_io.TextIOWrapper name='<stdout>' mode='w' encoding='utf-8'>
+BrokenPipeError: [Errno 32] Broken pipe
+## sha256 regenerated
+d1e430a983ca5cfbad07efc21304dcd0eefd5fcdc44bbe2482953b569271caba  k14_sib.cnf
+65214b8e682c6b7f2b95b7da88ef6ae19de966eecaa2bf41b7977d94a625f2e8  k14_one.cnf
+bf69c7f7b84f98729e96be1b8d26b791c74d1109c37afd124f598c9f1bf10a62  k14_dis.cnf
+a59d3e04d07d49e953ad7c42c6c0c994dfe5c1b9427c4bdc8842b4005340c1e6  k14_none.cnf
+## old files: CR count, then sha256 after tr -d '\r'
+d1e430a983ca5cfbad07efc21304dcd0eefd5fcdc44bbe2482953b569271caba  old/k14_sib.cnf  (CR=1510449, header: p cnf 666183 1510448)
+65214b8e682c6b7f2b95b7da88ef6ae19de966eecaa2bf41b7977d94a625f2e8  old/k14_one.cnf  (CR=1510449, header: p cnf 666183 1510448)
+bf69c7f7b84f98729e96be1b8d26b791c74d1109c37afd124f598c9f1bf10a62  old/k14_dis.cnf  (CR=1510449, header: p cnf 666183 1510448)
+a59d3e04d07d49e953ad7c42c6c0c994dfe5c1b9427c4bdc8842b4005340c1e6  old/k14_none.cnf  (CR=1510447, header: p cnf 666183 1510446)
+f8c5f0c28daeae7d378bedb6456f55ab07d997d37533584c03842dbd247b6d6a  old/k14_one00.cnf  (CR=1510451, header: p cnf 666183 1510450)
+5061b8414403359117bdb71b08ac6d2002f65352b723bda6ad73490f656ef540  old/k14_one10.cnf  (CR=1510451, header: p cnf 666183 1510450)
+b25aa273e4dc1039aa427017f5dcd617e4e3d38d70c366e7e03b5e0d54301133  old/k14_dis00.cnf  (CR=1510451, header: p cnf 666183 1510450)
+b68a416e1ca746375e1540bb41949625ff430186f243b79f65d21a37dee3a08a  old/k14_dis10.cnf  (CR=1510451, header: p cnf 666183 1510450)
+## diff sorted: one vs one10 / one00 ; dis vs dis00 / dis10 (header lines included)
+--- one -> one10
+207235a207236
+> -2 0
+1123668a1123670
+> 1 0
+1510449c1510451
+< p cnf 666183 1510448
+---
+> p cnf 666183 1510450
+--- one -> one00
+1a2
+> -1 0
+207235a207237
+> -2 0
+1510449c1510451
+< p cnf 666183 1510448
+---
+> p cnf 666183 1510450
+--- dis -> dis00
+1a2
+> -1 0
+207235a207237
+> -2 0
+1510449c1510451
+< p cnf 666183 1510448
+---
+> p cnf 666183 1510450
+--- dis -> dis10
+207235a207236
+> -2 0
+1123668a1123670
+> 1 0
+1510449c1510451
+< p cnf 666183 1510448
+---
+> p cnf 666183 1510450
+## first-lines of old one10 tail
+4 0
+1 0
+-2 0
+one U1 = (1, 2, 1) a,b var ids = 1 2
+  root propagation: ok=True, forced a/b literals: []
+  (a,b)=(1, 0): unit propagation CONFLICT
+  (a,b)=(0, 1): unit propagation CONFLICT
+  (a,b)=(1, 1): unit propagation CONFLICT
+  (a,b)=(0, 0): unit propagation no conflict
+dis U1 = (1, 2, 1) a,b var ids = 1 2
+  root propagation: ok=True, forced a/b literals: []
+  (a,b)=(1, 0): unit propagation no conflict
+  (a,b)=(0, 1): unit propagation no conflict
+  (a,b)=(1, 1): unit propagation CONFLICT
+  (a,b)=(0, 0): unit propagation no conflict

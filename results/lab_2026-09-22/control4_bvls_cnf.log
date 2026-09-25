@@ -1,0 +1,21 @@
+# 2026-09-22T20:55:15+02:00 control_bvls.py --cnf (native Windows Python 3.12.10, cadical195 via pysat 1.9.dev15)
+BvLS: srg(243,22,1,2) identity holds
+x -> -x: automorphism with exactly 1 fixed point
+rigidity lemmas: t = flip on N(x); no outer vertex adjacent to its image
+orbit model (R,D,I,P) violations: 0 0 0 0
+D is a perfect matching on the 110 outer orbits
+Q-only equations hold: Q^2+Q = (k-2)I+4J-Sh ; Nb^T Q = 4J-2Nb^T
+signed equations hold: C^T S_out = 0 ; S_out^2+S_out = (k-2)I-G
+Spec(Q_out) = predicted {20, (-2)^10, 4^55, (-5)^44}: True
+rank_F2(S) = 55 (predicted 55 ) ; rank_F2(Gamma1 + Nb Nb^T) = 44 (predicted 44 )
+reminder: in ANY srg(n,k,1,2) the number of induced C4 is the constant non-edges/2 (here 13365), so a parity statement about it carries no information
+m=11 CNF: vars=12606825 clauses=28274730 build=28s
+planted BvLS assignment -> SAT: True t=99s
+lift verifies srg(243,22,1,2): True
+negative control, primary bit 0 flipped -> SAT: False
+negative control, primary bit 1 flipped -> SAT: False
+negative control, primary bit 777 flipped -> SAT: False
+negative control, primary bit 5000 flipped -> SAT: False
+CNF control PASSED
+EXIT 0
+# end 2026-09-22T20:57:02+02:00

@@ -23,13 +23,13 @@ not independent obstructions. Generic SAT/CP-SAT runs (up to 8 h per case) are a
 |---|---|
 | Rigidity (t = flip, u ≁ σu, a₁(t) = 14) | Proved; flip lemma essentially Makhnev (Bielefeld notes). |
 | Matching D, exact orbit model (R),(D),(I),(P) | Proved; code reviewed line by line; **validated on srg(243,22,1,2)** (m = 11, 0 violations). |
-| CNF encoding at m = 11 (`control_bvls.py --cnf`) | **Pending, lab machine.** |
+| CNF encoding at m = 11 (`control_bvls.py --cnf`) | **Passed** on the lab machine, 2026-09-22 (planted BvLS SAT + lift, 4/4 flips UNSAT; `results/lab_2026-09-22/control4_bvls_cnf.log`). |
 | Case split sib / one / dis on D(U0) | Proved exhaustive (Stab(U0) of order 15 360 has 3 orbits). |
 | Spec(Q_out), F₂ rank 20, F₃ ranks | Proved; general-k analogues checked on srg(243,22,1,2). Filters, not obstructions. |
 | SAT/CP-SAT on the full model | 7 × 8 h UNKNOWN; CP-SAT 15–25 min UNKNOWN. A timeout is not evidence. |
 | `results/batch_kissat_one10.log` (UNSAT) | **Do not cite.** Undocumented sub-case, empty by construction (see `notes/ONE10_PROVENANCE.md`). |
 | Order-7 census audit | Four typos; re-verified offline from the archived JSONs. No new constraint. |
-| **Next task** | Enumerate the Q_out orbit matrices (Stage Q) — `LAB_INSTRUCTIONS.md` §4. |
+| **Next task** | Enumerate the Q_out orbit matrices (Stage Q) — `LAB_INSTRUCTIONS.md` §4. In progress: Stage Q 2 h UNKNOWN (kissat, CP-SAT); 1 326 symmetry cubes; see `results/HANDOFF_2026-09-22.md`. |
 
 ## 2. Corrections made on 2026-09-22 (details in `notes/AUDIT_2026-09-22.md`)
 - The dossier's "new congruence" (#induced C4 odd) was empty: c4 = 2079 in every srg(99,14,1,2). Removed.

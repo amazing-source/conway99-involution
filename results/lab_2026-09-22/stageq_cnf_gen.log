@@ -1,0 +1,11 @@
+Stage Q m=7 case=sib vars=1197042 clauses=2530942 build=2.4s
+written q_sib.cnf
+Stage Q m=7 case=one vars=1197042 clauses=2530942 build=2.4s
+written q_one.cnf
+Stage Q m=7 case=dis vars=1197042 clauses=2530942 build=2.3s
+written q_dis.cnf
+d9251d732935c978ad693c5af8e82181b9f72df1de003a70ad6b134dadb90cc8  q_dis.cnf
+d9ebe4f34deb167b8242280e56762a1706d497bf617b1b96a8dcef34dcd3f9b7  q_one.cnf
+6edaf11843a39d208005ce247c8e75e167d384a634c783f952b2aa6957bc3cc4  q_sib.cnf
+0
+no CR

@@ -1,0 +1,4 @@
+# 2026-09-22T20:55:07+02:00 python Python 3.12.10 pysat/numpy/sympy/ortools pinned
+m=2 case=none vars=3 clauses=22 build=0.0s
+result: True time=0.0s
+LIFT VERIFY srg identity: True

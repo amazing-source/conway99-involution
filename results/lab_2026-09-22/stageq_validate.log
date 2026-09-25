@@ -1,0 +1,16 @@
+# 2026-09-22T21:08:12+02:00 stage_q.py --validate (streaming m=11 check)
+m=2: Stage Q SAT, checks True f2 True | Stage S True | lift srg(9,4,1,2): True
+m=3: Stage Q UNSAT (no srg(19,6,1,2); either answer is consistent for a relaxation)
+BvLS m=11 table: Stage-Q equations True | F2 rank 44 expected 44 | Stage-S equations True | lift: True
+BvLS Stage-S CNF accepts planted S: True
+BvLS Stage-S CNF, one sign flipped -> SAT: False
+BvLS: D(U0) = (1, 2, 1) -> case type sib
+planted BvLS Q, streaming per-constraint check of the m=11 Stage-Q CNF: failing constraints = 0 (39s)
+  primary var 5674 flipped -> failing constraints: 48
+  primary var 6137 flipped -> failing constraints: 45
+  primary var 9055 flipped -> failing constraints: 45
+  primary var 11397 flipped -> failing constraints: 45
+  primary var 418 flipped -> failing constraints: 48
+  primary var 1729 flipped -> failing constraints: 43
+VALIDATION PASSED (51s)
+EXIT 0

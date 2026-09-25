@@ -1,0 +1,4 @@
+CP-SAT Stage Q m=2 case=none built in 0.0s
+RESULT {"m": 2, "case": "none", "status": "OPTIMAL", "wall": 0.0403144, "conflicts": 0, "branches": 0, "eq": true, "f2": 0, "f2_ok": true, "S": true, "lift": true}
+CP-SAT Stage Q m=3 case=none built in 0.0s
+RESULT {"m": 3, "case": "none", "status": "INFEASIBLE", "wall": 0.0087972, "conflicts": 0, "branches": 0}

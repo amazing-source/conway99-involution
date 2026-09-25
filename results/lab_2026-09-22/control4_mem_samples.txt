@@ -1,0 +1,6 @@
+20:55:19 rss=0,62GB free=17GB peak=0GB
+20:55:35 rss=2.81GB free=14.9GB cpu=5% peak=2.81GB
+20:55:56 rss=4.14GB free=13.5GB cpu=4% peak=4.14GB
+20:56:17 rss=4.14GB free=13.3GB cpu=6% peak=4.14GB
+20:56:39 rss=7.01GB free=10.6GB cpu=9% peak=7.01GB
+20:57:00 rss=9.77GB free=8.0GB cpu=5% peak=9.77GB

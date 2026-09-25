@@ -1,0 +1,13 @@
+# 2026-09-22T20:55:07+02:00
+/usr/bin/bash: line 7: /usr/bin/time: No such file or directory
+BvLS: srg(243,22,1,2) identity holds
+x -> -x: automorphism with exactly 1 fixed point
+rigidity lemmas: t = flip on N(x); no outer vertex adjacent to its image
+orbit model (R,D,I,P) violations: 0 0 0 0
+D is a perfect matching on the 110 outer orbits
+Q-only equations hold: Q^2+Q = (k-2)I+4J-Sh ; Nb^T Q = 4J-2Nb^T
+signed equations hold: C^T S_out = 0 ; S_out^2+S_out = (k-2)I-G
+Spec(Q_out) = predicted {20, (-2)^10, 4^55, (-5)^44}: True
+rank_F2(S) = 55 (predicted 55 ) ; rank_F2(Gamma1 + Nb Nb^T) = 44 (predicted 44 )
+reminder: in ANY srg(n,k,1,2) the number of induced C4 is the constant non-edges/2 (here 13365), so a parity statement about it carries no information
+light control PASSED (run with --cnf on the lab machine for the full CNF check)
