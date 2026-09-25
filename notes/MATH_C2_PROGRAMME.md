@@ -965,3 +965,40 @@ Résultats :
   - Un petit test de quelques secondes, qui n'applique que 28.4 et 28.5 avec contrôles, laisse 30 346 squelettes sur 131 220.
   - Ils ont au plus 4 blocs α, et chaque bloc α a ses prédécesseurs consécutifs sur T.
   - Le tout-β relève du cœur.
+
+## 28. Le cœur : H se réduit à H-β, et état des lieux (26/09 ; labo, notes 28 §10, 29, 30)
+**Définition du cœur** (labo, note 29) : Σ = ∅ et G_c connexe en tout bloc. Là, l'équilibre, les profils, les budgets et les réseaux
+sont vides.
+
+**Nouveaux lemmes, à la main :**
+- **28.6 (forçage par les sœurs), Th. 28.7.** La famille M1 (a,c) = (1,1) à n = 3 est impossible : S1 tombe par 28.6.
+- **30.1 (paire liée tordue).** Si L_c = {a,b} est une structure liée fermée en c et que {a,b} est tordue, alors f_a ≥ 8.
+  - Preuve : au bloc a, on note A = {X₁, X₂, P}, formé des deux sœurs de {a,c} et de l'orbite libre de {a,b}. Par l'équilibre en c,
+    A n'a aucune arête interne, et chaque autre orbite libre a au plus un voisin parmi X₁, X₂.
+  - Avec f_a = 6, P aurait 3 voisins. ✗
+- **Théorème 30.2 : H = H-β.** Dans H, f = 6 partout. Un bloc α a sa paire In(c) ancrée, ce que 28.5 exclut, ou tordue, ce que 30.1
+  exclut.
+  - Contrôle : le filtre sain au niveau bloc (labo, `m1_blocks4.py`) laisse 0 survivant sur les 123 540 squelettes à au moins un bloc α,
+    et tue au bloc prévu par 30.1.
+  - Il reste le tout-β : 60 orientations eulériennes × 2⁷, soit le cœur.
+- **Règle typée n_k ≤ 1** (« structures », redémontrée) : pour x = (i,j,k), m_j(x) et π_j(x) ne sont jamais tous deux dans {j,k}. Sinon,
+  (k,γ) aurait 3 voisins de x, alors que μ = 2. Juste, mais **sans effet** au niveau bloc.
+
+**Rapporté par « structures » (NOTE_S11, commit 79ec9f8 de leur labo ; relecture C2 en attente).** Le tout-tordu à deux triangles
+sécants est exclu à la main : 8 classes, avec les outils PPE, couplage E[P][Q] = E[Q][P], lemme T et lemme A. Avec 26 (S8.5 et la
+famille 4), **tout type tout-tordu à au moins 2 triangles est exclu.**
+
+**Le signe au premier ordre ne suffit pas** (« structures », test court) : le relâchement linéaire de « système local + PPE typé +
+couplage » est faisable sur les échantillons à 1 triangle.
+
+**Reste :**
+- H-β ;
+- le tout-tordu à au plus 1 triangle ;
+- les familles M1 avec un bloc A de degré 6 : (1,0,n) et (1,1,4–5) ;
+- les carrés disjoints.
+
+**Outil de second ordre commun** (C1, notes/116 ; vérifié par « structures » et rederivé ici). Pour des paires R ≠ R′ :
+
+  Σ_Z φ_Z(R) φ_Z(R′) = 16 − E[R][R′] − 4·[R ∩ R′ ≠ ∅].
+
+Ce sont 210 identités quadratiques, non impliquées par 16.1 ni par le couplage.
