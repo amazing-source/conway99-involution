@@ -1048,3 +1048,20 @@ toutes les colonnes).
 - le tout-tordu à au plus 1 triangle. « Structures » y trouve, avec le même moteur, 10 classes sur 15 à 1 triangle PL-infaisables et
   5 PLNE-infaisables, non encore certifiées ;
 - les carrés disjoints.
+
+## 30. M1 à bloc A, n = 3 : impossible ; contre-vérification de H-β (26/09 matin ; labo, notes 33–34)
+- **Théorème 34.1.** La famille M1 (a = 1, n = 3) est impossible.
+  - Le filtre sain de blocs laisse 2 928 squelettes, soit 23 classes à symétrie près.
+  - Le modèle par colonnes avec (P2), généralisé (coupes 3/5 toujours, 4 seulement si f = 6), rend les 23 classes PL-infaisables.
+  - Les certificats rationnels sont revérifiés exactement et indépendamment : 23/23.
+- **H-β contre-vérifié par « structures »** avec un code séparé : mêmes 552 classes et multiplicités, mêmes nombres de colonnes,
+  8/8 certificats tirés au hasard valides.
+- **« Structures » : le tout-tordu à 1 triangle est impossible**, certifié (NOTE_S17 de leur labo, 84 certificats revérifiés).
+- **Le tout-tordu sans triangle** (14 classes) a un PL faisable à la racine, même avec (P2) : c'est le cœur le plus dur. Il demande un
+  branchement coûteux, soumis à l'utilisateur.
+- **Restent :**
+  - M1 à bloc A pour n = 4, 5, 6 (plusieurs centaines de classes ; quelques heures de calcul, à autoriser) ;
+  - les mélanges à plusieurs cycles tordus ;
+  - le tout-tordu sans triangle ;
+  - les carrés disjoints ;
+  - Σ ≠ ∅.
