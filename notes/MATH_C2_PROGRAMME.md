@@ -1074,3 +1074,17 @@ toutes les colonnes).
 - M1 compte ainsi comme morts : H (32.1), (a,c) ∈ {(0,1), (0,2), (1,2)} (28.3), n = 3 (28.7 et 34.1) et n = 4 (36.1). **Restent n = 5
   et 6**, en cours par le pipeline v6 (bloc A générique, PL d'union par orientation, branchement sur la structure de A).
 - **Mélanges** : même pipeline pour les 47 classes. Le papillon est en cours d'achèvement.
+
+## 32. Le tout-tordu pur est entièrement exclu (« structures », 26/09 ; contre-vérifié par C2)
+- **≥ 2 triangles** : à la main (« structures », NOTE_S8, S8.5, S11 ; §26 et §28 ici).
+- **1 triangle** : 84 certificats au niveau paires sur 15 classes (41 790 décompositions), revérifiés par le code séparé de « structures ».
+- **0 triangle** : 14 certificats au niveau **orbites**, un par classe (30 360 décompositions), tous obtenus à la racine.
+  - Identité de second ordre utilisée : Q² + Q = 12I + 4J − Sh, où Sh(U,W) est le nombre de blocs communs.
+  - Rederivée ici, pour un k quelconque : Q² + Q = (k − 2)I + 4J − Sh, contraction par orbites de A² + A = (k − 2)I + 2J − NNᵀ sur les
+    racines.
+- **Contre-vérification indépendante par C2**, avec mon propre code (`c2_experimental/scripts/xcheck_structures_*.py`) :
+  - colonnes-orbites reconstruites par mon système local ;
+  - lignes reconstruites depuis les étiquettes ;
+  - Farkas en entiers exacts : **14/14 VALIDES**, low et high identiques aux valeurs stockées ;
+  - couverture réénumérée : 30 360 décompositions sans triangle, 14 représentants deux à deux non isomorphes, Σ des orbites = 30 360.
+- **Théorème.** Aucune configuration tout-tordue (Σ = ∅, carrés « un bloc », toutes les paires tordues) n'existe.
