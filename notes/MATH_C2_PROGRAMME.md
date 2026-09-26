@@ -1027,6 +1027,12 @@ Ce sont 210 identités quadratiques, non impliquées par 16.1 ni par le couplage
   des multiplicateurs stockés, sans solveur : 552 sur 552, 0 échec.
 - L'écart minimal est de 55,4.
 - Fichiers : `scripts/hb_colmodel*.py`, `hb_verify_certs.py`, `logs/hb_certs/`.
+- **Relu par « structures »** (26/09, 06 h) : validité de chaque famille de lignes, borne UB et couverture. Les 60 orientations
+  eulériennes ont été recomptées indépendamment, et les 2⁷ ordres β justifiés (l'α est exclu par 28.5/30.1). Leur vérificateur séparé,
+  qui reconstruit les lignes avec son propre code, est annoncé.
+- **Forme lisible** (labo note 32 §7) : pour chacune des 552 classes, **une seule** identité Σ W̃_ab (P2)[a,b], à coefficients entiers
+  W̃ ∈ {−2,…,2}, plus les lignes linéaires, suffit. L'écart minimal est de 19,8. Ce sont des réponses PL, non certifiées une à une ;
+  la preuve reste portée par les certificats complets.
 - Sans (P2), le même PL est faisable : le levier est le **second ordre**. Les certificats sont denses (toutes les lignes (P2) sont
   utilisées) : c'est un argument spectral global, sans version à la main pour l'instant.
 
