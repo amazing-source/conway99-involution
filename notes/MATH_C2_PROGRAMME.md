@@ -1090,3 +1090,27 @@ toutes les colonnes).
   - Farkas en entiers exacts : **14/14 VALIDES**, low et high identiques aux valeurs stockées ;
   - couverture réénumérée : 30 360 décompositions sans triangle, 14 représentants deux à deux non isomorphes, Σ des orbites = 30 360.
 - **Théorème.** Aucune configuration tout-tordue (Σ = ∅, carrés « un bloc », toutes les paires tordues) n'existe.
+
+## 33. Le niveau orbite en calcul : survivants tués, M1 n = 6 presque fermé, et limites (26/09 après-midi ; labo, note 40)
+- **Survivants du PL par paires.** Le pipeline par paires laissait des configurations entièrement fixées (feuille et structure de A),
+  faisables au niveau paires : 14, puis 11 autres (M1 n = 6 jobs 0, 2 et 6 ; mélange 2C₃).
+  - **Toutes meurent au niveau orbite** : Q² + Q = 12I + 4J − Sh sur les 42 orbites, avec des colonnes-orbites exactes. Écarts de
+    73 à 97.
+  - Certificats entiers revérifiés par un second code indépendant (lignes reconstruites depuis les étiquettes, énumération propre) :
+    25/25.
+  - Contrôles : sans l'identité, faisable ; avec la seule compression par paires, faisable. La contradiction est donc dans
+    l'information d'orbite : **laquelle des deux orbites d'une paire reçoit le voisin**.
+- **Orientation fixée, toutes les structures D libres** (un PL par orientation) : les orientations 0, 9, 10, 13 et 14 de
+  M1 n = 6 meurent (écarts de 5,0 à 14,4, certificats revérifiés). Avec les jobs déjà morts au niveau paires, il ne reste que les
+  orientations 7, 11, 12 et 15, en cours feuille par feuille (A libre, un PL par feuille, écarts de 40 à 65).
+- **Négatifs** (tests minuscules ou uniques) :
+  - « tout libre », et « T fixé, orientation libre » : faisables ;
+  - le niveau **racine (signé)**, qui ajoute S² + S = 12I − CCᵀ (la partie du Théorème D), avec l'orientation fixée : **faisable**
+    sur M1 n = 6 job 12, dans ses deux classes d'holonomie. Modèle relu par « structures », 0 erreur ;
+  - le système **A-local signé** est faisable pour les 4 types de D_A. Il n'y a pas de lemme « pas de bloc A » local ;
+  - 𝒫 = 6I − 2Q − Sh + J ⪰ 0 (Astra) est impliqué par le PL d'orbite, par un argument de type Jensen.
+- **Taille des mélanges.** Au filtre sain v6, les classes 6 à 14 et 17 laissent de 10⁴ à 2·10⁵ classes de squelettes chacune.
+  Un PL par squelette est hors de portée. **Les mélanges demandent un levier structurel nouveau.**
+- **Carrés disjoints** (« structures » et Astra) : le témoin local (2,1) est cohérent, le lemme 11.2 reste ouvert ; filtres
+  d'apex vérifiés et 3h ≤ 2n_dis. Un modèle unifié au niveau orbite (colonnes dis, boucles, option (2,1)) est écrit
+  (`scripts/orbit_colmodel_U.py`), en test de régression.
