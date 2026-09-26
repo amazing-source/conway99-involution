@@ -1114,3 +1114,26 @@ toutes les colonnes).
 - **Carrés disjoints** (« structures » et Astra) : le témoin local (2,1) est cohérent, le lemme 11.2 reste ouvert ; filtres
   d'apex vérifiés et 3h ≤ 2n_dis. Un modèle unifié au niveau orbite (colonnes dis, boucles, option (2,1)) est écrit
   (`scripts/orbit_colmodel_U.py`), en test de régression.
+
+## 34. Comptages exacts d'un triangle de bloc (PROUVÉ, 26/09 soir ; relu par « structures ») et configurations AD
+**Lemme 34.1.** Le bloc c porte trois paires {c,x}, {c,y}, {c,z} ancrées en c, formant un triangle D fermé par c. Soit Lab les 12 racines
+de ces paires. Alors, pour toute racine w ∉ Lab :
+- |N(w) ∩ Lab| = 0 si la paire de w contient c ;
+- 2 si elle rencontre {x,y,z} en un bloc et évite c ;
+- 1 si elle est incluse dans {x,y,z} ;
+- 3 si elle évite {c,x,y,z}.
+De plus, il n'y a aucune arête dans Lab hors des trois carrés.
+
+*Preuve.*
+- On pose f = 3e_x + 3·1_{(c,±)} + 1_{(x,±),(y,±),(z,±)} + 1_Lab. Alors ‖f‖² = 45, 1ᵀf = 27, et fᵀAf = 2(96 + E_L).
+- D'où ‖E₋₄f‖² = (24 − 2E_L)/7.
+- Les trois carrés donnent E_L ≥ 12. Donc E_L = 12, et Af = 3f + 3·1.
+- Lu en w : 3[w ∋ c] + #(intérieurs de w dans {x,y,z}) + |N(w) ∩ Lab| = 3. ∎
+
+C'est le pendant de 16.2 (digone, comptes 0/1/0/2) et du §25 (triangle tordu). Forme commune, due à « structures » : pour une
+composante fermée S de G_k, #(intérieurs de w dans S) + Σ_{m∈S} φ_w(km) = |S| (équilibre 24.0).
+
+**Configurations AD** (paires ancrées et doublement dis, Σ = ∅, sans paire « à moitié ») :
+- la queue (24.1) tue déjà 308 des 322 orientations à deux paires dd ;
+- « structures » les tue toutes au niveau paires (équilibre sur les composantes fermées, zéros, dichotomie ; preuves à une seule
+  racine) pour n_dd = 2, 3, 4. La suite est en cours (labo C2, note 42 ; dépôt « structures », ad/).
