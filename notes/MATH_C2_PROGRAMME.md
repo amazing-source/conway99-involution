@@ -191,6 +191,8 @@ n_far(P) = nombre d'arêtes de N disjointes de P, φ_u(R) = nombre de voisins de
 (perfection de la grille, 9.1 : son seul voisin dans G_S est une étiquette de S), et 8 + n_s(P) voisins lointains en tout. Donc
   Σ_{R ∈ N, R∩P=∅} φ_u(R) = n_far(P) − 2 + n_s(P),   en particulier n_far(P) ≥ 2 − n_s(P) ≥ 1.
 **Lemme 11.2.** Si D(U) est de type disjoint (dans R), φ_u(R) = 2, donc n_far(P) ≥ 4 − n_s(P) ≥ 3.
+*Correction (26/09, C2).* Seul **φ_u(R) ≥ 2** est prouvé. On a w, σw ∈ R, et u peut aussi voir une racine de la sœur de D(U) : c'est un profil (2,1),
+non exclu localement (labo note 39). Toutes les utilisations ci-dessous (n_far ≥ 4 − n_s, (C2), deux triangles disjoints) n'emploient que ≥ 2. Elles restent valides.
 Les partenaires D des orbites non frères sont non frères : type « un bloc » ⟺ arêtes de N adjacentes, type « disjoint » ⟺ arêtes
 de N disjointes.
 **Lemme 11.3 (liaison).** Si d_i = 2 (arêtes ij, ik de N), la partie non frère de R_i vit sur les 4 orbites de ij ∪ ik ; si une
