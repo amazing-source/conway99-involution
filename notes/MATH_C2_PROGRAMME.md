@@ -1065,3 +1065,12 @@ toutes les colonnes).
   - le tout-tordu sans triangle ;
   - les carrés disjoints ;
   - Σ ≠ ∅.
+
+## 31. M1 à bloc A, n = 4 : impossible (26/09 ; labo, note 36)
+- **Théorème 36.1.** La famille M1 (a = 1, n = 4) est impossible.
+  - Il y a 30 classes d'orientations. Le filtre sain laisse 214 classes de squelettes.
+  - Les 214 sont PL-infaisables avec (P2). L'écart minimal est de 16,4.
+  - Les certificats rationnels sont revérifiés indépendamment : 214/214.
+- M1 compte ainsi comme morts : H (32.1), (a,c) ∈ {(0,1), (0,2), (1,2)} (28.3), n = 3 (28.7 et 34.1) et n = 4 (36.1). **Restent n = 5
+  et 6**, en cours par le pipeline v6 (bloc A générique, PL d'union par orientation, branchement sur la structure de A).
+- **Mélanges** : même pipeline pour les 47 classes. Le papillon est en cours d'achèvement.
