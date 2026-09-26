@@ -1002,3 +1002,43 @@ couplage » est faisable sur les échantillons à 1 triangle.
   Σ_Z φ_Z(R) φ_Z(R′) = 16 − E[R][R′] − 4·[R ∩ R′ ≠ ∅].
 
 Ce sont 210 identités quadratiques, non impliquées par 16.1 ni par le couplage.
+
+## 29. La famille H est impossible (preuve assistée, certificats exacts ; 26/09 ; labo, notes 31–32)
+**Autorisation.** Calcul plafonné à environ 3 h, autorisé explicitement par l'utilisateur (26/09). Seules les réponses certifiées comptent.
+
+**Le système au niveau des paires** (C1, notes/116 ; « structures » ; rederivé et contrôlé ici).
+- Notation : φ_Z(R) est le nombre de voisins d'une orbite Z dans les 4 racines d'une paire R.
+- Contraintes :
+  - (L) les sommes par bloc valent 4 ;
+  - (S) Σ_Z φ_Z(R) = 24 ;
+  - (PPE) Σ_Z φ_Z(R)² = 32 ;
+  - couplage E[R][R′] = E[R′][R] ;
+  - **(P2)** Σ_Z φ_Z(R)φ_Z(R′) = 16 − E[R][R′] − 4[R ∩ R′ ≠ ∅].
+- Contrôle sur BvLS : 0 violation sur 3 025. La diagonale générale vaut 2k + 4 − e(R).
+
+**Modèle par colonnes** (idée de « structures », S15).
+- Une colonne est une orbite, munie de sa paire de voisins libres et d'une solution locale exacte de son rang lointain. Toutes les
+  valeurs sont des constantes de la colonne, donc (P2) est **linéaire**.
+- Les cycles libres restent des variables : arêtes symétriques, coupes de sous-tours (f = 6), sœurs, règle typée.
+
+**Théorème 32.1.** H-β, et donc H (30.2), est impossible.
+- Les 552 classes de squelettes à D₇ près (7 680 squelettes) sont toutes PL-infaisables.
+- Chaque classe a un certificat de Farkas **rationnel**, vérifié en arithmétique exacte, puis **revérifié indépendamment** à partir
+  des multiplicateurs stockés, sans solveur : 552 sur 552, 0 échec.
+- L'écart minimal est de 55,4.
+- Fichiers : `scripts/hb_colmodel*.py`, `hb_verify_certs.py`, `logs/hb_certs/`.
+- Sans (P2), le même PL est faisable : le levier est le **second ordre**. Les certificats sont denses (toutes les lignes (P2) sont
+  utilisées) : c'est un argument spectral global, sans version à la main pour l'instant.
+
+**Modèle général** (orientation fixée, structures D, pivots et cycles variables ; génération de colonnes ; certificat vérifié sur
+toutes les colonnes).
+- Il tue l'orientation H circulante **sans les lemmes 28.x ni 30.1** : écart 7,42, certificat exact.
+- Si l'on laisse l'orientation variable, le PL devient faisable : il faut **fixer l'orientation**.
+
+**État de M1** : il reste les familles à bloc A, soit (1,0,n) pour n = 3…6, et (1,1,4), (1,1,5).
+
+**Hors M1** :
+- les mélanges à plusieurs cycles tordus ;
+- le tout-tordu à au plus 1 triangle. « Structures » y trouve, avec le même moteur, 10 classes sur 15 à 1 triangle PL-infaisables et
+  5 PLNE-infaisables, non encore certifiées ;
+- les carrés disjoints.
